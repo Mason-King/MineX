@@ -1,0 +1,9 @@
+name: MineX
+version: '${project.version}'
+main: minex.Main
+api-version: 1.18
+authors: [ Mason ]
+description: MineX plugin
+website: masonking.dev
+commands:
+  party:

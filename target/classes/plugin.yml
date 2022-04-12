@@ -1,0 +1,9 @@
+name: MineX
+version: '1.0-SNAPSHOT'
+main: minex.Main
+api-version: 1.18
+authors: [ Mason ]
+description: MineX plugin
+website: masonking.dev
+commands:
+  party:
