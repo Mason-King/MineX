@@ -39,4 +39,8 @@ public class Party {
         }
     }
 
+    public void removeMember(UUID id) {
+        members.remove(id);
+    }
+
 }

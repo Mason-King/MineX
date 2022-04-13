@@ -58,9 +58,9 @@ public class PartyCommand implements CommandExecutor {
                                 Party party = Party.parties.get(owner.getUniqueId());
                                 if(party.addMember(player.getUniqueId())) {
                                     player.sendMessage("You have joined " + owner.getName() + "'s party");
+                                    owner.sendMessage(player.getName() + " has joined your party!");
                                 } else {
                                     player.sendMessage("This party has reached the max size!");
-                                    System.out.println(party.getOwner());
                                 }
                             } else {
                                 player.sendMessage("You do not have an invite from this player!");
@@ -68,6 +68,34 @@ public class PartyCommand implements CommandExecutor {
                         }
                     }
 
+                } else if(args[0].equalsIgnoreCase("create")) {
+                    Party party;
+                    if(Party.parties.containsKey(player.getUniqueId())) {
+                        //They have a party
+                        party = Party.parties.get(player.getUniqueId());
+                        player.sendMessage("You already have a party!");
+                    } else {
+                        party = new Party(player.getUniqueId());
+                        player.sendMessage("You have created a new party. Invite people using /party invite <player>");
+                    }
+                } else if(args[0].equalsIgnoreCase("kick")) {
+                    Party p = Party.parties.get(player.getUniqueId());
+                    if(p == null) {
+                        player.sendMessage("You do not have a party!");
+                    }
+                    if(p.getOwner().equals(player.getUniqueId())) {
+                        if(Bukkit.getPlayer(args[1]) == null) {
+                            player.sendMessage("Invalid player!");
+                        } else {
+                            Player target = Bukkit.getPlayer(args[1]);
+                            if(p.getMembers().contains(target.getUniqueId())) {
+                                p.removeMember(target.getUniqueId());
+                                player.sendMessage("You have kicked " + target.getName());
+                            }
+                        }
+                    } else {
+                        player.sendMessage("You are not the party leader!");
+                    }
                 }
             }
         }

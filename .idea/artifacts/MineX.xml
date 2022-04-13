@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MineX">
+    <output-path>D:/Minecraft related/Servers/1.18/plugins</output-path>
+    <root id="archive" name="MineX.jar">
+      <element id="module-output" name="MineX" />
+    </root>
+  </artifact>
+</component>
