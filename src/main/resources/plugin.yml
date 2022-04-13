@@ -7,3 +7,4 @@ description: MineX plugin
 website: masonking.dev
 commands:
   party:
+  game:
