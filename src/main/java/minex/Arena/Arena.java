@@ -1,18 +1,6 @@
 package minex.Arena;
 
-import com.boydti.fawe.FaweAPI;
-import com.boydti.fawe.object.schematic.Schematic;
-import com.boydti.fawe.util.TaskManager;
-import com.sk89q.worldedit.BlockVector;
-import com.sk89q.worldedit.BlockVector2D;
-import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.BukkitWorld;
-import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.extent.clipboard.ClipboardFormats;
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormat;
-import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader;
-import com.sk89q.worldedit.math.transform.Transform;
 import minex.Main;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -20,8 +8,6 @@ import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Arena {
@@ -59,20 +45,12 @@ public class Arena {
 
         File file = new File(Main.getInstance().getDataFolder().getAbsolutePath() +  "/schematics/lobby.schem");
 
-        Vector vec = new Vector(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
-        BukkitWorld w = new BukkitWorld(world);
-        System.out.println(vec);
-
-        TaskManager.IMP.taskWhenFree(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    FaweAPI.load(file).paste(w, vec);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        try {
+            Schematic schematic = ClipboardFormats.findByFile(file).load(file);
+            schematic.paste(FaweAPI.getWorld(main.getConfig().getString("world")), new Vector(pasteLocation.getX(), pasteLocation.getY(), pasteLocation.getZ()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }
