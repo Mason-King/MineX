@@ -16,46 +16,35 @@ public class GameCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)) {
-            sender.sendMessage("Only players can use this command");
+        if(!(sender instanceof Player))  {
+            sender.sendMessage("You must be a player!");
         } else {
             Player player = (Player) sender;
             if(args.length == 0) {
-                player.sendMessage("Game help command!");
+                player.sendMessage("Game command help!");
             } else {
                 if(args[0].equalsIgnoreCase("create")) {
                     if(args.length < 2) {
-                        player.sendMessage("Invalid game create usage");
+                        player.sendMessage("Invalid usage!");
                     } else {
                         String id = args[1];
-                        for(Game game : Game.allGames) {
-                            if(game.getId() == id) {
-                                player.sendMessage("A game already exists");
-                                return false;
-                            }
+                        if(Game.getGame(id) != null) {
+                            player.sendMessage("There is no game with this id!");
+                        } else {
+                            player.sendMessage("Creating a new game with the id " + id);
+                            Game game = new Game(id);
                         }
-                        Game game = new Game(id);
                     }
                 } else if(args[0].equalsIgnoreCase("list")) {
-                    for(Game game : Game.allGames) {
+                    for(Game game : Game.games) {
                         player.sendMessage(game.getId());
                     }
                 } else if(args[0].equalsIgnoreCase("tp")) {
-                    if(args.length < 2) {
-                        player.sendMessage("Invalid tp command");
-                    } else {
-                        String id = args[1];
-                        Game game = Game.getGame(id);
-                        if(game == null) {
-                            player.sendMessage("There is no game with this id!");
-                        } else {
-                            game.teleport(player);
-                            player.sendMessage("You have been teleported to the game arena!");
-                        }
-                    }
+
                 }
             }
         }
         return false;
     }
+
 }
