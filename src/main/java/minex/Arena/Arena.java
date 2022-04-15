@@ -44,14 +44,7 @@ public class Arena {
     public boolean pasteSchematic() {
 
         File file = new File(Main.getInstance().getDataFolder().getAbsolutePath() +  "/schematics/lobby.schem");
-
-        try {
-            Schematic schematic = ClipboardFormats.findByFile(file).load(file);
-            schematic.paste(FaweAPI.getWorld(main.getConfig().getString("world")), new Vector(pasteLocation.getX(), pasteLocation.getY(), pasteLocation.getZ()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+        
     }
 }
 
