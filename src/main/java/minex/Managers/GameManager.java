@@ -1,6 +1,7 @@
 package minex.Managers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -9,10 +10,13 @@ import com.mongodb.client.MongoDatabase;
 import minex.Game.Game;
 import minex.Main;
 import org.bson.Document;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.json.simple.JSONObject;
 import redis.clients.jedis.Pipeline;
 
 import javax.print.Doc;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +26,6 @@ public class GameManager {
 
     public static List<Game> games = new ArrayList<>();
     public static Map<String, Game> allGames = new HashMap<>();
-
-    public static MongoClient client = MongoClients.create("mongodb+srv://mason:Mjking68@minex.kx0a3.mongodb.net/MineX?retryWrites=true&w=majority");
-    public static MongoDatabase database = client.getDatabase("MineX");
-    public static MongoCollection<Document> collection = database.getCollection("games");
 
     public static Game createGame(String id) {
         Game game = new Game(id);
@@ -43,13 +43,18 @@ public class GameManager {
 
     public static void save(Game game) {
         Gson gson = new Gson();
-        String json = gson.toJson(game);
+        String json = gson.toJson(game).trim();;
 
         Pipeline pipeline = Main.jedis.pipelined();
         pipeline.set(game.getId(), json);
         pipeline.sync();
 
-        collection.insertOne(Document.parse(json));
+        Main.collection.insertOne(Document.parse(json));
+
+        File file = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "game.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+
+        ConfigurationSection section = config.createSection(game.getId());
 
     }
 

@@ -1,5 +1,7 @@
 package minex.Party;
 
+import minex.Player.mPlayer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +20,11 @@ public class Party {
         this.owner = owner;
         members = new ArrayList<>();
         members.add(owner);
-
         parties.put(owner, this);
+
+        mPlayer player = mPlayer.uuidPlayers.get(owner);
+        player.setParty(this);
+
     }
 
     public UUID getOwner() {
