@@ -1,7 +1,9 @@
-minex/Arena/Arena.class
-minex/Main.class
-minex/Party/Party.class
-minex/Party/PartyCommand.class
-minex/Game/GameCommand.class
-minex/Arena/ArenaType.class
-minex/Game/Game.class
+minex\Game\GameCommand.class
+minex\Managers\GameManager.class
+minex\Game\Game.class
+minex\Utils\Utils.class
+minex\Main.class
+minex\Arena\Arena.class
+minex\Arena\Lobby.class
+minex\Party\Party.class
+minex\Party\PartyCommand.class

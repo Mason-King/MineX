@@ -1,3 +1,8 @@
 #MineX
 lobby:
   schematic: 'lobby.schematic'
+
+id:
+  var1: option1
+  var2: option2
+  var3: option3

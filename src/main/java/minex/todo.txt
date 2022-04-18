@@ -1,0 +1,4 @@
+ToDo:
+
+- center Lobby to locations on block
+- make games persistent
