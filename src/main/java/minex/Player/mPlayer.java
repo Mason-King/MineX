@@ -1,33 +1,30 @@
 package minex.Player;
 
-import it.unimi.dsi.fastutil.Hash;
 import minex.Game.Game;
 import minex.Party.Party;
-import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.UUID;
 
 public class mPlayer {
 
-    public static List<mPlayer> players = new ArrayList<>();
-    public static Map<UUID, mPlayer> uuidPlayers = new HashMap<>();
-
     private UUID id;
+    private boolean inGame;
+    private Game game;
     private Party party;
-    private Game currGame;
+
+
+    public mPlayer(UUID uuid, boolean inGame, Game game, Party party) {
+        this.id = uuid;
+        this.inGame = inGame;
+        this.game = game;
+        this.party = party;
+    }
 
     public mPlayer(UUID id) {
         this.id = id;
-
-        players.add(this);
-        uuidPlayers.put(id, this);
-    }
-
-    public mPlayer(Player player) {
-        this.id = player.getUniqueId();
-
-        players.add(this);
-        uuidPlayers.put(id, this);
+        this.inGame = false;
+        this.game = null;
+        this.party = null;
     }
 
     public UUID getId() {
@@ -38,19 +35,27 @@ public class mPlayer {
         this.id = id;
     }
 
+    public boolean isInGame() {
+        return inGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Party getParty() {
         return party;
     }
 
     public void setParty(Party party) {
         this.party = party;
-    }
-
-    public Game getCurrGame() {
-        return currGame;
-    }
-
-    public void setCurrGame(Game currGame) {
-        this.currGame = currGame;
     }
 }
