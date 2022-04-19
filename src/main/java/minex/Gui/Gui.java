@@ -272,8 +272,18 @@ public class Gui implements Listener {
             return this;
         }
 
+        public NoobPage i(int position, Material item, Short data, String name, String... lore) {
+            super.setItem(position, getItem(new ItemStack(item, data), name, lore));
+            return this;
+        }
+
         public NoobPage i(int position, Material item, String name, List<String> lore) {
             super.setItem(position, getItem(new ItemStack(item), name, lore));
+            return this;
+        }
+
+        public NoobPage i(int position, Material item, short data, int amount, String name, List<String> lore) {
+            super.setItem(position, getItem(new ItemStack(item, ((amount == 0) ? 1 : amount), data), name, lore));
             return this;
         }
 

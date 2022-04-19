@@ -2,7 +2,10 @@
 
     import minex.Arena.Arena;
     import minex.Arena.Lobby;
+    import minex.Managers.CountdownManager;
     import minex.Managers.GameManager;
+    import minex.Party.Party;
+    import org.bukkit.Bukkit;
     import org.bukkit.Location;
 
     import java.util.ArrayList;
@@ -12,13 +15,13 @@
     public class Game {
 
         private String id;
-        private int maxPlayers;
+        private int maxPlayers = 25;
         private int teamSize;
         private List<UUID> players = new ArrayList<>();
         private int currPlayers;
         private Arena arena;
         private Lobby lobby;
-
+        private Countdown countdown;
 
         public Game(String id, int maxPlayers, int currPlayers) {
             this.id = id;
@@ -54,6 +57,23 @@
 
         public void setCurrPlayers(int currPlayers) {
             this.currPlayers = currPlayers;
+        }
+
+        public void addPlayer(UUID u) {
+            this.players.add(u);
+            if(currPlayers == 0) {
+                countdown = new Countdown(this.id, 120);
+                CountdownManager.addCountdown(id, countdown);
+            }
+            currPlayers++;
+            Bukkit.getPlayer(u).teleport(lobby.getSpawn());
+        }
+
+        public void addParty(Party p) {
+            for(UUID id : p.getMembers()) {
+                addPlayer(id);
+                Bukkit.getPlayer(id).teleport(lobby.getSpawn());
+            }
         }
 
         public void addSpawn(Location loc) {

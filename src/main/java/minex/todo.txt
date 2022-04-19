@@ -1,4 +1,5 @@
 ToDo:
 
 - center Lobby to locations on block
-- make games persistent
+- Add countdown for games with x players is reached
+- Add ability after x time to merge games

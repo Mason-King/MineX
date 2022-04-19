@@ -7,8 +7,12 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import minex.Game.Game;
 import minex.Game.GameCommand;
+import minex.Managers.GameManager;
 import minex.Party.PartyCommand;
+import minex.Player.mPlayer;
 import org.bson.Document;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -23,7 +27,7 @@ public final class Main extends JavaPlugin {
     private static Main instance;
     public static Jedis jedis;
 
-    public static MongoClient client = MongoClients.create("mongodb+srv://mason:Mjking68@minex.kx0a3.mongodb.net/MineX?retryWrites=true&w=majority");
+    public static MongoClient client = MongoClients.create("mongodb+srv://mason:Mjking68@minex.kx0a3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
     public static MongoDatabase database = client.getDatabase("MineX");
     public static MongoCollection<Document> collection = database.getCollection("games");
 
@@ -38,7 +42,14 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
         this.saveResource("schematics/lobby.schem", false);
         this.saveResource("game.yml", false);
-        // Plugin startup logic
+        this.saveResource("Guis/GameSelector.yml", false);
+
+        this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            new mPlayer(p);
+        }
+
         instance = this;
         new PartyCommand();
         new GameCommand();
@@ -60,7 +71,7 @@ public final class Main extends JavaPlugin {
         Gson gson = new Gson();
 
         collection.find().forEach((Consumer<Document>) document -> {
-            System.out.println(gson.fromJson(document.toJson(), Game.class));
+            GameManager.load(gson.fromJson(document.toJson(), Game.class));
         });
 
     }
