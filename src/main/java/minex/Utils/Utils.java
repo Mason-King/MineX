@@ -28,13 +28,10 @@ public class Utils {
 
     public static void makeFormat(String file, Gui.NoobPage gui, String keyForItems) {
 
-        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);
+        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + file);
         YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
         List<String> toFormat = config.getStringList("format");
         int size = toFormat.size() * 9;
-
-        System.out.println(size);
-        System.out.println(toFormat.size());
 
         if(toFormat.size() == size / 9) {
             for(int i = 0; i < (size / 9); i++) {
@@ -42,8 +39,7 @@ public class Utils {
                 for(int z = 0; z < 9; z++) {
                     String removeSpaces = s.replaceAll(" ", "");
                     char individual = removeSpaces.charAt(z);
-                    System.out.println((9 * i) + z);
-                    gui.i((9 * i) + z, Material.matchMaterial(config.getString(keyForItems + "." + individual + ".material")), (short) config.getInt(keyForItems + "." + individual + ".data"), config.getInt(keyForItems + "." + individual + ".amount"), color(config.getString(keyForItems + "." + individual + ".name")), color(config.getStringList(keyForItems + "." + individual + ".lore")));
+                    gui.i((9 * i) + z, Material.matchMaterial(config.getString(keyForItems + "." + individual + ".material")), color(config.getString(keyForItems + "." + individual + ".name")), color(config.getStringList(keyForItems + "." + individual + ".lore")));
                 }
 
             }

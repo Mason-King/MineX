@@ -25,9 +25,6 @@ import java.util.Map;
 public class GameManager {
 
     public static List<Game> games = new ArrayList<>();
-    public static List<Game> preGame = new ArrayList<>();
-    public static List<Game> inProgress = new ArrayList<>();
-    public static List<Game> endGame = new ArrayList<>();
     public static Map<String, Game> allGames = new HashMap<>();
 
     public static Game createGame(String id) {
@@ -42,13 +39,6 @@ public class GameManager {
 
     public static Game getGame(String id) {
         return allGames.get(id);
-    }
-
-    public static void load(Game game) {
-        games.add(game);
-        allGames.put(game.getId(), game);
-        preGame.add(game);
-        System.out.println(preGame);
     }
 
     public static void save(Game game) {
@@ -66,31 +56,6 @@ public class GameManager {
 
         ConfigurationSection section = config.createSection(game.getId());
 
-    }
-
-    public static boolean isEndGame(Game game) {
-        if(endGame.contains(game)) return true;
-        return false;
-    }
-
-    public static boolean isPreGame(Game game) {
-        if(preGame.contains(game)) return true;
-        return false;
-    }
-
-    public static boolean isInProgress(Game game) {
-        if(inProgress.contains(game)) return true;
-        return false;
-    }
-
-    public static Game getFullest() {
-        Game finalGame = preGame.get(0);
-        for(int i = 1; i < preGame.size(); i++) {
-            if(finalGame.getCurrPlayers() < preGame.get(i).getCurrPlayers()) {
-                finalGame = preGame.get(i);
-            }
-        }
-        return finalGame;
     }
 
 }

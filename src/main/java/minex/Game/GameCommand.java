@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import minex.Arena.Arena;
 import minex.Arena.Lobby;
-import minex.Gui.GameSelectorGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Messages.Message;
@@ -106,7 +105,25 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("join")) {
-                    new GameSelectorGui().makeGui(player);
+                    if(args.length < 2) {
+                        player.sendMessage("Game join usage");
+                    } else {
+                        String id = args[1];
+                        Game game = GameManager.getGame(id);
+                        if(game == null) {
+                            player.sendMessage("Not a valid game!");
+                        } else {
+                            mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                            if (mp.getParty() != null) {
+                                for (UUID u : mp.getParty().getMembers()) {
+                                    Player temp = Bukkit.getPlayer(u);
+                                    temp.teleport(game.getLobby().getSpawn());
+                                }
+                            } else {
+                                player.teleport(game.getLobby().getSpawn());
+                            }
+                        }
+                    }
                 } else if(args[0].equalsIgnoreCase("lobby")) {
                     if(args.length < 2) {
                         player.sendMessage("game lobby help command");
