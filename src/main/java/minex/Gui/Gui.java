@@ -277,6 +277,12 @@ public class Gui implements Listener {
             return this;
         }
 
+        public NoobPage i(int position, Material item, short data, int amount, String name, List<String> lore) {
+            System.out.println(new ItemStack(item, amount, data));
+            super.setItem(position, getItem(new ItemStack(item, amount, data), name, lore));
+            return this;
+        }
+
         public NoobPage i(int row, int column, ItemStack item) {
             super.setItem(column + row * 9, item);
             return this;

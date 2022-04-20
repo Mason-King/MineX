@@ -42,7 +42,6 @@ public class GameManager {
     public static List<Game> getFullest() {
         List<Game> preGames = games;
         Collections.sort(preGames, (o1, o2) -> o2.getCurrPlayers() - o1.getCurrPlayers());
-        System.out.println(preGames);
         return preGames;
     }
 

@@ -5,24 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/GameSelectorGui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Guis/GameSelector.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Team.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/TeamSelectorGui.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Guis/TeamSelector.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/JoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Managers/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Managers/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Party/Party.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Party/Party.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/todo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/MapSelector.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/MapSelector.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Guis/MapSelector.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Guis/MapSelector.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/Gui$GuiPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/Gui$GuiPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/Gui$NoobPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/Gui$NoobPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/Gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/Gui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/MapGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/MapGui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Managers/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Managers/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Party/Party.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Party/Party.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
@@ -66,15 +71,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Guis" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "/Users/masonking/IdeaProjects/MineX/src/main/resources/Guis",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/Guis" />
       <recent name="C:\Users\mason\IdeaProjects\MineX\src\main\resources\Guis" />
       <recent name="C:\Users\mason\IdeaProjects\MineX\src\main\resources\schematics" />
     </key>
@@ -131,9 +136,12 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CODE_SMELLS_PROFILE" value="Project Default" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

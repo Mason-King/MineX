@@ -44,6 +44,7 @@ public final class Main extends JavaPlugin {
         this.saveResource("schematics/lobby.schem", false);
         this.saveResource("Guis/GameSelector.yml", false);
         this.saveResource("Guis/MapSelector.yml", false);
+        this.saveResource("Guis/TeamSelector.yml", false);
         this.saveResource("game.yml", false);
         // Plugin startup logic
         instance = this;

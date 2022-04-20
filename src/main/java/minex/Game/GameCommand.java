@@ -1,29 +1,21 @@
 package minex.Game;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import minex.Arena.Arena;
 import minex.Arena.Lobby;
 import minex.Gui.GameSelectorGui;
+import minex.Gui.MapGui;
+import minex.Gui.TeamSelectorGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Messages.Message;
-import minex.Party.Party;
-import minex.Player.mPlayer;
 import minex.Utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import redis.clients.jedis.Builder;
-import redis.clients.jedis.Pipeline;
 
 import java.util.List;
-import java.util.UUID;
 
 public class GameCommand implements CommandExecutor {
 
@@ -91,7 +83,7 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("spawns")) {
                     if (args.length < 2) {
-                        player.sendMessage("game spawn usage");
+                        new MapGui().makeGui(player);
                     } else {
                         String id = args[1];
                         Game game = GameManager.getGame(id);
@@ -107,6 +99,8 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("join")) {
                     new GameSelectorGui().makeGui(player);
+                } else if(args[0].equals("team")) {
+                    new TeamSelectorGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("lobby")) {
                     if(args.length < 2) {
                         player.sendMessage("game lobby help command");
