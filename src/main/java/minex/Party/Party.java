@@ -15,6 +15,7 @@ public class Party {
     private UUID owner;
     private List<UUID> members;
     private int maxMembers = 4;
+    private int size;
 
     public Party(UUID owner) {
         this.owner = owner;
@@ -24,6 +25,8 @@ public class Party {
 
         mPlayer player = mPlayer.uuidPlayers.get(owner);
         player.setParty(this);
+
+        this.size = 1;
 
     }
 
@@ -40,6 +43,7 @@ public class Party {
             return false;
         } else {
             members.add(id);
+            this.size++;
             return true;
         }
     }
@@ -48,4 +52,11 @@ public class Party {
         members.remove(id);
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

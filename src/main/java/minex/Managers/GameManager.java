@@ -17,10 +17,7 @@ import redis.clients.jedis.Pipeline;
 
 import javax.print.Doc;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameManager {
 
@@ -37,6 +34,18 @@ public class GameManager {
         return game;
     }
 
+    public static void addGame(Game game) {
+        games.add(game);
+        allGames.put(game.getId(), game);
+    }
+
+    public static List<Game> getFullest() {
+        List<Game> preGames = games;
+        Collections.sort(preGames, (o1, o2) -> o2.getCurrPlayers() - o1.getCurrPlayers());
+        System.out.println(preGames);
+        return preGames;
+    }
+
     public static Game getGame(String id) {
         return allGames.get(id);
     }
@@ -50,12 +59,6 @@ public class GameManager {
         pipeline.sync();
 
         Main.collection.insertOne(Document.parse(json));
-
-        File file = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "game.yml");
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-
-        ConfigurationSection section = config.createSection(game.getId());
-
     }
 
 }

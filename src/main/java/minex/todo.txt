@@ -1,4 +1,4 @@
 ToDo:
 
 - center Lobby to locations on block
-- make games persistent
+- Create new instance of mPlayer if null on join

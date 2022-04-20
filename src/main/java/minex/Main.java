@@ -5,10 +5,15 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import minex.Events.JoinEvent;
 import minex.Game.Game;
 import minex.Game.GameCommand;
+import minex.Managers.GameManager;
 import minex.Party.PartyCommand;
+import minex.Player.mPlayer;
 import org.bson.Document;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -37,9 +42,18 @@ public final class Main extends JavaPlugin {
 
         saveDefaultConfig();
         this.saveResource("schematics/lobby.schem", false);
+        this.saveResource("Guis/GameSelector.yml", false);
+        this.saveResource("Guis/MapSelector.yml", false);
         this.saveResource("game.yml", false);
         // Plugin startup logic
         instance = this;
+
+        this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            mPlayer mp = new mPlayer(p.getUniqueId());
+        }
+
         new PartyCommand();
         new GameCommand();
     }
@@ -60,7 +74,8 @@ public final class Main extends JavaPlugin {
         Gson gson = new Gson();
 
         collection.find().forEach((Consumer<Document>) document -> {
-            System.out.println(gson.fromJson(document.toJson(), Game.class));
+            Game game = gson.fromJson(document.toJson(), Game.class);
+            GameManager.addGame(game);
         });
 
     }

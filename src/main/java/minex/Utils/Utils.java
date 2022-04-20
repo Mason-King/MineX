@@ -28,7 +28,7 @@ public class Utils {
 
     public static void makeFormat(String file, Gui.NoobPage gui, String keyForItems) {
 
-        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + file);
+        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);
         YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
         List<String> toFormat = config.getStringList("format");
         int size = toFormat.size() * 9;

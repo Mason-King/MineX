@@ -1,0 +1,23 @@
+#Map selector gui config
+
+title: "&lGame Selector"
+format:
+  - "# # # # # # # # #"
+  - "# # # # @ # # # #"
+  - "# # # # # # # # #"
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    name: ""
+  '@':
+    material: DIAMOND
+    amount: 1
+    name: "&c&lJoin a game"
+    lore:
+      - "&7Battle by yourself or with"
+      - "&7a team, collect loot, and"
+      - "&7survive to be the last man standing"
+      - ""
+      - "&7&o(( Click to join ))"
