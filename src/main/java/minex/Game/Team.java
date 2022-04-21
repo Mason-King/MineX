@@ -11,6 +11,7 @@ public class Team {
     private boolean isAlive;
     private int size;
     private int maxSize;
+    private String spawn;
     private int alive;
 
     public Team(String name) {

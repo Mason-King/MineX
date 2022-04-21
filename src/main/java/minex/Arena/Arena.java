@@ -15,12 +15,15 @@ import org.bukkit.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Arena {
 
     private String id;
     private List<String> spawns;
+    private Map<String, String> spawnNames;
     private String world;
 
     public Arena(String id, Location spawn) {
@@ -32,6 +35,7 @@ public class Arena {
     public Arena(String id) {
         this.id = id;
 
+        this.spawnNames = new HashMap<>();
         this.spawns = new ArrayList<>();
 
         generateWorlds();
@@ -74,12 +78,22 @@ public class Arena {
         return Utils.fromString(spawns.get(id));
     }
 
-    public void addSpawn(Location spawn) {
+    public void addSpawn(Location spawn, String name) {
         this.spawns.add(Utils.toString(spawn));
+        this.spawnNames.put(name, Utils.toString(spawn));
     }
 
     public List<String> getSpawns() {
         return this.spawns;
+    }
+
+    public String getName(String s) {
+        for(Map.Entry e : spawnNames.entrySet()) {
+            if(e.getValue().equals(s)) {
+                return (String) e.getKey();
+            }
+        }
+        return null;
     }
 
     public void setWorld(World world) {

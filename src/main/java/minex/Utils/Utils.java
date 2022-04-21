@@ -1,5 +1,6 @@
 package minex.Utils;
 
+import minex.Game.Game;
 import minex.Gui.Gui;
 import minex.Main;
 import net.minecraft.server.v1_8_R3.ItemStack;
@@ -46,6 +47,21 @@ public class Utils {
             }
 
         }
+    }
+
+    public static void makeSpawnFormat(Game game, String file, Gui.NoobPage gui, String keyForItems) {
+
+        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
+
+        for(int i = 1; i < game.getArena().getSpawns().size(); i++) {
+            gui.addItem(Material.matchMaterial(config.getString("spawnItem.material")), color(config.getString("spawnItem.name")).replace("{name}", (game.getArena().getName(game.getArena().getSpawns().get(i)) == null) ? "null" : game.getArena().getName(game.getArena().getSpawns().get(i))), color(config.getStringList("spawnItem.lore")));
+        }
+
+        config.getConfigurationSection(keyForItems).getKeys(false).forEach(key -> {
+            gui.fill(Material.matchMaterial(config.getString(keyForItems + "." + key + ".material")));
+        });
+
     }
 
     public static String color(String s) {

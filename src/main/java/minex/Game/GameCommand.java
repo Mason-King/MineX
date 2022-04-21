@@ -8,6 +8,7 @@ import minex.Gui.TeamSelectorGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Messages.Message;
+import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -69,21 +70,27 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addSpawn")) {
-                    if (args.length < 2) {
+                    if (args.length < 3) {
                         player.sendMessage(Message.GAME_ADDSPAWN_USAGE.getMessage());
                     } else {
                         String id = args[1];
+                        String name = args[2];
                         Game game = GameManager.getGame(id);
                         if (game == null) {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
-                            game.addSpawn(player.getLocation());
+                            game.addSpawn(player.getLocation(), name);
                             player.sendMessage(Message.GAME_SPAWN_SET.getMessage());
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("spawns")) {
                     if (args.length < 2) {
-                        new MapGui().makeGui(player);
+                        mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                        if(mp.getCurrGame() == null) {
+                            player.sendMessage(Utils.color("&c&lMineX &7| You must be in a game to do this!"));
+                        } else {
+                            new MapGui().makeGui(player, mp.getCurrGame());
+                        }
                     } else {
                         String id = args[1];
                         Game game = GameManager.getGame(id);
@@ -100,7 +107,8 @@ public class GameCommand implements CommandExecutor {
                 } else if(args[0].equalsIgnoreCase("join")) {
                     new GameSelectorGui().makeGui(player);
                 } else if(args[0].equals("team")) {
-                    new TeamSelectorGui().makeGui(player);
+                    mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                    new TeamSelectorGui().makeGui(player, mp.getCurrGame());
                 } else if(args[0].equalsIgnoreCase("lobby")) {
                     if(args.length < 2) {
                         player.sendMessage("game lobby help command");

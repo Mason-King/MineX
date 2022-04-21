@@ -470,6 +470,10 @@ public class Gui implements Listener {
             return addItem(getItem(new ItemStack(item), name, lore));
         }
 
+        public GuiPage addItem(Material item, String name, List<String> lore) {
+            return addItem(getItem(new ItemStack(item), name, lore));
+        }
+
         public GuiPage setItem(int position, ItemStack item) {
             i.setItem(position, item);
             return this;

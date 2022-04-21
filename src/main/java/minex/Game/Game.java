@@ -56,12 +56,16 @@
             }
             currPlayers = currPlayers + 1;
             Bukkit.getPlayer(u).teleport(lobby.getSpawn());
+            mPlayer mp = mPlayer.uuidPlayers.get(u);
+            mp.setCurrGame(this);
         }
 
         public void addParty(Party p) {
             for(UUID id : p.getMembers()) {
                 addPlayer(id);
                 Bukkit.getPlayer(id).teleport(lobby.getSpawn());
+                mPlayer mp = mPlayer.uuidPlayers.get(id);
+                mp.setCurrGame(this);
             }
         }
 
@@ -97,8 +101,8 @@
             this.currPlayers = currPlayers;
         }
 
-        public void addSpawn(Location loc) {
-            this.arena.addSpawn(loc);
+        public void addSpawn(Location loc, String name) {
+            this.arena.addSpawn(loc, name);
             GameManager.save(this);
         }
 
@@ -131,6 +135,8 @@
         public void setTeamSize(int teamSize) {
             this.teamSize = teamSize;
         }
+
+
 
         public void broadcast(String s) {
             for(UUID u : players) {

@@ -42,6 +42,7 @@ public class TeamSelectorGui {
                    if(gTeam.getSize() + 1 > gTeam.getMaxSize()) {
                        clicked.sendMessage(Utils.color("&c&lMineX &7| This team is full!"));
                    } else {
+                       clicked.sendMessage(Utils.color("&c&lMineX &7| You have joined the " + gTeam.getName() + "team"));
                        gTeam.addPlayer(clicked.getUniqueId());
                    }
                } else {
@@ -51,6 +52,7 @@ public class TeamSelectorGui {
                    } else {
                        for(UUID u : mp.getParty().getMembers()) {
                            gTeam.addPlayer(u);
+                           clicked.sendMessage(Utils.color("&c&lMineX &7| You have joined the " + gTeam.getName() + "team"));
                        }
                    }
                }
