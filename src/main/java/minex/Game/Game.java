@@ -102,6 +102,15 @@
             GameManager.save(this);
         }
 
+        public Team getTeam(String s) {
+            for(Team team : teams) {
+                if(team.getName().equalsIgnoreCase(s)) {
+                    return team;
+                }
+            }
+            return null;
+        }
+
         public void setLobbySpawn(Location loc) {
             this.lobby.setSpawn(loc);
             GameManager.save(this);

@@ -39,11 +39,7 @@ public class Utils {
                 for(int z = 0; z < 9; z++) {
                     String removeSpaces = s.replaceAll(" ", "");
                     char individual = removeSpaces.charAt(z);
-                    System.out.println(keyForItems);
-                    System.out.println(individual);
-                    System.out.println(config.getString(keyForItems + "." + individual + ".material"));
-                    System.out.println(color(config.getString(keyForItems + "." + individual + ".name")));
-                    System.out.println(color(config.getStringList(keyForItems + "." + individual + ".lore")));
+                    if(config.get(keyForItems + "." + individual) == null) continue;
                     gui.i((9 * i) + z, Material.matchMaterial(config.getString(keyForItems + "." + individual + ".material")), (short) config.getInt(keyForItems + "." + individual + ".damage"), (config.getInt(keyForItems + "." + individual + ".amount") == 0) ? 1 : config.getInt(keyForItems + "." + individual + ".amount"),   color(config.getString(keyForItems + "." + individual + ".name")), color(config.getStringList(keyForItems + "." + individual + ".lore")));
                 }
 
