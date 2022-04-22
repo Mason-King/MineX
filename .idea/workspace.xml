@@ -8,15 +8,23 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Arena/Arena.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/TeamSelectorGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/TeamSelectorGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/MapSelector.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/MapSelector.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Guis/MapSelector.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Guis/MapSelector.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Arena/Arena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Arena/Arena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Team.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/MapGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/MapGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/TeamSelectorGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/TeamSelectorGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/original-MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-MineX-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +33,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="20848" />
+    <option name="totalTimeSeconds" value="23871" />
     <option name="idleThresholdMs" value="10000" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -121,9 +129,21 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CODE_SMELLS_PROFILE" value="Project Default" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/minex/Arena/Arena.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

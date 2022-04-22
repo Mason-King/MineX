@@ -8,22 +8,21 @@ import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.data.DataException;
 import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
+import minex.Game.Team;
 import minex.Main;
 import minex.Utils.Utils;
 import org.bukkit.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Arena {
 
     private String id;
     private List<String> spawns;
     private Map<String, String> spawnNames;
+    private Map<UUID, String> playerSpawns;
     private String world;
 
     public Arena(String id, Location spawn) {
@@ -36,6 +35,7 @@ public class Arena {
         this.id = id;
 
         this.spawnNames = new HashMap<>();
+        this.playerSpawns = new HashMap<>();
         this.spawns = new ArrayList<>();
 
         generateWorlds();
@@ -76,6 +76,10 @@ public class Arena {
 
     public Location getSpawn(int id) {
         return Utils.fromString(spawns.get(id));
+    }
+
+    public Location getSpawn(String name) {
+        return Utils.fromString(spawnNames.get(name));
     }
 
     public void addSpawn(Location spawn, String name) {

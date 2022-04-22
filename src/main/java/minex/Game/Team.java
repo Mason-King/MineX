@@ -1,8 +1,8 @@
 package minex.Game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import it.unimi.dsi.fastutil.Hash;
+
+import java.util.*;
 
 public class Team {
 
@@ -69,6 +69,14 @@ public class Team {
 
     public void setAlive(int alive) {
         this.alive = alive;
+    }
+
+    public String getSpawn() {
+        return spawn;
+    }
+
+    public void setSpawn(String spawn) {
+        this.spawn = spawn;
     }
 
     public void addPlayer(UUID u) {

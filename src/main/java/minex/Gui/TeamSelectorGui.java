@@ -42,7 +42,8 @@ public class TeamSelectorGui {
                    if(gTeam.getSize() + 1 > gTeam.getMaxSize()) {
                        clicked.sendMessage(Utils.color("&c&lMineX &7| This team is full!"));
                    } else {
-                       clicked.sendMessage(Utils.color("&c&lMineX &7| You have joined the " + gTeam.getName() + "team"));
+                       clicked.sendMessage(Utils.color("&c&lMineX &7| You have joined the " + gTeam.getName() + " team"));
+                       game.setTeam(clicked.getUniqueId(), gTeam);
                        gTeam.addPlayer(clicked.getUniqueId());
                    }
                } else {
@@ -51,8 +52,9 @@ public class TeamSelectorGui {
                        clicked.sendMessage(Utils.color("&c&lMineX &7| This team hass to many players for you and your party to join!"));
                    } else {
                        for(UUID u : mp.getParty().getMembers()) {
+                           game.setTeam(u, gTeam);
                            gTeam.addPlayer(u);
-                           clicked.sendMessage(Utils.color("&c&lMineX &7| You have joined the " + gTeam.getName() + "team"));
+                           clicked.sendMessage(Utils.color("&c&lMineX &7| You have joined the " + gTeam.getName() + " team"));
                        }
                    }
                }

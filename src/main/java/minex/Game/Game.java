@@ -11,11 +11,8 @@
     import org.bukkit.Location;
     import org.bukkit.entity.Player;
     import org.bukkit.scheduler.BukkitRunnable;
-    import scala.collection.mutable.HashMap;
 
-    import java.util.ArrayList;
-    import java.util.List;
-    import java.util.UUID;
+    import java.util.*;
     import java.util.concurrent.TimeUnit;
 
     public class Game {
@@ -25,6 +22,7 @@
         private int teamSize;
         private List<UUID> players = new ArrayList<>();
         private List<Team> teams = new ArrayList<>();
+        private Map<UUID, Team> playerTeams = new HashMap<>();
         private int currPlayers;
         private Arena arena;
         private int lobbyCountdown = 120;
@@ -93,6 +91,18 @@
             }
         }
 
+        public void setTeam(UUID u, Team t) {
+            playerTeams.put(u, t);
+        }
+
+        public void removeTeam(UUID u) {
+            playerTeams.remove(u);
+        }
+
+        public Team getTeam(UUID u) {
+            return playerTeams.get(u);
+        }
+
         public int getCurrPlayers() {
             return currPlayers;
         }
@@ -136,7 +146,13 @@
             this.teamSize = teamSize;
         }
 
+        public boolean isInGame() {
+            return inGame;
+        }
 
+        public void setInGame(boolean inGame) {
+            this.inGame = inGame;
+        }
 
         public void broadcast(String s) {
             for(UUID u : players) {
@@ -149,8 +165,18 @@
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    if(lobbyCountdown == 30) {
-                        lobbyCountdown--;
+                    System.out.println("ran");
+                    long minute = TimeUnit.SECONDS.toMinutes(lobbyCountdown) - (TimeUnit.SECONDS.toHours(lobbyCountdown) * 60);
+                    long second = TimeUnit.SECONDS.toSeconds(lobbyCountdown) - (TimeUnit.SECONDS.toMinutes(lobbyCountdown) * 60);
+                    if(lobbyCountdown <= 5) {
+                        broadcast("&c&lMineX &7| Game starting in " + second + "s");
+                        lobbyCountdown = lobbyCountdown - 1;
+                        return;
+                    } else if(lobbyCountdown % 10 == 0) {
+                        broadcast("&c&lMineX &7| Game starting in " + (minute == 0 ? "" : minute + "m " )  + second + "s");
+                        lobbyCountdown = lobbyCountdown - 1;
+                        return;
+                    } else if(lobbyCountdown == 30) {
                         broadcast("&c&lMineX &7| Searching for games to merge!!");
                         Game current = game;
                         Game closest = null;
@@ -176,14 +202,16 @@
                                 current.setCurrPlayers(current.getCurrPlayers() - 1);
                             }
                         }
-
-                    }
-                    //every 10 seconds
-                    if(lobbyCountdown % 10 == 0) {
-                        lobbyCountdown--;
-                        long minute = TimeUnit.SECONDS.toMinutes(lobbyCountdown) - (TimeUnit.SECONDS.toHours(lobbyCountdown) * 60);
-                        long second = TimeUnit.SECONDS.toSeconds(lobbyCountdown) - (TimeUnit.SECONDS.toMinutes(lobbyCountdown) * 60);
-                        broadcast("&c&lMineX &7| Game starting in " + (minute == 0 ? "" : minute + "m" )  + second + "s");
+                        lobbyCountdown = lobbyCountdown - 1;
+                        return;
+                    } else if(lobbyCountdown == 0) {
+                        cancel();
+                        broadcast("&c&lMineX &7| Starting the game!");
+                        for(UUID u : players) {
+                            Player pl = Bukkit.getPlayer(u);
+                            //pl.teleport()
+                        }
+                        setInGame(true);
                     }
                 }
             }.runTaskTimer(Main.getInstance(), 0, 20);
