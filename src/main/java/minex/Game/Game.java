@@ -25,7 +25,7 @@
         private Map<UUID, Team> playerTeams = new HashMap<>();
         private int currPlayers;
         private Arena arena;
-        private int lobbyCountdown = 120;
+        private int lobbyCountdown = 30;
         private boolean inGame;
         private Lobby lobby;
 
@@ -209,7 +209,7 @@
                         broadcast("&c&lMineX &7| Starting the game!");
                         for(UUID u : players) {
                             Player pl = Bukkit.getPlayer(u);
-                            //pl.teleport()
+                            pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
                         }
                         setInGame(true);
                     }
