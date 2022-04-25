@@ -48,6 +48,7 @@ public class MapGui {
             } else {
                 team.setSpawn(Utils.toString(spawnLoc));
             }
+            clicked.closeInventory();
         });
 
     }

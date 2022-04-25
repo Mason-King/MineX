@@ -69,7 +69,7 @@ public class Utils {
         }
 
         config.getConfigurationSection(keyForItems).getKeys(false).forEach(key -> {
-            gui.fill(new ItemStack(Material.matchMaterial(config.getString(keyForItems + "." + key + ".material")), config.getInt(keyForItems + "." + key + ".amount"), (short) config.getInt(keyForItems + "." + key + ".damage")));
+            gui.fill(new ItemStack(Material.matchMaterial(config.getString(keyForItems + "." + key + ".material")), (config.getInt(keyForItems + "." + key + ".amount") == 0 ? 1 : config.getInt(keyForItems + "." + key + ".amount")), (short) config.getInt(keyForItems + "." + key + ".damage")));
         });
 
     }

@@ -46,7 +46,7 @@ public class GameSelectorGui {
                 } else {
                     game.addParty(party);
                 }
-
+                clicked.closeInventory();
             }
         });
     }

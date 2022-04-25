@@ -22,6 +22,7 @@
         private int teamSize;
         private List<UUID> players = new ArrayList<>();
         private List<Team> teams = new ArrayList<>();
+        private List<Team> avaliableTeams = new ArrayList<>();
         private Map<UUID, Team> playerTeams = new HashMap<>();
         private int currPlayers;
         private Arena arena;
@@ -56,6 +57,8 @@
             Bukkit.getPlayer(u).teleport(lobby.getSpawn());
             mPlayer mp = mPlayer.uuidPlayers.get(u);
             mp.setCurrGame(this);
+            setTeam(u, avaliableTeams.get(0));
+            avaliableTeams.remove(0);
         }
 
         public void addParty(Party p) {
@@ -64,6 +67,8 @@
                 Bukkit.getPlayer(id).teleport(lobby.getSpawn());
                 mPlayer mp = mPlayer.uuidPlayers.get(id);
                 mp.setCurrGame(this);
+                setTeam(id, avaliableTeams.get(0));
+                avaliableTeams.remove(0);
             }
         }
 
@@ -88,6 +93,7 @@
             for(String s : teamNames) {
                 Team team = new Team(s);
                 teams.add(team);
+                avaliableTeams.add(team);
             }
         }
 
@@ -165,9 +171,21 @@
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    System.out.println("ran");
                     long minute = TimeUnit.SECONDS.toMinutes(lobbyCountdown) - (TimeUnit.SECONDS.toHours(lobbyCountdown) * 60);
                     long second = TimeUnit.SECONDS.toSeconds(lobbyCountdown) - (TimeUnit.SECONDS.toMinutes(lobbyCountdown) * 60);
+                    if(lobbyCountdown == 0) {
+                        System.out.println("here!");
+                        this.cancel();
+                        broadcast("&c&lMineX &7| Starting the game!");
+                        //need a method to do this randomly if they havent choosen
+                        for(UUID u : players) {
+                            Player pl = Bukkit.getPlayer(u);
+                            System.out.println(getTeam(u));
+                            pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
+                        }
+                        setInGame(true);
+                        return;
+                    }
                     if(lobbyCountdown <= 5) {
                         broadcast("&c&lMineX &7| Game starting in " + second + "s");
                         lobbyCountdown = lobbyCountdown - 1;
@@ -204,15 +222,8 @@
                         }
                         lobbyCountdown = lobbyCountdown - 1;
                         return;
-                    } else if(lobbyCountdown == 0) {
-                        cancel();
-                        broadcast("&c&lMineX &7| Starting the game!");
-                        for(UUID u : players) {
-                            Player pl = Bukkit.getPlayer(u);
-                            pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
-                        }
-                        setInGame(true);
                     }
+                    lobbyCountdown = lobbyCountdown - 1;
                 }
             }.runTaskTimer(Main.getInstance(), 0, 20);
         }
