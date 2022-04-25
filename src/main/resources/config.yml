@@ -13,3 +13,62 @@ messages:
   gameLobbySpawnUsage: "Invalid command usage try: /game lobby setspawn <id>"
   gameLobbySpawnSet: "Set the lobby spawn for {id} to your current location."
   gameLobbyTpUsage: "Invalid command usage try : /game lobby teleport <id>"
+
+
+lootChest:
+  uncommon:
+    maxItems: 6
+    minItems: 3
+  items:
+    uncommon:
+      1:
+        material: DIAMOND
+        amount: 1
+        chance: 0.25
+      2:
+        material: STONE
+        amount: 10
+        chance: 0.25
+      3:
+        material: STONE_SWORD
+        amount: 1
+        chance: 0.25
+      4:
+        Material: DIRT
+        amount: 16
+        chance: 0.25
+    common:
+      1:
+        material: DIAMOND
+        amount: 6
+        chance: 0.25
+      2:
+        material: STONE
+        amount: 20
+        chance: 0.25
+      3:
+        material: IRON_SWORD
+        amount: 1
+        chance: 0.25
+      4:
+        Material: DIRT
+        amount: 32
+        chance: 0.25
+    rare:
+      1:
+        material: DIAMOND
+        amount: 16
+        chance: 0.25
+      2:
+        material: STONE
+        amount: 32
+        chance: 0.25
+      3:
+        material: DIAMOND_SWORD
+        amount: 1
+        chance: 0.25
+      4:
+        Material: DIRT
+        amount: 32
+        chance: 0.25
+

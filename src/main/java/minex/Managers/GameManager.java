@@ -7,6 +7,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.UpdateOptions;
 import minex.Game.Game;
 import minex.Main;
 import org.bson.Document;
@@ -57,7 +59,8 @@ public class GameManager {
         pipeline.set(game.getId(), json);
         pipeline.sync();
 
-        Main.collection.insertOne(Document.parse(json));
+        Main.collection.replaceOne(Filters.eq("id", game.getId()), Document.parse(json), new UpdateOptions().upsert(true));
+
     }
 
 }

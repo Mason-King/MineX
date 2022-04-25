@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utils {
@@ -85,11 +86,29 @@ public class Utils {
         return colored;
     }
 
+    public static String[] color(String... strings) {
+        String[] s = new String[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+            if (strings[i] != null)
+                s[i] = ChatColor.translateAlternateColorCodes('&', strings[i]);
+        }
+        return s;
+    }
+
     public static ItemStack getItem(ItemStack item, String name, List<String> lore) {
         ItemMeta im = item.getItemMeta();
         if (name != null)
             im.setDisplayName(color(name));
         im.setLore(lore);
+        item.setItemMeta(im);
+        return item;
+    }
+
+    public static ItemStack getItem(ItemStack item, String name, String... lore) {
+        ItemMeta im = item.getItemMeta();
+        if (name != null)
+            im.setDisplayName(color(name));
+        im.setLore(Arrays.asList(color(lore)));
         item.setItemMeta(im);
         return item;
     }

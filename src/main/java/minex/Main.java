@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import minex.Events.ChestPlace;
 import minex.Events.JoinEvent;
 import minex.Game.Game;
 import minex.Game.GameCommand;
@@ -13,6 +14,7 @@ import minex.Party.PartyCommand;
 import minex.Player.mPlayer;
 import org.bson.Document;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
@@ -50,6 +52,7 @@ public final class Main extends JavaPlugin {
         instance = this;
 
         this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
 
         for(Player p : Bukkit.getOnlinePlayers()) {
             mPlayer mp = new mPlayer(p.getUniqueId());

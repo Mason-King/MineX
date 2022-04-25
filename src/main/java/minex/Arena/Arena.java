@@ -100,6 +100,11 @@ public class Arena {
         return null;
     }
 
+    public boolean spawnExists(String s) {
+        if(spawnNames.containsKey(s)) return true;
+        return false;
+    }
+
     public void setWorld(World world) {
         this.world = world.getName();
     }
