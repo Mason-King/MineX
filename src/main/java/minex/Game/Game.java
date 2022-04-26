@@ -11,6 +11,8 @@
     import org.bukkit.Location;
     import org.bukkit.entity.Player;
     import org.bukkit.scheduler.BukkitRunnable;
+    import org.bukkit.scheduler.BukkitScheduler;
+    import org.bukkit.scheduler.BukkitTask;
 
     import java.util.*;
     import java.util.concurrent.ThreadLocalRandom;
@@ -22,14 +24,17 @@
         private int maxPlayers = 25;
         private int teamSize;
         private List<UUID> players = new ArrayList<>();
-        private List<Team> teams = new ArrayList<>();
-        private List<Team> avaliableTeams = new ArrayList<>();
-        private Map<UUID, Team> playerTeams = new HashMap<>();
+        private List<String> allTeams = new ArrayList<>();
+        private Map<String, List<UUID>> teams = new HashMap<>();
+        private Map<String, String> teamSpawns = new HashMap<>();
+        private Map<UUID, String> playerTeams = new HashMap<>();
+        private Map<String, Boolean> open = new HashMap<>();
         private int currPlayers;
         private Arena arena;
         private int lobbyCountdown = 30;
         private boolean inGame;
         private Lobby lobby;
+        private BukkitTask scheduler;
 
 
         public Game(String id, int maxPlayers, int currPlayers) {
@@ -49,18 +54,51 @@
            loadTeams();
         }
 
+        public void leaveGame(UUID u) {
+            this.players.remove(u);
+            currPlayers = currPlayers - 1;
+            if(currPlayers == 0) {
+                scheduler.cancel();
+            }
+            //need to tp to main spawn
+            mPlayer mp = mPlayer.uuidPlayers.get(u);
+            mp.setCurrGame(null);
+        }
+
         public void addPlayer(UUID u) {
             this.players.add(u);
-            if(currPlayers == 0) {
-                lobbyCountdown(this);
-            }
-            currPlayers = currPlayers + 1;
-            Bukkit.getPlayer(u).teleport(lobby.getSpawn());
+            Player player = Bukkit.getPlayer(u);
+            player.teleport(lobby.getSpawn());
+
             mPlayer mp = mPlayer.uuidPlayers.get(u);
             mp.setCurrGame(this);
-            System.out.println(avaliableTeams);
-            setTeam(u, avaliableTeams.get(0));
-            avaliableTeams.remove(0);
+
+            for(String s : allTeams) {
+                if(open.get(s)) {
+                    List<UUID> temp = teams.get(s);
+                    temp.add(u);
+                    teams.remove(s);
+                    teams.put(s, temp);
+                    playerTeams.put(u, s);
+                    mp.setTeamName(s);
+                }
+            }
+
+            if(currPlayers == 0) lobbyCountdown(this);
+        }
+
+        public String getTeam(UUID u) {
+            return playerTeams.get(u);
+        }
+
+        public void setTeamSpawn(String team, String spawn) {
+            teamSpawns.put(team, spawn);
+        }
+
+        public String getTeamSpawn(String s) {
+            open.remove(s);
+            open.put(s, false);
+            return teamSpawns.get(s);
         }
 
         public void addParty(Party p) {
@@ -69,8 +107,6 @@
                 Bukkit.getPlayer(id).teleport(lobby.getSpawn());
                 mPlayer mp = mPlayer.uuidPlayers.get(id);
                 mp.setCurrGame(this);
-                setTeam(id, avaliableTeams.get(0));
-                avaliableTeams.remove(0);
             }
         }
 
@@ -93,22 +129,10 @@
         public void loadTeams() {
             String[] teamNames = {"Red", "Orange", "Yellow", "Green", "Lime", "Blue", "Cyan", "Light Blue", "Purple", "Magenta", "Pink", "White", "Light Grey", "Grey", "Black"};
             for(String s : teamNames) {
-                Team team = new Team(s);
-                teams.add(team);
-                avaliableTeams.add(team);
+                allTeams.add(s);
+                teams.put(s, new ArrayList<>());
+                open.put(s, true);
             }
-        }
-
-        public void setTeam(UUID u, Team t) {
-            playerTeams.put(u, t);
-        }
-
-        public void removeTeam(UUID u) {
-            playerTeams.remove(u);
-        }
-
-        public Team getTeam(UUID u) {
-            return playerTeams.get(u);
         }
 
         public int getCurrPlayers() {
@@ -122,15 +146,6 @@
         public void addSpawn(Location loc, String name) {
             this.arena.addSpawn(loc, name);
             GameManager.save(this);
-        }
-
-        public Team getTeam(String s) {
-            for(Team team : teams) {
-                if(team.getName().equalsIgnoreCase(s)) {
-                    return team;
-                }
-            }
-            return null;
         }
 
         public void setLobbySpawn(Location loc) {
@@ -170,23 +185,22 @@
         }
 
         public void lobbyCountdown(Game game) {
-            new BukkitRunnable() {
+            scheduler = new BukkitRunnable() {
                 @Override
                 public void run() {
                     long minute = TimeUnit.SECONDS.toMinutes(lobbyCountdown) - (TimeUnit.SECONDS.toHours(lobbyCountdown) * 60);
                     long second = TimeUnit.SECONDS.toSeconds(lobbyCountdown) - (TimeUnit.SECONDS.toMinutes(lobbyCountdown) * 60);
                     if(lobbyCountdown == 0) {
-                        System.out.println("here!");
                         this.cancel();
                         broadcast("&c&lMineX &7| Starting the game!");
                         //need a method to do this randomly if they havent choosen
                         for(UUID u : players) {
                             Player pl = Bukkit.getPlayer(u);
-                            if(getTeam(u).getSpawn() == null) {
-                                pl.teleport(Utils.fromString(game.getArena().getSpawns().get(ThreadLocalRandom.current().nextInt(1, game.getArena().getSpawns().size()))));
-                            } else {
-                                pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
-                            }
+//                            if(getTeam(u).getSpawn() == null) {
+//                                pl.teleport(Utils.fromString(game.getArena().getSpawns().get(ThreadLocalRandom.current().nextInt(1, game.getArena().getSpawns().size()))));
+//                            } else {
+//                                pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
+//                            }
                         }
                         setInGame(true);
                         return;

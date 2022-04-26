@@ -53,7 +53,7 @@ public class GameManager {
 
     public static void save(Game game) {
         Gson gson = new Gson();
-        String json = gson.toJson(game).trim();;
+        String json = gson.toJson(game).trim();
 
         Pipeline pipeline = Main.jedis.pipelined();
         pipeline.set(game.getId(), json);

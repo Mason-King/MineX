@@ -1,11 +1,7 @@
 package minex.Gui;
 
 import minex.Game.Game;
-import minex.Game.Team;
 import minex.Main;
-import minex.Managers.GameManager;
-import minex.Party.Party;
-import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Location;
@@ -15,7 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
-import java.util.List;
 
 public class MapGui {
 
@@ -42,12 +37,9 @@ public class MapGui {
             NBTTagCompound nbt = nbtStack.getTag();
 
             Location spawnLoc = game.getArena().getSpawn(nbt.getString("spawnId"));
-            Team team = game.getTeam(clicked.getUniqueId());
-            if(team == null) {
-                clicked.sendMessage(Utils.color("&c&lMineX &7| You do not have a team!"));
-            } else {
-                team.setSpawn(Utils.toString(spawnLoc));
-            }
+            String teamName = game.getTeam(clicked.getUniqueId());
+            game.setTeamSpawn(teamName, Utils.toString(spawnLoc));
+            System.out.println(game.getTeamSpawn(teamName));
             clicked.closeInventory();
         });
 

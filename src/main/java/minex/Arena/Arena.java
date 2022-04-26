@@ -1,20 +1,8 @@
 package minex.Arena;
 
-import com.sk89q.worldedit.CuboidClipboard;
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.BukkitWorld;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.data.DataException;
-import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
-import minex.Game.Team;
-import minex.Main;
 import minex.Utils.Utils;
 import org.bukkit.*;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class Arena {
@@ -24,6 +12,7 @@ public class Arena {
     private Map<String, String> spawnNames;
     private Map<Boolean, String> claimed;
     private Map<UUID, String> playerSpawns;
+    private Map<String, String> teamSpawns;
     private String world;
 
     public Arena(String id, Location spawn) {
@@ -106,6 +95,10 @@ public class Arena {
     public boolean spawnExists(String s) {
         if(spawnNames.containsKey(s)) return true;
         return false;
+    }
+
+    public void setTeamSpawn(String team, String loc) {
+        teamSpawns.put(team, loc);
     }
 
     public void setWorld(World world) {

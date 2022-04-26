@@ -4,14 +4,12 @@ import minex.Arena.Arena;
 import minex.Arena.Lobby;
 import minex.Gui.GameSelectorGui;
 import minex.Gui.MapGui;
-import minex.Gui.TeamSelectorGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Messages.Message;
 import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.ItemStack;
-import net.minecraft.server.v1_8_R3.Items;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -73,6 +71,15 @@ public class GameCommand implements CommandExecutor {
                                 player.teleport(arena.getSpawn(index));
                             }
                         }
+                    }
+                } else if(args[0].equalsIgnoreCase("leave")) {
+                    mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                    Game game = mp.getCurrGame();
+                    if(game == null) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| You are not in a game!"));
+                    } else {
+                        game.leaveGame(player.getUniqueId());
+                        player.sendMessage(Utils.color("&c&lMineX &7| You have left a game!"));
                     }
                 } else if(args[0].equalsIgnoreCase("lootchest")) {
                     if(args.length < 2) {
@@ -159,9 +166,6 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("join")) {
                     new GameSelectorGui().makeGui(player);
-                } else if(args[0].equals("team")) {
-                    mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
-                    new TeamSelectorGui().makeGui(player, mp.getCurrGame());
                 } else if(args[0].equalsIgnoreCase("lobby")) {
                     if(args.length < 2) {
                         player.sendMessage("game lobby help command");

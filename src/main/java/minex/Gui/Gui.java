@@ -445,7 +445,6 @@ public class Gui implements Listener {
 
         public GuiPage addItem(ItemStack item) {
             if (i.firstEmpty() == -1) {
-                System.out.println("Error adding item: Inventory was not empty.");
                 return this;
             }
             setItem(i.firstEmpty(), item);

@@ -27,4 +27,5 @@ public class LootItem {
     public void setChance(double chance) {
         this.chance = chance;
     }
+
 }

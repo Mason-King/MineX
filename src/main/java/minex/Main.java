@@ -71,17 +71,17 @@ public final class Main extends JavaPlugin {
         return instance;
     }
 
-    private void setupDB() {
-        jedis = new Jedis("redis-15116.c246.us-east-1-4.ec2.cloud.redislabs.com", 15116, 5000);
-        jedis.auth("yY0FvzawpihJYeBCSZaZ2LGNsKmH09yS");
+        private void setupDB() {
+            jedis = new Jedis("redis-15116.c246.us-east-1-4.ec2.cloud.redislabs.com", 15116, 5000);
+            jedis.auth("yY0FvzawpihJYeBCSZaZ2LGNsKmH09yS");
 
-        Gson gson = new Gson();
+            Gson gson = new Gson();
 
-        collection.find().forEach((Consumer<Document>) document -> {
-            Game game = gson.fromJson(document.toJson(), Game.class);
-            GameManager.addGame(game);
-        });
+            collection.find().forEach((Consumer<Document>) document -> {
+                Game game = gson.fromJson(document.toJson(), Game.class);
+                GameManager.addGame(game);
+            });
 
-    }
+        }
 
 }

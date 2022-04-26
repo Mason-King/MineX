@@ -2,6 +2,12 @@ package minex.LootChest;
 
 import minex.Game.Game;
 import minex.Main;
+import minex.Utils.Utils;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
+import org.bukkit.entity.Item;
+import org.bukkit.inventory.Inventory;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -29,6 +35,7 @@ public class LootChest {
         this.type = type;
 
         loadMinMax();
+        fill();
     }
 
     public void loadMinMax() {
@@ -66,6 +73,20 @@ public class LootChest {
 
     public void setMaxItems(int maxItems) {
         this.maxItems = maxItems;
+    }
+
+    public void fill() {
+        Location loc = Utils.fromString(this.location);
+        Block b = loc.getBlock();
+        Chest chest = (Chest) b.getState();
+        Inventory inventory = chest.getBlockInventory();
+
+        int items = ThreadLocalRandom.current().nextInt(minItems, maxItems);
+
+        for(int i = 0; i < items; i++) {
+            inventory.setItem(ThreadLocalRandom.current().nextInt(0, inventory.getSize()), Items.getItems(type).get(ThreadLocalRandom.current().nextInt(0, Items.getItems(type).size())).getItemStack() );
+        }
+
     }
 
 }

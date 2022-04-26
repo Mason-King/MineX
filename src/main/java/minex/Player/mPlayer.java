@@ -15,6 +15,7 @@ public class mPlayer {
     private UUID id;
     private Party party;
     private Game currGame;
+    private String teamName;
 
     public mPlayer(UUID id) {
         this.id = id;
@@ -52,5 +53,13 @@ public class mPlayer {
 
     public void setCurrGame(Game currGame) {
         this.currGame = currGame;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }
