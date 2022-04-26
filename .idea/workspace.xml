@@ -6,14 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Arena/Arena.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/GameSelectorGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/GameSelectorGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/original-MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-MineX-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="23902" />
+    <option name="totalTimeSeconds" value="24610" />
     <option name="idleThresholdMs" value="10000" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -118,6 +118,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CODE_SMELLS_PROFILE" value="Project Default" />
@@ -127,7 +128,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/minex/Arena/Arena.java</url>
-          <line>90</line>
+          <line>93</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

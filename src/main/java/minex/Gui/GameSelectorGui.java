@@ -42,6 +42,10 @@ public class GameSelectorGui {
                     }
                 }
                 if(party == null) {
+                    if(game == null) {
+                        clicked.sendMessage(Utils.color("&c&lMineX &7| An error has occured, please contact an admin"));
+                        return;
+                    }
                     game.addPlayer(clicked.getUniqueId());
                 } else {
                     game.addParty(party);

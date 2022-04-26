@@ -13,6 +13,7 @@
     import org.bukkit.scheduler.BukkitRunnable;
 
     import java.util.*;
+    import java.util.concurrent.ThreadLocalRandom;
     import java.util.concurrent.TimeUnit;
 
     public class Game {
@@ -57,6 +58,7 @@
             Bukkit.getPlayer(u).teleport(lobby.getSpawn());
             mPlayer mp = mPlayer.uuidPlayers.get(u);
             mp.setCurrGame(this);
+            System.out.println(avaliableTeams);
             setTeam(u, avaliableTeams.get(0));
             avaliableTeams.remove(0);
         }
@@ -180,8 +182,11 @@
                         //need a method to do this randomly if they havent choosen
                         for(UUID u : players) {
                             Player pl = Bukkit.getPlayer(u);
-                            System.out.println(getTeam(u));
-                            pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
+                            if(getTeam(u).getSpawn() == null) {
+                                pl.teleport(Utils.fromString(game.getArena().getSpawns().get(ThreadLocalRandom.current().nextInt(1, game.getArena().getSpawns().size()))));
+                            } else {
+                                pl.teleport(Utils.fromString(getTeam(u).getSpawn()));
+                            }
                         }
                         setInGame(true);
                         return;
@@ -191,9 +196,12 @@
                         lobbyCountdown = lobbyCountdown - 1;
                         return;
                     } else if(lobbyCountdown % 10 == 0) {
-                        broadcast("&c&lMineX &7| Game starting in " + (minute == 0 ? "" : minute + "m " )  + second + "s");
+                        broadcast("&c&lMineX &7| Game starting in " + (minute == 0 ? "" : minute + "m ") + second + "s");
                         lobbyCountdown = lobbyCountdown - 1;
                         return;
+                    } else if(lobbyCountdown % 20 == 0){
+                        broadcast("&c&lMineX &7| Dont forget to select your spawn with /game spawns");
+                        lobbyCountdown = lobbyCountdown - 1;
                     } else if(lobbyCountdown == 30) {
                         broadcast("&c&lMineX &7| Searching for games to merge!!");
                         Game current = game;

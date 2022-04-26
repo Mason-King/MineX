@@ -22,6 +22,7 @@ public class Arena {
     private String id;
     private List<String> spawns;
     private Map<String, String> spawnNames;
+    private Map<Boolean, String> claimed;
     private Map<UUID, String> playerSpawns;
     private String world;
 
@@ -36,6 +37,7 @@ public class Arena {
 
         this.spawnNames = new HashMap<>();
         this.playerSpawns = new HashMap<>();
+        this.claimed = new HashMap<>();
         this.spawns = new ArrayList<>();
 
         generateWorlds();
@@ -85,6 +87,7 @@ public class Arena {
     public void addSpawn(Location spawn, String name) {
         this.spawns.add(Utils.toString(spawn));
         this.spawnNames.put(name, Utils.toString(spawn));
+        this.claimed.put(false, name);
     }
 
     public List<String> getSpawns() {
