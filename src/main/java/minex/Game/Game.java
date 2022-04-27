@@ -60,7 +60,7 @@
             if(currPlayers == 0) {
                 scheduler.cancel();
             }
-            //need to tp to main spawn
+            Bukkit.getPlayer(u).teleport(new Location(Bukkit.getWorld("world"), 0, 73, 0));
             mPlayer mp = mPlayer.uuidPlayers.get(u);
             mp.setCurrGame(null);
         }
