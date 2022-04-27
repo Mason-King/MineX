@@ -4,6 +4,7 @@ import minex.Arena.Arena;
 import minex.Arena.Lobby;
 import minex.Gui.GameSelectorGui;
 import minex.Gui.MapGui;
+import minex.Gui.StashGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Messages.Message;
@@ -75,12 +76,16 @@ public class GameCommand implements CommandExecutor {
                 } else if(args[0].equalsIgnoreCase("leave")) {
                     mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
                     Game game = mp.getCurrGame();
-                    if(game == null) {
+                    if (game == null) {
                         player.sendMessage(Utils.color("&c&lMineX &7| You are not in a game!"));
                     } else {
                         game.leaveGame(player.getUniqueId());
                         player.sendMessage(Utils.color("&c&lMineX &7| You have left a game!"));
                     }
+                } else if(args[0].equalsIgnoreCase("stash")) {
+                    mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                    Game game = mp.getCurrGame();
+                    new StashGui().makeGui(player, game);
                 } else if(args[0].equalsIgnoreCase("lootchest")) {
                     if(args.length < 2) {
                         player.sendMessage(Utils.color("&c&lMineX &7| Lootchest help!"));

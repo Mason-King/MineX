@@ -14,12 +14,9 @@ import minex.Party.PartyCommand;
 import minex.Player.mPlayer;
 import org.bson.Document;
 import org.bukkit.Bukkit;
-import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.Pipeline;
 
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -46,7 +43,7 @@ public final class Main extends JavaPlugin {
         this.saveResource("schematics/lobby.schem", false);
         this.saveResource("Guis/GameSelector.yml", false);
         this.saveResource("Guis/MapSelector.yml", false);
-        this.saveResource("Guis/TeamSelector.yml", false);
+        this.saveResource("Guis/Stash.yml", false);
         this.saveResource("game.yml", false);
         // Plugin startup logic
         instance = this;

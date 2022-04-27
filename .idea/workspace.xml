@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/StashGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Player/mPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Player/mPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/TeamSelector.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/Stash.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Guis/TeamSelector.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Managers/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Managers/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Player/mPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Player/mPlayer.class" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />

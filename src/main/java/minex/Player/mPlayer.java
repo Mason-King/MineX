@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash;
 import minex.Game.Game;
 import minex.Party.Party;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
@@ -11,10 +12,13 @@ public class mPlayer {
 
     public static List<mPlayer> players = new ArrayList<>();
     public static Map<UUID, mPlayer> uuidPlayers = new HashMap<>();
+    private List<ItemStack> fullStash = new ArrayList<>();
+    private List<ItemStack> selectedStash = new ArrayList<>();
 
     private UUID id;
     private Party party;
     private Game currGame;
+    private int stashSize = 9;
     private String teamName;
 
     public mPlayer(UUID id) {
@@ -61,5 +65,29 @@ public class mPlayer {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    public List<ItemStack> getFullStash() {
+        return fullStash;
+    }
+
+    public void setFullStash(List<ItemStack> fullStash) {
+        this.fullStash = fullStash;
+    }
+
+    public List<ItemStack> getSelectedStash() {
+        return selectedStash;
+    }
+
+    public void setSelectedStash(List<ItemStack> selectedStash) {
+        this.selectedStash = selectedStash;
+    }
+
+    public int getStashSize() {
+        return stashSize;
+    }
+
+    public void setStashSize(int stashSize) {
+        this.stashSize = stashSize;
     }
 }
