@@ -7,6 +7,7 @@
     import minex.Party.Party;
     import minex.Player.mPlayer;
     import minex.Utils.Utils;
+    import net.minecraft.server.v1_8_R3.ItemStack;
     import org.bukkit.Bukkit;
     import org.bukkit.Location;
     import org.bukkit.entity.Player;

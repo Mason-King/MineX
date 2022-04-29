@@ -17,9 +17,9 @@ selectItemLore:
   - "&7&o(( Right-click to add ))"
 
 deselectItemLore:
+  - "&7This item is currently in your stash"
   - ""
   - "&7&o(( Right-click to remove ))"
-  - "&7&o(( Left-click to add ))"
 
 
 items:

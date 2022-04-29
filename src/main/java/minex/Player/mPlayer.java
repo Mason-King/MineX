@@ -35,6 +35,22 @@ public class mPlayer {
         uuidPlayers.put(id, this);
     }
 
+    public void addSelectedItem(ItemStack stack) {
+        selectedStash.add(stack);
+    }
+
+    public void removeSelectedItem(ItemStack stack) {
+        selectedStash.remove(stack);
+    }
+
+    public void addItem(ItemStack stack) {
+        fullStash.add(stack);
+    }
+
+    public void removeItem(ItemStack stack) {
+        fullStash.remove(stack);
+    }
+
     public UUID getId() {
         return id;
     }

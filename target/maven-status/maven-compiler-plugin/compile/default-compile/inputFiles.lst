@@ -1,10 +1,10 @@
-<<<<<<< Updated upstream
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Utils\Utils.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Events\JoinEvent.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Game\Game.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\LootChest\LootChest.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Game\GameCommand.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Party\Party.java
+C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\StashGui.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\LootChest\LootType.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\GameSelectorGui.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Main.java
@@ -19,26 +19,3 @@ C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Arena\Lobby.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Events\ChestPlace.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\LootChest\Items.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\LootChest\LootItem.java
-=======
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Messages/Message.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/LootChest/LootType.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Party/PartyCommand.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Gui/GameSelectorGui.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Arena/Lobby.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/LootChest/LootItem.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Events/JoinEvent.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Main.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Arena/Arena.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Gui/StashGui.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Managers/GameManager.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Player/mPlayer.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/LootChest/LootChest.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Gui/MapGui.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/LootChest/Items.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Events/ChestPlace.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Party/Party.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Game/Game.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Gui/Gui.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Utils/Utils.java
-/Users/masonking/IdeaProjects/MineX/src/main/java/minex/Game/GameCommand.java
->>>>>>> Stashed changes
