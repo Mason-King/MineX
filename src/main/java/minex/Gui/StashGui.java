@@ -128,21 +128,33 @@ public class StashGui {
             } else if(e.getClick().equals(ClickType.RIGHT)) {
                 ItemStack stack = e.getCurrentItem();
 
+                if(stack.getType().equals(Material.AIR)) return;
+
                 net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
                 NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+
                 if(tag.getBoolean("active")) {
-                    tag.setBoolean("active", false);
+                    System.out.println(mp.getSelectedStash().contains(stack) + " active");
+                    System.out.println(mp.getFullStash().contains(stack));
                     mp.removeSelectedItem(stack);
-                    mp.addItem(stack);
-
-                } else {
-                    tag.setBoolean("active", true);
                     mp.removeItem(stack);
+                    tag.setBoolean("active", false);
+                    nbtStack.setTag(tag);
+                    stack = CraftItemStack.asBukkitCopy(nbtStack);
+                    mp.addItem(stack);
+                } else {
+                    System.out.println(mp.getSelectedStash().contains(stack) + " inactive");
+                    System.out.println(mp.getFullStash().contains(stack));
+                    mp.removeItem(stack);
+                    tag.setBoolean("active", true);
+                    nbtStack.setTag(tag);
+                    stack = CraftItemStack.asBukkitCopy(nbtStack);
                     mp.addSelectedItem(stack);
-
                 }
+
                 g.clear();
                 genGui(mp, p, g);
+                return;
             }
 
         });

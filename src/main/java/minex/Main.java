@@ -9,11 +9,13 @@ import minex.Events.ChestPlace;
 import minex.Events.JoinEvent;
 import minex.Game.Game;
 import minex.Game.GameCommand;
+import minex.LootChest.Items;
 import minex.Managers.GameManager;
 import minex.Party.PartyCommand;
 import minex.Player.mPlayer;
 import org.bson.Document;
 import org.bukkit.Bukkit;
+import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
@@ -48,6 +50,8 @@ public final class Main extends JavaPlugin {
         // Plugin startup logic
         instance = this;
 
+        Items.loadItem(this);
+
         this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
 
@@ -76,6 +80,7 @@ public final class Main extends JavaPlugin {
 
             collection.find().forEach((Consumer<Document>) document -> {
                 Game game = gson.fromJson(document.toJson(), Game.class);
+                getServer().createWorld(new WorldCreator(game.getArena().getWorld()));
                 GameManager.addGame(game);
             });
 

@@ -88,6 +88,15 @@
             if(currPlayers == 0) lobbyCountdown(this);
         }
 
+        public void loadTeams() {
+            String[] teamNames = {"Red", "Orange", "Yellow", "Green", "Lime", "Blue", "Cyan", "Light Blue", "Purple", "Magenta", "Pink", "White", "Light Grey", "Grey", "Black"};
+            for(String s : teamNames) {
+                allTeams.add(s);
+                teams.put(s, new ArrayList<>());
+                open.put(s, true);
+            }
+        }
+
         public String getTeam(UUID u) {
             return playerTeams.get(u);
         }
@@ -125,15 +134,6 @@
 
         public void setMaxPlayers(int maxPlayers) {
             this.maxPlayers = maxPlayers;
-        }
-
-        public void loadTeams() {
-            String[] teamNames = {"Red", "Orange", "Yellow", "Green", "Lime", "Blue", "Cyan", "Light Blue", "Purple", "Magenta", "Pink", "White", "Light Grey", "Grey", "Black"};
-            for(String s : teamNames) {
-                allTeams.add(s);
-                teams.put(s, new ArrayList<>());
-                open.put(s, true);
-            }
         }
 
         public int getCurrPlayers() {

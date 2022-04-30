@@ -1,9 +1,11 @@
 package minex.Events;
 
 import com.mongodb.client.model.Filters;
+import minex.Game.Game;
 import minex.LootChest.LootChest;
 import minex.LootChest.LootType;
 import minex.Main;
+import minex.Managers.GameManager;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -27,10 +29,17 @@ public class ChestPlace implements Listener {
                 NBTTagCompound tag = (nbtStack.hasTag() ? nbtStack.getTag() : new NBTTagCompound());
 
                 if(tag.get("type") != null) {
+                    e.setCancelled(true);
+                    if(!e.getPlayer().getWorld().getName().contains("Game")) {
+                        e.getPlayer().sendMessage(Utils.color("&c&lMineX &7| You must be in the game world to do this!"));
+                        return;
+                    }
+                    String gameId = e.getPlayer().getWorld().getName().replace("Game", "");
+                    Game game = GameManager.getGame(gameId);
                     //make sure it has NBT of the item!
-                    LootChest lootChest = new LootChest(Utils.toString(e.getClickedBlock().getLocation().add(0, 1, 0)), LootType.valueOf(tag.getString("type")));
                     e.getClickedBlock().getLocation().getWorld().getBlockAt(e.getClickedBlock().getLocation().add(0, 1, 0)).setType(Material.CHEST);
-                    System.out.println("placed a " + tag.getString("type"));
+                    LootChest lootChest = new LootChest(Utils.toString(e.getClickedBlock().getLocation().add(0, 1, 0)), LootType.valueOf(tag.getString("type")));
+                    game.getArena().addChest(Utils.toString(e.getClickedBlock().getLocation().add(0, 1, 0)), lootChest);
                 }
             }
         }

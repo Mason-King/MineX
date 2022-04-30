@@ -14,15 +14,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class LootChest {
 
-    Main main = Main.getInstance();
-
     private String location;
-    private Game game;
+    private String game;
     private LootType type;
     private int maxItems;
     private int minItems;
 
-    public LootChest(String location, Game game, LootType type, int maxItems, int minItems) {
+    public LootChest(String location, String game, LootType type, int maxItems, int minItems) {
         this.location = location;
         this.game = game;
         this.type = type;
@@ -39,6 +37,7 @@ public class LootChest {
     }
 
     public void loadMinMax() {
+        Main main = Main.getInstance();
         this.maxItems = main.getConfig().getInt("lootChest." + type.toString() + ".maxItems");
         this.minItems = main.getConfig().getInt("lootChest." + type.toString() + ".minItems");
     }
@@ -51,11 +50,11 @@ public class LootChest {
         this.location = location;
     }
 
-    public Game getGame() {
+    public String getGame() {
         return game;
     }
 
-    public void setGame(Game game) {
+    public void setGame(String game) {
         this.game = game;
     }
 

@@ -19,56 +19,51 @@ lootChest:
   uncommon:
     maxItems: 6
     minItems: 3
+  common:
+    maxItems: 5
+    minItems: 2
+  rare:
+    maxItems: 4
+    minItems: 1
   items:
     uncommon:
       1:
         material: DIAMOND
         amount: 1
-        chance: 0.25
       2:
         material: STONE
+        damage: 0
         amount: 10
-        chance: 0.25
       3:
         material: STONE_SWORD
         amount: 1
-        chance: 0.25
       4:
-        Material: DIRT
+        material: DIRT
         amount: 16
-        chance: 0.25
     common:
       1:
         material: DIAMOND
         amount: 6
-        chance: 0.25
       2:
         material: STONE
         amount: 20
-        chance: 0.25
       3:
         material: IRON_SWORD
         amount: 1
-        chance: 0.25
       4:
-        Material: DIRT
+        material: DIRT
         amount: 32
-        chance: 0.25
     rare:
       1:
         material: DIAMOND
         amount: 16
-        chance: 0.25
       2:
         material: STONE
         amount: 32
-        chance: 0.25
       3:
         material: DIAMOND_SWORD
         amount: 1
-        chance: 0.25
       4:
-        Material: DIRT
+        material: DIRT
         amount: 32
-        chance: 0.25
 

@@ -1,6 +1,6 @@
 ToDo:
 
 - center Lobby to locations on block
-- Create new instance of mPlayer if null on join
 - Fix placeholders
 - Will need to test the merging system with more players!
+- fix stash

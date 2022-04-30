@@ -1,5 +1,6 @@
 package minex.Arena;
 
+import minex.LootChest.LootChest;
 import minex.Utils.Utils;
 import org.bukkit.*;
 
@@ -13,6 +14,8 @@ public class Arena {
     private Map<Boolean, String> claimed;
     private Map<UUID, String> playerSpawns;
     private Map<String, String> teamSpawns;
+    private Map<String, LootChest> gameChests;
+    private Map<String, String> mobSpawns;
     private String world;
 
     public Arena(String id, Location spawn) {
@@ -28,6 +31,7 @@ public class Arena {
         this.playerSpawns = new HashMap<>();
         this.claimed = new HashMap<>();
         this.spawns = new ArrayList<>();
+        this.gameChests = new HashMap<>();
 
         generateWorlds();
     }
@@ -103,6 +107,14 @@ public class Arena {
 
     public void setWorld(World world) {
         this.world = world.getName();
+    }
+
+    public String getWorld() {
+        return world;
+    }
+
+    public void addChest(String loc, LootChest chest) {
+        gameChests.put(loc, chest);
     }
 
 }
