@@ -2,6 +2,7 @@ package minex.Player;
 
 import it.unimi.dsi.fastutil.Hash;
 import minex.Game.Game;
+import minex.Game.Team;
 import minex.Party.Party;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +20,8 @@ public class mPlayer {
     private Party party;
     private Game currGame;
     private int stashSize = 9;
-    private String teamName;
+    private Team team;
+
 
     public mPlayer(UUID id) {
         this.id = id;
@@ -75,12 +77,12 @@ public class mPlayer {
         this.currGame = currGame;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setTeam(Team t) {
+        this.team = t;
     }
 
     public List<ItemStack> getFullStash() {

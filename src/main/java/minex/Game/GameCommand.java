@@ -85,7 +85,7 @@ public class GameCommand implements CommandExecutor {
                 } else if(args[0].equalsIgnoreCase("stash")) {
                     mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
                     Game game = mp.getCurrGame();
-                    new StashGui().makeGui(player, game);
+                    new StashGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("lootchest")) {
                     if(args.length < 2) {
                         player.sendMessage(Utils.color("&c&lMineX &7| Lootchest help!"));
@@ -140,7 +140,7 @@ public class GameCommand implements CommandExecutor {
                         if (game == null) {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
-                            if(game.getArena().spawnExists(name)) {
+                            if(game.getArena().exists(name)) {
                                 player.sendMessage(Utils.color("&c&lMineX &7| A game already exists with this name"));
                             } else {
                                 game.addSpawn(player.getLocation(), name);

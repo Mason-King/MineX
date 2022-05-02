@@ -46,9 +46,9 @@ public class GameSelectorGui {
                         clicked.sendMessage(Utils.color("&c&lMineX &7| An error has occured, please contact an admin"));
                         return;
                     }
-                    game.addPlayer(clicked.getUniqueId());
+                    game.joinGame(clicked.getUniqueId());
                 } else {
-                    game.addParty(party);
+                    game.joinGame(party);
                 }
                 clicked.closeInventory();
             }

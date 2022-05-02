@@ -29,7 +29,7 @@ public final class Main extends JavaPlugin {
 
     public static MongoClient client = MongoClients.create("mongodb+srv://mason:Mjking68@minex.kx0a3.mongodb.net/MineX?retryWrites=true&w=majority");
     public static MongoDatabase database = client.getDatabase("MineX");
-    public static MongoCollection<Document> collection = database.getCollection("games");
+    public static MongoCollection<Document> gameCollection = database.getCollection("games");
 
 
     @Override
@@ -74,7 +74,7 @@ public final class Main extends JavaPlugin {
 
             Gson gson = new Gson();
 
-            collection.find().forEach((Consumer<Document>) document -> {
+            gameCollection.find().forEach((Consumer<Document>) document -> {
                 Game game = gson.fromJson(document.toJson(), Game.class);
                 GameManager.addGame(game);
             });

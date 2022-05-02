@@ -4,3 +4,4 @@ ToDo:
 - Create new instance of mPlayer if null on join
 - Fix placeholders
 - Will need to test the merging system with more players!
+- lobby span set msg

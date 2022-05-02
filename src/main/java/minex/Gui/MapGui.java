@@ -1,7 +1,9 @@
 package minex.Gui;
 
 import minex.Game.Game;
+import minex.Game.Team;
 import minex.Main;
+import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Location;
@@ -29,6 +31,7 @@ public class MapGui {
 
         g.onClick(e -> {
            Player clicked = (Player) e.getWhoClicked();
+           mPlayer mp = mPlayer.uuidPlayers.get(clicked.getUniqueId());
            int slot = e.getSlot();
            ItemStack clickedStack = e.getCurrentItem();
 
@@ -36,10 +39,9 @@ public class MapGui {
            if(!nbtStack.hasTag()) return;
             NBTTagCompound nbt = nbtStack.getTag();
 
-            Location spawnLoc = game.getArena().getSpawn(nbt.getString("spawnId"));
-            String teamName = game.getTeam(clicked.getUniqueId());
-            game.setTeamSpawn(teamName, Utils.toString(spawnLoc));
-            System.out.println(game.getTeamSpawn(teamName));
+//            Location spawnLoc = game.getArena().getSpawn(nbt.getString("spawnId"));
+//            Team team = mp.getTeam();
+//            game.setTeamSpawn(team, Utils.toString(spawnLoc));
             clicked.closeInventory();
         });
 

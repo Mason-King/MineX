@@ -27,10 +27,11 @@ public class StashGui {
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
 
-    public void makeGui(Player p, Game game) {
+    public void makeGui(Player p) {
         mPlayer mp = mPlayer.uuidPlayers.get(p.getUniqueId());
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
         genGui(mp, p, g);
+        gui.show(p, 0);
         g.onClick(e -> {
             Player clicked = (Player) e.getWhoClicked();
             int slot = e.getSlot();
@@ -131,18 +132,24 @@ public class StashGui {
                 net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
                 NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
                 if(tag.getBoolean("active")) {
+                    clicked.sendMessage("deactive");
                     tag.setBoolean("active", false);
                     mp.removeSelectedItem(stack);
+                    stack = CraftItemStack.asBukkitCopy(nbtStack);
                     mp.addItem(stack);
-
+                    g.clear();
+                    genGui(mp, p, g);
+                    return;
                 } else {
+                    clicked.sendMessage("active");
                     tag.setBoolean("active", true);
                     mp.removeItem(stack);
+                    stack = CraftItemStack.asBukkitCopy(nbtStack);
                     mp.addSelectedItem(stack);
-
+                    g.clear();
+                    genGui(mp, p, g);
+                    return;
                 }
-                g.clear();
-                genGui(mp, p, g);
             }
 
         });
@@ -151,7 +158,6 @@ public class StashGui {
 
     public void genGui(mPlayer mp, Player p, Gui.NoobPage g) {
         Utils.makeFormat("Stash.yml", g, "items");
-        gui.show(p, 0);
 
         for(ItemStack stack : mp.getSelectedStash()) {
             List<String> lore = config.getStringList("deselectItemLore");

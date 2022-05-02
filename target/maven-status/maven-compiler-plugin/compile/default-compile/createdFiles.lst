@@ -6,6 +6,7 @@ minex\Gui\Gui$openEvent.class
 minex\Utils\Utils.class
 minex\Arena\Arena.class
 minex\Events\ChestPlace.class
+minex\Game\GameRecode$1.class
 minex\Party\Party.class
 minex\Gui\Gui$closeEvent.class
 minex\Game\Game$1.class
@@ -13,10 +14,12 @@ minex\Gui\Gui$1.class
 minex\Gui\Gui$dragEvent.class
 minex\Gui\MapGui.class
 minex\Main.class
+minex\Game\GameRecode.class
 minex\Game\Game.class
 minex\LootChest\Items.class
 minex\LootChest\LootItem.class
 minex\Gui\Gui$NoobPage.class
+minex\Game\Team.class
 minex\Gui\Gui.class
 minex\Arena\Lobby.class
 minex\Party\PartyCommand.class

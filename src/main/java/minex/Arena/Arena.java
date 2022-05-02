@@ -1,5 +1,6 @@
 package minex.Arena;
 
+import minex.Game.Team;
 import minex.Utils.Utils;
 import org.bukkit.*;
 
@@ -8,12 +9,13 @@ import java.util.*;
 public class Arena {
 
     private String id;
+    private String world;
+
     private List<String> spawns;
     private Map<String, String> spawnNames;
-    private Map<Boolean, String> claimed;
-    private Map<UUID, String> playerSpawns;
-    private Map<String, String> teamSpawns;
-    private String world;
+    private List<String> claimed;
+    private Map<Team, String> teamSpawns;
+
 
     public Arena(String id, Location spawn) {
         this.id = id;
@@ -25,37 +27,14 @@ public class Arena {
         this.id = id;
 
         this.spawnNames = new HashMap<>();
-        this.playerSpawns = new HashMap<>();
-        this.claimed = new HashMap<>();
+        this.claimed = new ArrayList<>();
         this.spawns = new ArrayList<>();
+        this.teamSpawns = new HashMap<>();
 
-        generateWorlds();
+        initWorld();
     }
 
-//    public boolean pasteSchematic() {
-//
-//        File file = new File(Main.getInstance().getDataFolder().getAbsolutePath() +  "/schematics/lobby.schem");
-//
-//        System.out.println(file.isFile());
-//
-//        WorldEditPlugin worldEditPlugin = (WorldEditPlugin) Bukkit.getPluginManager().getPlugin("WorldEdit");
-//        EditSession session = worldEditPlugin.getWorldEdit().getEditSessionFactory().getEditSession(new BukkitWorld(spawn.getWorld()), 100000);
-//        try {
-//            CuboidClipboard clipboard = MCEditSchematicFormat.getFormat(file).load(file);
-//            clipboard.setOrigin(new Vector(spawn.getBlockX(),spawn.getBlockY(), spawn.getBlockZ()));
-//            clipboard.paste(session, clipboard.getOrigin(), false);
-//        } catch(MaxChangedBlocksException e) {
-//            e.printStackTrace();
-//        } catch (DataException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return false;
-//    }
-
-    public void generateWorlds() {
+    public void initWorld() {
         WorldCreator wc = new WorldCreator(id + "Game");
         wc.environment(World.Environment.NORMAL);
         wc.type(WorldType.NORMAL);
@@ -65,22 +44,24 @@ public class Arena {
         this.spawns.add(Utils.toString(new Location(Bukkit.getWorld(this.world), 0, 100, 0)));
     }
 
-    public Location getSpawn(int id) {
-        return Utils.fromString(spawns.get(id));
+    public Location getTeamSpawn(Team t) {
+        System.out.println(getSpawns());
+        System.out.println(teamSpawns);
+        return getSpawn(teamSpawns.get(t));
     }
 
-    public Location getSpawn(String name) {
-        return Utils.fromString(spawnNames.get(name));
+    public void setTeamSpawn(Team t, String s) {
+        if(teamSpawns.containsKey(t)) teamSpawns.remove(t);
+        teamSpawns.put(t, s);
+        claimed.add(s);
     }
 
-    public void addSpawn(Location spawn, String name) {
-        this.spawns.add(Utils.toString(spawn));
-        this.spawnNames.put(name, Utils.toString(spawn));
-        this.claimed.put(false, name);
+    public Location getSpawn(int index) {
+        return Utils.fromString(getSpawns().get(index));
     }
 
-    public List<String> getSpawns() {
-        return this.spawns;
+    public boolean exists(String name) {
+        return spawnNames.containsKey(name);
     }
 
     public String getName(String s) {
@@ -92,19 +73,67 @@ public class Arena {
         return null;
     }
 
-    public boolean spawnExists(String s) {
-        if(spawnNames.containsKey(s)) return true;
-        return false;
+
+    public Location getSpawn(String name) {
+        return Utils.fromString(spawnNames.get(name));
     }
 
-    public void setTeamSpawn(String team, String loc) {
-        teamSpawns.put(team, loc);
+    public void addSpawn(String s, Location loc) {
+        this.spawnNames.put(s, Utils.toString(loc));
+        this.spawns.add(s);
     }
 
-    public void setWorld(World world) {
-        this.world = world.getName();
+    public boolean isClaimed(String s) {
+        return claimed.contains(s);
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getWorld() {
+        return world;
+    }
+
+    public void setWorld(String world) {
+        this.world = world;
+    }
+
+    public List<String> getSpawns() {
+        return spawns;
+    }
+
+    public void setSpawns(List<String> spawns) {
+        this.spawns = spawns;
+    }
+
+    public Map<String, String> getSpawnNames() {
+        return spawnNames;
+    }
+
+    public void setSpawnNames(Map<String, String> spawnNames) {
+        this.spawnNames = spawnNames;
+    }
+
+    public List<String> getClaimed() {
+        return claimed;
+    }
+
+    public void setClaimed(List<String> claimed) {
+        this.claimed = claimed;
+    }
+
+    public Map<Team, String> getTeamSpawns() {
+        return teamSpawns;
+    }
+
+    public void setTeamSpawns(Map<Team, String> teamSpawns) {
+        this.teamSpawns = teamSpawns;
+    }
 }
 
 
