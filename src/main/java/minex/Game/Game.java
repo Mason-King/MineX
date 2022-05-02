@@ -5,6 +5,7 @@
     import minex.LootChest.LootChest;
     import minex.Main;
     import minex.Managers.GameManager;
+    import minex.MobSpawns.MobSpawn;
     import minex.Party.Party;
     import minex.Player.mPlayer;
     import minex.Utils.Utils;
@@ -31,7 +32,8 @@
         private List<UUID> players = new ArrayList<>();
         private List<Team> allTeams = new ArrayList<>();
         private Map<UUID, Team> playerTeams = new HashMap<>();
-        //private List<LootChest> chests = new ArrayList<>();
+        private List<LootChest> chests = new ArrayList<>();
+        private List<MobSpawn> spawns = new ArrayList<>();
         private int currPlayers;
         private Arena arena;
         private int lobbyCountdown = 30;
@@ -249,21 +251,34 @@
             this.scheduler = scheduler;
         }
 
-//        public List<LootChest> getChests() {
-//            return chests;
-//        }
-//
-//        public void setChests(List<LootChest> chests) {
-//            this.chests = chests;
-//        }
-//
-//        public void addChest(LootChest c) {
-//            chests.add(c);
-//        }
-//
-//        public void removeChest(LootChest c) {
-//            chests.remove(c);
-//        }
+        public List<LootChest> getChests() {
+            return chests;
+        }
+
+        public void setChests(List<LootChest> chests) {
+            this.chests = chests;
+        }
+
+        public void addChest(LootChest c) {
+            chests.add(c);
+            GameManager.save(this);
+        }
+
+        public void removeChest(LootChest c) {
+            chests.remove(c);
+        }
+
+        public List<MobSpawn> getSpawns() {
+            return spawns;
+        }
+
+        public void setSpawns(List<MobSpawn> spawns) {
+            this.spawns = spawns;
+        }
+
+        public void addMobSpawn(MobSpawn s) {
+            this.spawns.add(s);
+        }
 
         public void lobbyCountdown(Game game) {
             scheduler = new BukkitRunnable() {
@@ -301,6 +316,15 @@
                                 pl.getInventory().addItem(remove);
                             }
                         }
+
+                        for(LootChest chest : game.getChests()) {
+                            chest.fill();
+                        }
+
+                        for(MobSpawn spawn : game.getSpawns()) {
+                            spawn.spawn();
+                        }
+
                         setInGame(true);
                         return;
                     }

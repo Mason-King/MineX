@@ -8,6 +8,7 @@ import minex.Gui.StashGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Messages.Message;
+import minex.MobSpawns.MobSpawn;
 import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.ItemStack;
@@ -18,6 +19,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -60,7 +62,16 @@ public class GameCommand implements CommandExecutor {
                         player.sendMessage(Utils.color("&c&lMineX &7| Incorrect mobspawn usage try: /game addmobspawn <id> <type>"));
                         return false;
                     }
+                    Game game = GameManager.getGame(args[1]);
+                    if(game == null) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| There is no valid game"));
+                        return false;
+                    }
                     String loc = Utils.toString(player.getLocation());
+                    EntityType type = EntityType.valueOf(args[2]);
+                    MobSpawn ms = new MobSpawn(loc, game.getId());
+                    game.addMobSpawn(ms);
+
                 } else if(args[0].equalsIgnoreCase("tp")) {
                     if (args.length < 2) {
                         player.sendMessage(Message.GAME_TP_USAGE.getMessage());

@@ -36,9 +36,8 @@ public class LootChest {
     }
 
     public void loadMinMax() {
-        Main main = Main.getInstance();
-        this.maxItems = main.getConfig().getInt("lootChest." + type.toString() + ".maxItems");
-        this.minItems = main.getConfig().getInt("lootChest." + type.toString() + ".minItems");
+        this.maxItems = Main.getInstance().getConfig().getInt("lootChest." + type.toString() + ".maxItems");
+        this.minItems = Main.getInstance().getConfig().getInt("lootChest." + type.toString() + ".minItems");
     }
 
     public String getLocation() {
@@ -79,9 +78,12 @@ public class LootChest {
         Chest chest = (Chest) b.getState();
         Inventory inventory = chest.getBlockInventory();
 
+        inventory.clear();
+
         int items = ThreadLocalRandom.current().nextInt(minItems, maxItems);
 
         for(int i = 0; i < items; i++) {
+
             inventory.setItem(ThreadLocalRandom.current().nextInt(0, inventory.getSize()), Items.getItems(type).get(ThreadLocalRandom.current().nextInt(0, Items.getItems(type).size())).getItemStack() );
         }
 
