@@ -70,6 +70,7 @@ public class GameCommand implements CommandExecutor {
                     String loc = Utils.toString(player.getLocation());
                     EntityType type = EntityType.valueOf(args[2]);
                     MobSpawn ms = new MobSpawn(loc, game.getId());
+                    ms.addEntity(type);
                     game.addMobSpawn(ms);
 
                 } else if(args[0].equalsIgnoreCase("tp")) {

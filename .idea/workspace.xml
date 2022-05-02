@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/MobSpawns/MobSpawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/ChestPlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/ChestPlace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/GameRecode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/LootChest/LootChest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/LootChest/LootChest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Managers/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Managers/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/ChestPlace.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/ChestPlace.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/GameRecode$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/GameRecode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/LootChest/LootChest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/LootChest/LootChest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Managers/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Managers/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-MineX-1.0-SNAPSHOT.jar" afterDir="false" />
-    </list>
+    <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
