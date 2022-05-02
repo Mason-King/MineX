@@ -14,8 +14,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class LootChest {
 
-    Main main = Main.getInstance();
-
     private String location;
     private String game;
     private LootType type;
@@ -38,6 +36,7 @@ public class LootChest {
     }
 
     public void loadMinMax() {
+        Main main = Main.getInstance();
         this.maxItems = main.getConfig().getInt("lootChest." + type.toString() + ".maxItems");
         this.minItems = main.getConfig().getInt("lootChest." + type.toString() + ".minItems");
     }

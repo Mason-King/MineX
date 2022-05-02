@@ -52,9 +52,15 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("list")) {
-                    for(Game game : GameManager.games) {
+                    for (Game game : GameManager.games) {
                         player.sendMessage(game.getId());
                     }
+                } else if(args[0].equalsIgnoreCase("addmobspawn")) {
+                    if(args.length < 3) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| Incorrect mobspawn usage try: /game addmobspawn <id> <type>"));
+                        return false;
+                    }
+                    String loc = Utils.toString(player.getLocation());
                 } else if(args[0].equalsIgnoreCase("tp")) {
                     if (args.length < 2) {
                         player.sendMessage(Message.GAME_TP_USAGE.getMessage());
@@ -91,7 +97,6 @@ public class GameCommand implements CommandExecutor {
                         player.sendMessage(Utils.color("&c&lMineX &7| Lootchest help!"));
                     } else {
                         if(args[1].equalsIgnoreCase("give")) {
-                            System.out.println(args.length);
                             if (args.length < 3) {
                                 player.sendMessage(Utils.color("&c&lMineX &7| Lootchest give usage"));
                             } else {
