@@ -1,0 +1,71 @@
+#Valid types
+#ARROW_HIT - Arrow hits and entity/ block
+#ATTACK- Player hits a player
+#ATTACK_MOB - Player hits a mob
+#BOW - Player shoots player
+#BOW_MOB - Player shoots mob
+#BOW_SHOOT - Player shoots a bow
+#DEATH - Player dies due to another entity
+#DEFENSE - Player gets hit by a player
+#DEFENSE_BOW - Player gets hit by a player-shot arrow
+#DEFENSE_MOB - Player gets hit by a mob
+#EAT - Player consumes an item
+#EFFECT_STATIC - Player/ Mob is wearing an item
+#EXPLOSION - Player gets hurt in an explosion
+#FALL_DAMAGE - Player takes fall damage
+#FIRE - Player gets hurt by fire
+#HELD - Player holds an item
+#ITEM_BREAK - Item gets broken
+#KILL_MOB - Player kills a mob
+#KILL_PLAYER - Player kills a player
+#MINING - Player breaks block
+#PASSIVE_DEATH - Player dies not due to another entity
+#RIGHT_CLICK - Player right clicks
+#SHIFT - Player crouches/ uncrouches
+#SPRINT - Player starts/ stops sprinting
+#SWING - Player swings their hand
+
+#All efects:
+# ActionBar:(Message) - sends action bar message to player - all types
+# Add_Durability:(Amount) - Repair player's armor - all types
+# Add_Durability_item(Amount) - Repair the item int he players hand - all types
+# Add_Food:(amount) - Add food to a player - all types
+# DAMAGE:(amount) - damage an entity - all types
+# HEAL(amount) - add health to player - all types
+# Bleed:(damgae):(interval):(time) - damage entity by (damage) evey (interval) ticks, (time) times
+# Break - breaks block instantly - Mine
+# Disable_use:(material):(ticks) - Prevent right-click for time - all items
+# Command:(Command) - run a command via console - all types;
+# Cure:(potion) - remove potion effect from player except perm - all types;
+# Cure_perm:(potion) - remove potion effect from player - all types;
+# Damage_armor:(amount) - damage a players armor - attack, defense, damage
+# Disable_Knockback:(ticks) - disable knockback for x time - attack, defense, damage
+# Disarm - removes item from player hand - attack, defense, damage
+# Double_damage - doubles damage - attack, defense, damage
+# Extinguish - extinguish an entity - all types
+# Flame:(time) - set entity on fire for ticks - damage
+# Half_damage - Half damage - attack
+# Increase_Damage:(int) - increase damage to player by percent - damage
+# KEEP_one_death - keep an item on death - all
+# Revive:(chance) - chance to heal player when killed - Death
+# potion:(potion):(level):(ticks)
+# Message:(message) - send a message to a player - all
+# title:(title):(subtitle) - send a title to a player - all
+enchants:
+  haste:
+    displayName: "&c&lHate"
+    description: "&7Gives you haste when holding item with haste applied"
+    maxLevel: 3
+    startLeve: 1
+    appliesTo: 'Pickaxe'
+    type: 'HELD'
+    levels:
+      1:
+        effects:
+          - "POTION:(HASTE):(1):(*)"
+      2:
+        effects:
+          - "POTION:(HASTE):(2):(*)"
+      3:
+        effects:
+          - "POTION:(HASTE):(3):(*)"

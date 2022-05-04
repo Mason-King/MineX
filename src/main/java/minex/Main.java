@@ -5,6 +5,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import minex.CustomEnchants.CustomEnchant;
+import minex.CustomEnchants.CustomEnchantManager;
 import minex.Events.ChestPlace;
 import minex.Events.JoinEvent;
 import minex.Game.Game;
@@ -47,6 +49,7 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/MapSelector.yml", false);
         this.saveResource("Guis/Stash.yml", false);
         this.saveResource("game.yml", false);
+        this.saveResource("Enchantments.yml", false);
         // Plugin startup logic
         instance = this;
 
@@ -58,6 +61,11 @@ public final class Main extends JavaPlugin {
         for(Player p : Bukkit.getOnlinePlayers()) {
             mPlayer mp = new mPlayer(p.getUniqueId());
         }
+
+        CustomEnchantManager manager = new CustomEnchantManager();
+        manager.loadEnchants();
+        manager.register();
+
 
         new PartyCommand();
         new GameCommand();

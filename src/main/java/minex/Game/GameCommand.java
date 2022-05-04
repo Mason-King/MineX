@@ -68,9 +68,13 @@ public class GameCommand implements CommandExecutor {
                         return false;
                     }
                     String loc = Utils.toString(player.getLocation());
-                    EntityType type = EntityType.valueOf(args[2]);
+                    EntityType type = EntityType.fromName(args[2]);
+                    if(type == null) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| Invalid mob type!"));
+                        return false;
+                    }
                     MobSpawn ms = new MobSpawn(loc, game.getId());
-                    ms.addEntity(type);
+                    ms.addEntity(args[2]);
                     game.addMobSpawn(ms);
 
                 } else if(args[0].equalsIgnoreCase("tp")) {

@@ -1,12 +1,15 @@
 package minex.Party;
 
 import minex.Main;
+import minex.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class PartyCommand implements CommandExecutor {
 
@@ -95,6 +98,20 @@ public class PartyCommand implements CommandExecutor {
                         }
                     } else {
                         player.sendMessage("You are not the party leader!");
+                    }
+                } else if(args[0].equalsIgnoreCase("disband")) {
+                    Party p = Party.parties.get(player.getUniqueId());
+                    if(p == null) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| You do nto have a party!"));
+                        return false;
+                    }
+                    if(p.getOwner().equals(player.getUniqueId())) {
+                        for(UUID u : p.getMembers()) {
+                            p.removeMember(u);
+                        }
+                        p = null;
+                    } else {
+                        player.sendMessage(Utils.color("&c&lMineX &7| You are not the leader of this party!"));
                     }
                 }
             }

@@ -278,6 +278,8 @@
 
         public void addMobSpawn(MobSpawn s) {
             this.spawns.add(s);
+            System.out.println(s);
+            System.out.println(spawns);
         }
 
         public void lobbyCountdown(Game game) {
@@ -320,6 +322,8 @@
                         for(LootChest chest : game.getChests()) {
                             chest.fill();
                         }
+
+                        System.out.println(game.getSpawns());
 
                         for(MobSpawn spawn : game.getSpawns()) {
                             spawn.spawn();
