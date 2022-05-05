@@ -6,7 +6,7 @@ format:
   - "# # @ # $ # * # #"
   - "# # # # # # # # #"
 
-desposit: 11
+deposit: 11
 withdraw: 15
 
 items:
@@ -15,14 +15,19 @@ items:
     damage: 7
     amount: 1
     name: ""
-  '!':
-    material: Paper
+  '*':
+    material: PAPER
     amount: 1
-    addAmount: 1
     name: "&c&lWithdraw"
+    lore:
+      - "&7Withdraw money from your bank account"
   '@':
     material: BOOK
     amount: 1
     name: "&c&lDeposit"
     lore:
-      - "&7"
+      - "&7Deposit money into your bank account"
+  '$':
+    material: GOLD_INGOT
+    amount: 1
+    name: "&c&lBalance {bal}"

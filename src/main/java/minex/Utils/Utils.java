@@ -3,6 +3,7 @@ package minex.Utils;
 import minex.Game.Game;
 import minex.Gui.Gui;
 import minex.Main;
+import minex.Managers.PlayerManager;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -45,6 +47,28 @@ public class Utils {
                     char individual = removeSpaces.charAt(z);
                     if(config.get(keyForItems + "." + individual) == null) continue;
                     gui.i((9 * i) + z, Material.matchMaterial(config.getString(keyForItems + "." + individual + ".material")), (short) config.getInt(keyForItems + "." + individual + ".damage"), (config.getInt(keyForItems + "." + individual + ".amount") == 0) ? 1 : config.getInt(keyForItems + "." + individual + ".amount"),   color(config.getString(keyForItems + "." + individual + ".name")), color(config.getStringList(keyForItems + "." + individual + ".lore")));
+                }
+
+            }
+
+        }
+    }
+
+    public static void makeBankFormat(String file, Gui.NoobPage gui, String keyForItems, Player p) {
+
+        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
+        List<String> toFormat = config.getStringList("format");
+        int size = toFormat.size() * 9;
+
+        if(toFormat.size() == size / 9) {
+            for(int i = 0; i < (size / 9); i++) {
+                String s = toFormat.get(i);
+                for(int z = 0; z < 9; z++) {
+                    String removeSpaces = s.replaceAll(" ", "");
+                    char individual = removeSpaces.charAt(z);
+                    if(config.get(keyForItems + "." + individual) == null) continue;
+                    gui.i((9 * i) + z, Material.matchMaterial(config.getString(keyForItems + "." + individual + ".material")), (short) config.getInt(keyForItems + "." + individual + ".damage"), (config.getInt(keyForItems + "." + individual + ".amount") == 0) ? 1 : config.getInt(keyForItems + "." + individual + ".amount"),   color(config.getString(keyForItems + "." + individual + ".name").replace("{bal}", "" + PlayerManager.getmPlayer(p.getUniqueId()).getBalance())), color(config.getStringList(keyForItems + "." + individual + ".lore")));
                 }
 
             }

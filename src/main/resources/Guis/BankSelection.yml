@@ -1,0 +1,56 @@
+#Map selector gui config
+
+title: "&lBank selection"
+format:
+  - "# # # # # # # # #"
+  - "# ! @ # $ # * ^ #"
+  - "# # # # # # # # #"
+
+deposit: 11
+withdraw: 15
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    amount: 1
+    name: ""
+  '!':
+    material: STAINED_GLASS_PANE
+    damage: 5
+    amount: 1
+    addAmount: 1
+    name: "&c&lAdd 1"
+    lore:
+      - "&7Add one to the amount to deposit into your account."
+  '@':
+    material: STAINED_GLASS_PANE
+    damage: 5
+    amount: 1
+    addAmount: 10
+    name: "&c&lAdd 10"
+    lore:
+    - "&7Add ten to the amount to deposit into your account."
+  '$':
+    material: STAINED_GLASS_PANE
+    damage: 5
+    amount: 1
+    name: "&c&lCurrent amount: {amount}"
+    lore:
+      - "&7Click to confirm"
+  '*':
+    material: STAINED_GLASS_PANE
+    damage: 5
+    amount: 1
+    removeAmount: 1
+    name: "&c&lRemove 1"
+    lore:
+      - "&7Remove one from the amount to deposit from your account."
+  '^':
+    material: STAINED_GLASS_PANE
+    damage: 5
+    amount: 1
+    removeAmount: 10
+    name: "&c&Remove 10"
+    lore:
+      - "&7Remove ten from the amount to deposit from your account."

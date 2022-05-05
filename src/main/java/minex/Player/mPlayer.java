@@ -24,10 +24,12 @@ public class mPlayer {
 
     public mPlayer(UUID id) {
         this.id = id;
+        this.balance = 0;
     }
 
     public mPlayer(Player player) {
         this.id = player.getUniqueId();
+        this.balance = 0;
     }
 
     public void addSelectedItem(ItemStack stack) {

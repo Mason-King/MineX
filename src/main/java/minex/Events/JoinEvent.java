@@ -1,5 +1,6 @@
 package minex.Events;
 
+import minex.Managers.PlayerManager;
 import minex.Player.mPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +13,7 @@ public class JoinEvent implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player joined = e.getPlayer();
 
-        new mPlayer(joined);
+        PlayerManager.createPlayer(joined);
     }
 
 }

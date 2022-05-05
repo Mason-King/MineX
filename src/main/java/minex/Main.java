@@ -9,6 +9,7 @@ import minex.CustomEnchants.CustomEnchant;
 import minex.CustomEnchants.CustomEnchantManager;
 import minex.Events.ChestPlace;
 import minex.Events.JoinEvent;
+import minex.Game.BankCommand;
 import minex.Game.Game;
 import minex.Game.GameCommand;
 import minex.LootChest.Items;
@@ -50,6 +51,7 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/GameSelector.yml", false);
         this.saveResource("Guis/MapSelector.yml", false);
         this.saveResource("Guis/Stash.yml", false);
+        this.saveResource("Guis/Bank.yml", false);
         this.saveResource("game.yml", false);
         this.saveResource("Enchantments.yml", false);
         // Plugin startup logic
@@ -61,7 +63,7 @@ public final class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
 
         for(Player p : Bukkit.getOnlinePlayers()) {
-            mPlayer mp = new mPlayer(p.getUniqueId());
+            PlayerManager.createPlayer(p);
         }
 
         CustomEnchantManager manager = new CustomEnchantManager();
@@ -71,6 +73,7 @@ public final class Main extends JavaPlugin {
 
         new PartyCommand();
         new GameCommand();
+        new BankCommand();
     }
 
     @Override

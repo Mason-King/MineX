@@ -47,7 +47,7 @@ public class PlayerManager {
 
         System.out.println(json);
 
-        Main.gameCollection.replaceOne(Filters.eq("id", mp.getId()), Document.parse(json), new UpdateOptions().upsert(true));
+        Main.playerCollection.replaceOne(Filters.eq("id", mp.getId()), Document.parse(json), new UpdateOptions().upsert(true));
 
     }
 
