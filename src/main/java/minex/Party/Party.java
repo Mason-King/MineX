@@ -1,5 +1,6 @@
 package minex.Party;
 
+import minex.Managers.PlayerManager;
 import minex.Player.mPlayer;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Party {
         members.add(owner);
         parties.put(owner, this);
 
-        mPlayer player = mPlayer.uuidPlayers.get(owner);
+        mPlayer player = PlayerManager.getmPlayer(owner);
         player.setParty(this);
 
         this.size = 1;

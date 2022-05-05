@@ -15,9 +15,12 @@ minex\Gui\Gui$dragEvent.class
 minex\Gui\MapGui.class
 minex\MobSpawns\MobSpawn.class
 minex\Main.class
+minex\Game\BankCommand.class
+minex\CustomEnchants\EffectType.class
 minex\Game\Game.class
 minex\LootChest\Items.class
 minex\LootChest\LootItem.class
+minex\Gui\BankGui.class
 minex\Gui\Gui$NoobPage.class
 minex\Game\Team.class
 minex\Gui\Gui.class
@@ -32,3 +35,4 @@ minex\Gui\Gui$GuiPage.class
 minex\Gui\Gui$clickEvent.class
 minex\Player\mPlayer.class
 minex\Gui\GameSelectorGui.class
+minex\Managers\PlayerManager.class

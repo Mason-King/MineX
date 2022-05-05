@@ -11,8 +11,6 @@ import java.util.*;
 
 public class mPlayer {
 
-    public static List<mPlayer> players = new ArrayList<>();
-    public static Map<UUID, mPlayer> uuidPlayers = new HashMap<>();
     private List<ItemStack> fullStash = new ArrayList<>();
     private List<ItemStack> selectedStash = new ArrayList<>();
 
@@ -21,20 +19,15 @@ public class mPlayer {
     private Game currGame;
     private int stashSize = 9;
     private Team team;
+    private int balance;
 
 
     public mPlayer(UUID id) {
         this.id = id;
-
-        players.add(this);
-        uuidPlayers.put(id, this);
     }
 
     public mPlayer(Player player) {
         this.id = player.getUniqueId();
-
-        players.add(this);
-        uuidPlayers.put(id, this);
     }
 
     public void addSelectedItem(ItemStack stack) {
@@ -107,5 +100,13 @@ public class mPlayer {
 
     public void setStashSize(int stashSize) {
         this.stashSize = stashSize;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 }

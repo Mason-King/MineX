@@ -29,9 +29,9 @@
 # ActionBar:(Message) - sends action bar message to player - all types
 # Add_Durability:(Amount) - Repair player's armor - all types
 # Add_Durability_item(Amount) - Repair the item int he players hand - all types
-# Add_Food(amount) - Add food to a player - all types
-# Add_harm(amount) - damage an entity - all types
-# Add_Health(amount) - add health to player - all types
+# Add_Food:(amount) - Add food to a player - all types
+# DAMAGE:(amount) - damage an entity - all types
+# HEAL(amount) - add health to player - all types
 # Bleed:(damgae):(interval):(time) - damage entity by (damage) evey (interval) ticks, (time) times
 # Break - breaks block instantly - Mine
 # Disable_use:(material):(ticks) - Prevent right-click for time - all items

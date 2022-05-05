@@ -3,6 +3,7 @@ package minex.Gui;
 import minex.Game.Game;
 import minex.Game.Team;
 import minex.Main;
+import minex.Managers.PlayerManager;
 import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -31,7 +32,7 @@ public class MapGui {
 
         g.onClick(e -> {
            Player clicked = (Player) e.getWhoClicked();
-           mPlayer mp = mPlayer.uuidPlayers.get(clicked.getUniqueId());
+           mPlayer mp = PlayerManager.getmPlayer(clicked.getUniqueId());
            int slot = e.getSlot();
            ItemStack clickedStack = e.getCurrentItem();
 

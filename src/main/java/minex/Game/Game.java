@@ -5,6 +5,7 @@
     import minex.LootChest.LootChest;
     import minex.Main;
     import minex.Managers.GameManager;
+    import minex.Managers.PlayerManager;
     import minex.MobSpawns.MobSpawn;
     import minex.Party.Party;
     import minex.Player.mPlayer;
@@ -66,13 +67,13 @@
                 scheduler.cancel();
             }
             Bukkit.getPlayer(u).teleport(new Location(Bukkit.getWorld("world"), 0, 73, 0));
-            mPlayer mp = mPlayer.uuidPlayers.get(u);
+            mPlayer mp = PlayerManager.getmPlayer(u);
             mp.setCurrGame(null);
         }
 
         public void joinGame(UUID u) {
             Player player = Bukkit.getPlayer(u);
-            mPlayer mp = mPlayer.uuidPlayers.get(u);
+            mPlayer mp = PlayerManager.getmPlayer(u);
             player.teleport(lobby.getSpawn());
             addPlayer(u);
             mp.setCurrGame(this);
@@ -91,7 +92,7 @@
             Team t = getRandomEmptyTeam();
             for(UUID u : p.getMembers()) {
                 Player player = Bukkit.getPlayer(u);
-                mPlayer mp = mPlayer.uuidPlayers.get(u);
+                mPlayer mp = PlayerManager.getmPlayer(u);
                 player.teleport(lobby.getSpawn());
                 addPlayer(u);
                 //mp.setCurrGame(this);
@@ -294,7 +295,7 @@
                         //need a method to do this randomly if they havent choosen
                         for(UUID u : players) {
                             Player pl = Bukkit.getPlayer(u);
-                            mPlayer mp = mPlayer.uuidPlayers.get(u);
+                            mPlayer mp = PlayerManager.getmPlayer(u);
                             if(!game.getArena().getTeamSpawns().containsKey(mp.getTeam()) || game.getArena().getTeamSpawn(mp.getTeam()) == null) {
                                 for(String s : game.getArena().getSpawns()) {
                                     //loops all spawns
@@ -363,7 +364,7 @@
                             //The closest game isnt null, so we move all players from one to the other.
                             for(UUID u : closest.players) {
                                 Player p = Bukkit.getPlayer(u);
-                                mPlayer mp = (mPlayer.uuidPlayers.get(u) == null) ? new mPlayer(u) : mPlayer.uuidPlayers.get(u);
+                                mPlayer mp = (PlayerManager.getmPlayer(u) == null) ? new mPlayer(u) : PlayerManager.getmPlayer(u);
                                 mp.setCurrGame(current);
                                 p.teleport(current.getLobby().getSpawn());
                                 current.setCurrPlayers(current.getCurrPlayers() - 1);

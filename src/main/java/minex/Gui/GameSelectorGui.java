@@ -3,6 +3,7 @@ package minex.Gui;
 import minex.Game.Game;
 import minex.Main;
 import minex.Managers.GameManager;
+import minex.Managers.PlayerManager;
 import minex.Party.Party;
 import minex.Player.mPlayer;
 import minex.Utils.Utils;
@@ -28,7 +29,7 @@ public class GameSelectorGui {
 
         g.onClick(e -> {
             Player clicked = (Player) e.getWhoClicked();
-            mPlayer mp = mPlayer.uuidPlayers.get(clicked.getUniqueId());
+            mPlayer mp = PlayerManager.getmPlayer(clicked.getUniqueId());
             Party party = (mp.getParty() == null) ? null : mp.getParty();
             if(mp.getCurrGame() != null) {
                 clicked.sendMessage("You must leave the current game you are in join another!");

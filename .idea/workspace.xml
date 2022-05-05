@@ -5,24 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/CustomEnchants/CustomEnchant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/CustomEnchants/CustomEnchantManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/CustomEnchants/EffectType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/CustomEnchants/EnchantmentType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Enchantments.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Game/BankCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/BankGui.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Managers/PlayerManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Guis/Bank.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Game/GameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/GameSelectorGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/GameSelectorGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/MapGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/StashGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/StashGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/MobSpawns/MobSpawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/MobSpawns/MobSpawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Party/PartyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Party/PartyCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Party/Party.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Party/Party.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Player/mPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Player/mPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Enchantments.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Enchantments.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/CustomEnchants/CustomEnchant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/CustomEnchants/CustomEnchant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/CustomEnchants/CustomEnchantManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/CustomEnchants/CustomEnchantManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Game/GameCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/GameSelectorGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/GameSelectorGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/MapGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/MapGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/StashGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/StashGui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/MobSpawns/MobSpawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/MobSpawns/MobSpawn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Party/PartyCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Party/PartyCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Party/Party.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Party/Party.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Player/mPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Player/mPlayer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
@@ -34,7 +43,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="39632" />
+    <option name="totalTimeSeconds" value="41008" />
     <option name="idleThresholdMs" value="10000" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -80,6 +89,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/schematics" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="minex.Managers" />
     </key>
   </component>
   <component name="RunManager">
@@ -141,7 +153,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/minex/Game/Game.java</url>
-          <line>167</line>
+          <line>168</line>
           <properties class="minex.Game.Game">
             <option name="EMULATED" value="true" />
           </properties>

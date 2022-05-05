@@ -2,6 +2,7 @@ package minex.Gui;
 
 import minex.Game.Game;
 import minex.Main;
+import minex.Managers.PlayerManager;
 import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -28,7 +29,7 @@ public class StashGui {
 
 
     public void makeGui(Player p) {
-        mPlayer mp = mPlayer.uuidPlayers.get(p.getUniqueId());
+        mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
         genGui(mp, p, g);
         gui.show(p, 0);

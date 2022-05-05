@@ -7,6 +7,7 @@ import minex.Gui.MapGui;
 import minex.Gui.StashGui;
 import minex.Main;
 import minex.Managers.GameManager;
+import minex.Managers.PlayerManager;
 import minex.Messages.Message;
 import minex.MobSpawns.MobSpawn;
 import minex.Player.mPlayer;
@@ -96,7 +97,7 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("leave")) {
-                    mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                    mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
                     Game game = mp.getCurrGame();
                     if (game == null) {
                         player.sendMessage(Utils.color("&c&lMineX &7| You are not in a game!"));
@@ -105,7 +106,7 @@ public class GameCommand implements CommandExecutor {
                         player.sendMessage(Utils.color("&c&lMineX &7| You have left a game!"));
                     }
                 } else if(args[0].equalsIgnoreCase("stash")) {
-                    mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                    mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
                     Game game = mp.getCurrGame();
                     new StashGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("lootchest")) {
@@ -171,7 +172,7 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("spawns")) {
                     if (args.length < 2) {
-                        mPlayer mp = mPlayer.uuidPlayers.get(player.getUniqueId());
+                        mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
                         if(mp.getCurrGame() == null) {
                             player.sendMessage(Utils.color("&c&lMineX &7| You must be in a game to do this!"));
                         } else {

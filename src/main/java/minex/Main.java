@@ -13,6 +13,7 @@ import minex.Game.Game;
 import minex.Game.GameCommand;
 import minex.LootChest.Items;
 import minex.Managers.GameManager;
+import minex.Managers.PlayerManager;
 import minex.Party.PartyCommand;
 import minex.Player.mPlayer;
 import org.bson.Document;
@@ -34,6 +35,7 @@ public final class Main extends JavaPlugin {
     public static MongoClient client = MongoClients.create("mongodb+srv://mason:Mjking68@minex.kx0a3.mongodb.net/MineX?retryWrites=true&w=majority");
     public static MongoDatabase database = client.getDatabase("MineX");
     public static MongoCollection<Document> gameCollection = database.getCollection("games");
+    public static MongoCollection<Document> playerCollection = database.getCollection("players");
 
 
     @Override
@@ -90,6 +92,12 @@ public final class Main extends JavaPlugin {
                 Game game = gson.fromJson(document.toJson(), Game.class);
                 getServer().createWorld(new WorldCreator(game.getArena().getWorld()));
                 GameManager.addGame(game);
+            });
+
+            playerCollection.find().forEach((Consumer<Document>) document -> {
+                mPlayer mp = gson.fromJson(document.toJson(), mPlayer.class);
+
+                PlayerManager.addPlayer(mp);
             });
 
         }

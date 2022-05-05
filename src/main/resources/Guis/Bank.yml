@@ -1,0 +1,28 @@
+#Map selector gui config
+
+title: "&lBank"
+format:
+  - "# # # # # # # # #"
+  - "# # @ # $ # * # #"
+  - "# # # # # # # # #"
+
+desposit: 11
+withdraw: 15
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    amount: 1
+    name: ""
+  '!':
+    material: Paper
+    amount: 1
+    addAmount: 1
+    name: "&c&lWithdraw"
+  '@':
+    material: BOOK
+    amount: 1
+    name: "&c&lDeposit"
+    lore:
+      - "&7"
