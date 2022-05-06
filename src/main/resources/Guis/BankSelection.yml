@@ -6,8 +6,7 @@ format:
   - "# ! @ # $ # * ^ #"
   - "# # # # # # # # #"
 
-deposit: 11
-withdraw: 15
+confirm: 13
 
 items:
   '#':
@@ -22,7 +21,7 @@ items:
     addAmount: 1
     name: "&c&lAdd 1"
     lore:
-      - "&7Add one to the amount to deposit into your account."
+      - "&7Add one to the amount to {type}."
   '@':
     material: STAINED_GLASS_PANE
     damage: 5
@@ -30,7 +29,7 @@ items:
     addAmount: 10
     name: "&c&lAdd 10"
     lore:
-    - "&7Add ten to the amount to deposit into your account."
+    - "&7Add ten to the amount to {type}."
   '$':
     material: STAINED_GLASS_PANE
     damage: 5
@@ -45,7 +44,7 @@ items:
     removeAmount: 1
     name: "&c&lRemove 1"
     lore:
-      - "&7Remove one from the amount to deposit from your account."
+      - "&7Remove one from the amount to {type}."
   '^':
     material: STAINED_GLASS_PANE
     damage: 5
@@ -53,4 +52,4 @@ items:
     removeAmount: 10
     name: "&c&Remove 10"
     lore:
-      - "&7Remove ten from the amount to deposit from your account."
+      - "&7Remove ten from the amount to {type}."

@@ -5,23 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/BankSelectionGui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Guis/BankSelection.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/JoinEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/BankGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/BankGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/BankSelectionGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/BankSelectionGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Managers/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Player/mPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Player/mPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/Bank.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/Bank.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/BankSelection.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/BankSelection.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Guis/Bank.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Guis/Bank.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/JoinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/JoinEvent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/BankGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/BankGui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Managers/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Managers/PlayerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Player/mPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Player/mPlayer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
@@ -34,7 +26,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="41008" />
+    <option name="totalTimeSeconds" value="43346" />
     <option name="idleThresholdMs" value="10000" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -60,21 +52,21 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27iowzaSrYCj7RcUB5l99GncW2J" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "/Users/masonking/IdeaProjects/MineX/src/main/resources/Guis"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Guis" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/Guis" />
       <recent name="C:\Users\mason\IdeaProjects\MineX\src\main\resources\Guis" />
       <recent name="C:\Users\mason\IdeaProjects\MineX\src\main\resources\schematics" />
     </key>
@@ -82,7 +74,6 @@
       <recent name="$PROJECT_DIR$/src/main/resources/schematics" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="minex.Gui" />
       <recent name="minex.Managers" />
     </key>
   </component>
@@ -135,6 +126,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CODE_SMELLS_PROFILE" value="Project Default" />

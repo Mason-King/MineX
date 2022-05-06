@@ -18,7 +18,6 @@ items:
   '*':
     material: PAPER
     amount: 1
-    addAmount: 1
     name: "&c&lWithdraw"
     lore:
       - "&7Withdraw money from your bank account"

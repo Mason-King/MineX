@@ -14,6 +14,13 @@ messages:
   gameLobbySpawnSet: "Set the lobby spawn for {id} to your current location."
   gameLobbyTpUsage: "Invalid command usage try : /game lobby teleport <id>"
 
+economy:
+  bank: true
+  item:
+    material: GOLD_INGOT
+    name: "&c&lMoney"
+    lore:
+      - "&7Use /bank to safely store this!"
 
 lootChest:
   uncommon:

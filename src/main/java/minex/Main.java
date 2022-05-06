@@ -52,6 +52,7 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/MapSelector.yml", false);
         this.saveResource("Guis/Stash.yml", false);
         this.saveResource("Guis/Bank.yml", false);
+        this.saveResource("Guis/BankSelection.yml", false);
         this.saveResource("game.yml", false);
         this.saveResource("Enchantments.yml", false);
         // Plugin startup logic
