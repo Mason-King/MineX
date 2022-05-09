@@ -162,12 +162,31 @@ public class GameCommand implements CommandExecutor {
                         if (game == null) {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
-                            if(game.getArena().exists(name)) {
+                            if (game.getArena().exists(name)) {
                                 player.sendMessage(Utils.color("&c&lMineX &7| A game already exists with this name"));
                             } else {
                                 game.addSpawn(player.getLocation(), name);
                                 player.sendMessage(Message.GAME_SPAWN_SET.getMessage());
                             }
+                        }
+                    }
+                } else if(args[0].equalsIgnoreCase("addextraction")) {
+                    if(args.length < 2) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| Invalid usage try: /game addextraction <id> <name>"));
+                    } else {
+                        if(GameManager.getGame(args[1]) == null) {
+                            player.sendMessage(Utils.color("&c&lMineX &7| There is no game with this id!"));
+                        } else {
+                            Game game = GameManager.getGame(args[1]);
+                            if(game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
+                                player.sendMessage(Utils.color("&c&lMineX &7| An extraction already exists at this location!"));
+                                return false;
+                            }
+                            if(game.getArena().getExtractionNames().containsKey(args[2])) {
+                                player.sendMessage(Utils.color("&c&lMineX &7| An extraction already exists with this name!"));
+                                return false;
+                            }
+                            game.addExtraction(args[2], player.getLocation());
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("spawns")) {

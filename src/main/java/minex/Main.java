@@ -8,6 +8,7 @@ import com.mongodb.client.MongoDatabase;
 import minex.CustomEnchants.CustomEnchant;
 import minex.CustomEnchants.CustomEnchantManager;
 import minex.Events.ChestPlace;
+import minex.Events.ExtractionListener;
 import minex.Events.JoinEvent;
 import minex.Game.BankCommand;
 import minex.Game.Game;
@@ -62,6 +63,7 @@ public final class Main extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
+        this.getServer().getPluginManager().registerEvents(new ExtractionListener(), this);
 
         for(Player p : Bukkit.getOnlinePlayers()) {
             PlayerManager.createPlayer(p);

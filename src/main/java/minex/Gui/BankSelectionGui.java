@@ -65,9 +65,6 @@ public class BankSelectionGui {
                         nbt.setBoolean("eco", true);
                         ingot = CraftItemStack.asBukkitCopy(nbtStack);
 
-                        System.out.println(ingot);
-                        System.out.println(amount);
-
                         for(int i = 0; i < amount; i++) {
                             clicked.getInventory().addItem(ingot);
                         }
@@ -131,8 +128,6 @@ public class BankSelectionGui {
                         amount = amount + config.getInt("items." + key + ".addAmount");
                     }  else if(config.getInt("items." + key + ".removeAmount") != 0) {
                         //removing
-                        System.out.println(amount);
-                        System.out.println(config.getInt("items." + key + ".removeAmount"));
                         amount = ((amount -= config.getInt("items." + key + ".removeAmount")) < 0) ? 0 : amount - config.getInt("items." + key + ".removeAmount");
                     }
                     String k = keys.get(confirm);

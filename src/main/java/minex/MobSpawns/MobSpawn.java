@@ -78,7 +78,6 @@ public class MobSpawn {
         for(String t : entities) {
             Location loc = Utils.fromString(location);
             loc.getWorld().spawnEntity(loc,EntityType.fromName(t));
-            System.out.println(loc);
         }
     }
 

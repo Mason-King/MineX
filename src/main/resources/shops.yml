@@ -1,0 +1,139 @@
+blacksmith:
+  1:
+    material: WOODEN_SWORD
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  2:
+    material: IRON_SWORD
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  3:
+    material: DIAMOND_SWORD
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  4:
+    material: WOODEN_PICKAXE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  5:
+    material: IRON_PICKAXE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  6:
+    material: DIAMOND_PICKAXE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  7:
+    material: WOODEN_AXE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  8:
+    material: IRON_AXE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  9:
+    material: DIAMOND_AXE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+therapist:
+  1:
+    material: GRASS_BLOCK
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  2:
+    material: STONE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  3:
+    material: DIRT
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  4:
+    material: WOOL
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  5:
+    material: COBBLESTONE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  6:
+    material: OBSIDIAN
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+alchemist:
+  1:
+    material: POTION
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  2:
+    material: BLAZE_ROD
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  3:
+    material: SULPHER
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  4:
+    material: SPIDER_EYE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+warlord:
+  1:
+    material: IRON_HELMET
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  2:
+    material: IRON_CHESTPLATE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  3:
+    material: IRON_LEGGINGS
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  4:
+    material: IRON_BOOTS
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  5:
+    material: DIAMOND_HELMET
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  6:
+    material: DIAMOND_CHESTPLATE
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  7:
+    material: DIAMOND_LEGGINGS
+    amount: 1
+    buy-price: 100
+    sell-price: 50
+  8:
+    material: DIAMOND_BOOTS
+    amount: 1
+    buy-price: 100
+    sell-price: 50

@@ -45,8 +45,6 @@ public class PlayerManager {
         pipeline.set(mp.getId().toString(), json);
         pipeline.sync();
 
-        System.out.println(json);
-
         Main.playerCollection.replaceOne(Filters.eq("id", mp.getId()), Document.parse(json), new UpdateOptions().upsert(true));
 
     }

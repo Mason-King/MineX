@@ -14,6 +14,8 @@ public class Arena {
     private List<String> spawns;
     private Map<String, String> spawnNames;
     private List<String> claimed;
+    private Map<String, String> extractionNames;
+    private List<String> extractions;
     private Map<Team, String> teamSpawns;
 
 
@@ -30,6 +32,8 @@ public class Arena {
         this.claimed = new ArrayList<>();
         this.spawns = new ArrayList<>();
         this.teamSpawns = new HashMap<>();
+        this.extractionNames = new HashMap<>();
+        this.extractions = new ArrayList<>();
 
         initWorld();
     }
@@ -45,8 +49,6 @@ public class Arena {
     }
 
     public Location getTeamSpawn(Team t) {
-        System.out.println(getSpawns());
-        System.out.println(teamSpawns);
         return getSpawn(teamSpawns.get(t));
     }
 
@@ -81,6 +83,15 @@ public class Arena {
     public void addSpawn(String s, Location loc) {
         this.spawnNames.put(s, Utils.toString(loc));
         this.spawns.add(s);
+    }
+
+    public void addExtractionPoint(String name, Location loc) {
+        this.extractionNames.put(name, Utils.toString(loc));
+        this.extractions.add(Utils.toString(loc));
+    }
+
+    public void removeExtractionPoint(String name) {
+        this.extractionNames.remove(name);
     }
 
     public boolean isClaimed(String s) {
@@ -131,8 +142,24 @@ public class Arena {
         return teamSpawns;
     }
 
-    public void setTeamSpawns(Map<Team, String> teamSpawns) {
+    public void setTeamSpawn(Map<Team, String> teamSpawns) {
         this.teamSpawns = teamSpawns;
+    }
+
+    public Map<String, String> getExtractionNames() {
+        return extractionNames;
+    }
+
+    public void setExtractionNames(Map<String, String> extractions) {
+        this.extractionNames = extractions;
+    }
+
+    public void setExtractions(List<String> extractions) {
+        this.extractions = extractions;
+    }
+
+    public List<String> getExtractions() {
+        return this.extractions;
     }
 }
 

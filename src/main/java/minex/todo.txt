@@ -4,4 +4,6 @@ ToDo:
 - Create new instance of mPlayer if null on join
 - Fix placeholders
 - Will need to test the merging system with more players!
-- lobby span set msg
+- lobby spawn set msg
+- Remove player saving multiple times.
+- Add check when setting spawns and such that they are in their respective worlds
