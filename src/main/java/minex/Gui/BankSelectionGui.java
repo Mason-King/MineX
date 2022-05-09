@@ -3,8 +3,10 @@ package minex.Gui;
 import minex.Main;
 import minex.Managers.PlayerManager;
 import minex.Utils.Utils;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -45,22 +47,23 @@ public class BankSelectionGui {
                    }
                 }
 
-            System.out.println(type);
 
             if(type.equalsIgnoreCase("withdraw")) {
                 String key = keys.get(slot);
-                System.out.println(slot);
-                System.out.println(confirm);
                 if(slot == confirm) {
-                    System.out.println("confirm");
-                    //if(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() >= amount) {
-                        //PlayerManager.getmPlayer(clicked.getUniqueId()).setBalance(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() - amount);
+                    if(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() >= amount) {
+                        PlayerManager.getmPlayer(clicked.getUniqueId()).setBalance(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() - amount);
 
                         ItemStack ingot = new ItemStack(Material.matchMaterial(main.getConfig().getString("economy.item.material")));
                         ItemMeta im = ingot.getItemMeta();
                         im.setDisplayName(Utils.color(main.getConfig().getString("economy.item.name")));
                         im.setLore(Utils.color(main.getConfig().getStringList("economy.item.lore")));
                         ingot.setItemMeta(im);
+
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(ingot);
+                        NBTTagCompound nbt = (nbtStack.hasTag() ? nbtStack.getTag() : new NBTTagCompound());
+                        nbt.setBoolean("eco", true);
+                        ingot = CraftItemStack.asBukkitCopy(nbtStack);
 
                         System.out.println(ingot);
                         System.out.println(amount);
@@ -69,26 +72,29 @@ public class BankSelectionGui {
                             clicked.getInventory().addItem(ingot);
                         }
 
-//                    } else {
-//                        clicked.closeInventory();
-//                        clicked.sendMessage(Utils.color("&c&lMineX &7| You do not have enough for this!"));
-//                    }
+                   } else {
+                        clicked.closeInventory();
+                        clicked.sendMessage(Utils.color("&c&lMineX &7| You do not have enough for this!"));
+                    }
                 } else {
                     if(config.getInt("items." + key + ".addAmount") != 0) {
                         //adding
                         amount = amount + config.getInt("items." + key + ".addAmount");
-                        System.out.println(amount);
                     }  else if(config.getInt("items." + key + ".removeAmount") != 0) {
                         //removing
                         amount = ((amount -= config.getInt("items." + key + ".removeAmount")) < 0) ? 0 : amount - config.getInt("items." + key + ".removeAmount");
-                    };
+                    }
+                    String k = keys.get(confirm);
+                    ItemStack newConfirm = new ItemStack(Material.matchMaterial(config.getString("items." + k + ".material")), (config.getInt("items." + k + ".amount") == 0 ? 1 : (config.getInt("items." + k + ".amount"))), (short) (config.getInt("items." + k + ".damage")));
+                    ItemMeta im = newConfirm.getItemMeta();
+                    im.setDisplayName(Utils.color(config.getString("items." + k + ".name").replace("{amount}", "" + amount)));
+                    im.setLore(Utils.color(config.getStringList("items." + k + ".lore")));
+                    newConfirm.setItemMeta(im);
+                    g.setItem(confirm, newConfirm);
                 }
             } else if(type.equalsIgnoreCase("deposit")) {
                 String key = keys.get(slot);
-                System.out.println(slot);
-                System.out.println(confirm);
                 if(slot == confirm) {
-                    System.out.println("confirm");
                     ItemStack ingot = new ItemStack(Material.matchMaterial(main.getConfig().getString("economy.item.material")));
                     ItemMeta im = ingot.getItemMeta();
                     im.setDisplayName(Utils.color(main.getConfig().getString("economy.item.name")));
@@ -98,7 +104,10 @@ public class BankSelectionGui {
                     int count = 0;
 
                     for (ItemStack stack : clicked.getInventory().getContents()) {
-                        if (stack != null && stack.equals(ingot)) {
+                        if(stack == null || stack.getType().equals(Material.AIR)) continue;
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
+                        NBTTagCompound nbt = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+                        if(nbt.getBoolean("eco")) {
                             count += stack.getAmount();
                         }
                     }
@@ -107,24 +116,34 @@ public class BankSelectionGui {
                         clicked.sendMessage(Utils.color("&c&lMineX &7| You do not have enough money for this!"));
                         return;
                     }
-                    //PlayerManager.getmPlayer(clicked.getUniqueId()).setBalance(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() + amount);
+                    PlayerManager.getmPlayer(clicked.getUniqueId()).setBalance(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() + amount);
 
-                    System.out.println(ingot);
-                    System.out.println(amount);
-
-                    for(int i = 0; i < amount; i++) {
-                        clicked.getInventory().addItem(ingot);
+                    for(ItemStack stack : clicked.getInventory().getContents()) {
+                        if(stack == null || stack.getType().equals(Material.AIR)) continue;
+                        int subtract = Math.min(stack.getAmount(), amount);
+                        stack.setAmount(stack.getAmount() - subtract);
+                        amount -= subtract;
                     }
 
                 } else {
                     if(config.getInt("items." + key + ".addAmount") != 0) {
                         //adding
                         amount = amount + config.getInt("items." + key + ".addAmount");
-                        System.out.println(amount);
                     }  else if(config.getInt("items." + key + ".removeAmount") != 0) {
                         //removing
+                        System.out.println(amount);
+                        System.out.println(config.getInt("items." + key + ".removeAmount"));
                         amount = ((amount -= config.getInt("items." + key + ".removeAmount")) < 0) ? 0 : amount - config.getInt("items." + key + ".removeAmount");
-                    };
+                    }
+                    String k = keys.get(confirm);
+                    ItemStack newConfirm = new ItemStack(Material.matchMaterial(config.getString("items." + k + ".material")), (config.getInt("items." + k + ".amount") == 0 ? 1 : (config.getInt("items." + k + ".amount"))), (short) (config.getInt("items." + k + ".damage")));
+                    ItemMeta im = newConfirm.getItemMeta();
+                    im.setDisplayName(Utils.color(config.getString("items." + k + ".name").replace("{amount}", "" + amount)));
+                    im.setLore(Utils.color(config.getStringList("items." + k + ".lore")));
+
+                    newConfirm.setItemMeta(im);
+
+                    g.setItem(confirm, newConfirm);
                 }
             }
         });

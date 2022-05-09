@@ -64,6 +64,12 @@ public class StashGui {
                     }
                 } else {
                     //They clicked inside their inv so they are putting it in
+                    if((mp.getFullStash().size() + mp.getSelectedStash().size()) == mp.getStashSize()) {
+                        e.setCancelled(true);
+                        p.sendMessage(Utils.color("&c&lMineX &7| You must upgrade you inventory to add more items!"));
+                        return;
+                    }
+
                     ItemStack put = e.getCurrentItem().clone();
 
                     if(put.getType().equals(Material.AIR)) return;
@@ -109,6 +115,12 @@ public class StashGui {
                         }
                     } else if(e.getCurrentItem().getType().equals(Material.AIR)) {
                         //placing item
+                        if((mp.getFullStash().size() + mp.getSelectedStash().size()) == mp.getStashSize()) {
+                            e.setCancelled(true);
+                            p.sendMessage(Utils.color("&c&lMineX &7| You must upgrade you inventory to add more items!"));
+                            return;
+                        }
+
                         ItemStack put = e.getCursor().clone();
 
                         net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(put);
@@ -129,11 +141,11 @@ public class StashGui {
                 }
             } else if(e.getClick().equals(ClickType.RIGHT)) {
                 ItemStack stack = e.getCurrentItem();
+                if(stack == null || stack.getType().equals(Material.AIR)) return;
 
                 net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
                 NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
                 if(tag.getBoolean("active")) {
-                    clicked.sendMessage("deactive");
                     tag.setBoolean("active", false);
                     mp.removeSelectedItem(stack);
                     stack = CraftItemStack.asBukkitCopy(nbtStack);
@@ -142,7 +154,6 @@ public class StashGui {
                     genGui(mp, p, g);
                     return;
                 } else {
-                    clicked.sendMessage("active");
                     tag.setBoolean("active", true);
                     mp.removeItem(stack);
                     stack = CraftItemStack.asBukkitCopy(nbtStack);

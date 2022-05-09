@@ -9,3 +9,4 @@ commands:
   party:
   game:
   bank:
+    aliases: ['money', 'bal', 'balance']

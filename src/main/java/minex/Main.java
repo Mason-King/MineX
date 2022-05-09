@@ -92,6 +92,12 @@ public final class Main extends JavaPlugin {
 
             Gson gson = new Gson();
 
+            if (database.getCollection("games") == null) {
+                database.createCollection("games");
+            } else if(database.getCollection("players") == null) {
+                database.createCollection("players");
+            }
+
             gameCollection.find().forEach((Consumer<Document>) document -> {
                 Game game = gson.fromJson(document.toJson(), Game.class);
                 getServer().createWorld(new WorldCreator(game.getArena().getWorld()));

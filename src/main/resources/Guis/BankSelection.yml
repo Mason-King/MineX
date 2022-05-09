@@ -39,7 +39,7 @@ items:
       - "&7Click to confirm"
   '*':
     material: STAINED_GLASS_PANE
-    damage: 5
+    damage: 14
     amount: 1
     removeAmount: 1
     name: "&c&lRemove 1"
@@ -47,7 +47,7 @@ items:
       - "&7Remove one from the amount to {type}."
   '^':
     material: STAINED_GLASS_PANE
-    damage: 5
+    damage: 14
     amount: 1
     removeAmount: 10
     name: "&c&Remove 10"
