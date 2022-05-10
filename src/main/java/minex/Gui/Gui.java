@@ -147,6 +147,19 @@ public class Gui implements Listener {
         return page;
     }
 
+    public NoobPage create(GuiPage template, int amount, ItemStack... items) {
+        for (int i = 0; i <= items.length / amount; i++) {
+            GuiPage page = template.clone().addItems(subArray(items, amount * i, amount * i + amount - 1));
+            pages[this.size] = new NoobPage(page);
+            this.size += 1;
+        }
+        return (NoobPage) pages[0];
+    }
+
+    public GuiPage createTemplate(String name, int size) {
+        return new GuiPage(color(name)[0], size);
+    }
+
     // Macro for getting a subarray
     public static <T> T[] subArray(T[] array, int beg, int end) {
         return Arrays.copyOfRange(array, beg, end + 1);
@@ -392,6 +405,30 @@ public class Gui implements Listener {
             return this;
         }
 
+        public NoobPage onClick(clickEvent event) {
+            super.onClick(event);
+            return this;
+        }
+
+        public NoobPage onClose(closeEvent event) {
+            super.onClose(event);
+            return this;
+        }
+
+        public NoobPage onOpen(openEvent event) {
+            super.onOpen(event);
+            return this;
+        }
+
+        public NoobPage onDrag(dragEvent event) {
+            super.onDrag(event);
+            return this;
+        }
+
+        public NoobPage(GuiPage template) {
+            super(template);
+        }
+
     }
 
     public class GuiPage {
@@ -412,6 +449,20 @@ public class Gui implements Listener {
             this.size = i.getSize();
             this.i.setContents(items);
             this.page = Gui.this.size;
+        }
+
+        public GuiPage(GuiPage template) {
+            this.name = template.name;
+            this.i = getInventory(template.name, template.size);
+            this.size = this.i.getSize();
+            this.i.setContents(template.getContents());
+            this.page = Gui.this.size;
+            this.cancel = template.cancel;
+            this.shift = template.shift;
+            this.onClick(template.getClick());
+            this.onDrag(template.getDrag());
+            this.onClose(template.getClose());
+            this.onOpen(template.getOpen());
         }
 
         public String getName() {
@@ -456,6 +507,10 @@ public class Gui implements Listener {
             return this;
         }
 
+        public GuiPage clone() {
+            return new GuiPage(this);
+        }
+
         public GuiPage addItem(Material item) {
             setItem(i.firstEmpty(), new ItemStack(item));
             return this;
@@ -483,6 +538,10 @@ public class Gui implements Listener {
         }
 
         public GuiPage setItem(int position, ItemStack item, String name, String... lore) {
+            return setItem(position, getItem(item, name, lore));
+        }
+
+        public GuiPage setItem(int position, ItemStack item, String name, List<String> lore) {
             return setItem(position, getItem(item, name, lore));
         }
 

@@ -95,7 +95,7 @@
                 mPlayer mp = PlayerManager.getmPlayer(u);
                 player.teleport(lobby.getSpawn());
                 addPlayer(u);
-                //mp.setCurrGame(this);
+                mp.setCurrGame(this);
                 if(t == null) {
                     this.lobbyCountdown = 5;
                 } else {

@@ -5,8 +5,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import minex.CustomEnchants.CustomEnchant;
-import minex.CustomEnchants.CustomEnchantManager;
 import minex.Events.ChestPlace;
 import minex.Events.ExtractionListener;
 import minex.Events.JoinEvent;
@@ -69,11 +67,6 @@ public final class Main extends JavaPlugin {
             PlayerManager.createPlayer(p);
         }
 
-        CustomEnchantManager manager = new CustomEnchantManager();
-        manager.loadEnchants();
-        manager.register();
-
-
         new PartyCommand();
         new GameCommand();
         new BankCommand();
@@ -102,7 +95,7 @@ public final class Main extends JavaPlugin {
 
             gameCollection.find().forEach((Consumer<Document>) document -> {
                 Game game = gson.fromJson(document.toJson(), Game.class);
-                getServer().createWorld(new WorldCreator(game.getArena().getWorld()));
+                //getServer().createWorld(new WorldCreator(game.getArena().getWorld()));
                 GameManager.addGame(game);
             });
 

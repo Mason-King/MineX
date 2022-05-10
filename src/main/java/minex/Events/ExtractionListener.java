@@ -25,7 +25,9 @@ public class ExtractionListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         //No need to even fire if they dont move a whole block!
-        if (e.getFrom().getX() == e.getTo().getX() || e.getFrom().getZ() == e.getTo().getZ()) return;
+        Location to = e.getTo();
+        Location from = e.getFrom();
+        if (to.getBlockX() == from.getBlockX() && to.getBlockY() == from.getBlockY() && to.getBlockZ() == from.getBlockZ()) return;
         Player player = e.getPlayer();
         mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
         if(mp.getCurrGame() == null) return;
@@ -40,8 +42,11 @@ public class ExtractionListener implements Listener {
             }
         }
 
+        if(!player.getWorld().getName().contains("Game")) return;
+
         if(extracted.contains(player.getUniqueId())) {
-            closest.distanceSquared(player.getLocation());
+            //they have an active extraction
+            System.out.println(extracted);
             if(closest.distanceSquared(player.getLocation()) > 2) {
                 System.out.println(closest.distanceSquared(player.getLocation()));
                 extracted.remove(player.getUniqueId());
@@ -50,18 +55,22 @@ public class ExtractionListener implements Listener {
                 return;
             }
             return;
-        }
-        if(closest.distanceSquared(player.getLocation()) < 2) {
-            runnable = new BukkitRunnable() {
-                int count = 5;
-                @Override
-                public void run() {
-                    player.sendMessage(Utils.color("&c&lMineX &7| You will be extracted in " + count + " seconds! Do not move!"));
-                    extracted.add(player.getUniqueId());
-                    if(count == 0) cancel();
-                    count--;
-                }
-            }.runTaskTimer(Main.getInstance(), 0, 20);
+        } else {
+            if(closest.distanceSquared(player.getLocation()) < 2) {
+                runnable = new BukkitRunnable() {
+                    int count = 5;
+                    @Override
+                    public void run() {
+                        if(extracted.contains(player.getUniqueId())) cancel();
+                        if(count == 5 && !extracted.contains(player.getUniqueId())) {
+                            extracted.add(player.getUniqueId());
+                        }
+                        player.sendMessage(Utils.color("&c&lMineX &7| You will be extracted in " + count + " seconds! Do not move!"));
+                        if(count == 0) cancel();
+                        count--;
+                    }
+                }.runTaskTimer(Main.getInstance(), 0, 20);
+            }
         }
 
 

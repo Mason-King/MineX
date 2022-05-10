@@ -1,139 +1,555 @@
 blacksmith:
-  1:
-    material: WOODEN_SWORD
-    amount: 1
+  '0':
+    id: COAL
+    buy-price: 400
+    sell-price: 30
+  '1':
+    id: LAPIS LAZULI
     buy-price: 100
-    sell-price: 50
-  2:
-    material: IRON_SWORD
-    amount: 1
+    sell-price: 3
+  '2':
+    id: IRON INGOT
+    buy-price: 2400
+    sell-price: 800
+  '3':
+    id: REDSTONE
+    buy-price: 200
+    sell-price: 5
+  '4':
+    id: GOLD INGOT
+    buy-price: 2400
+    sell-price: 400
+  '5':
+    id: DIAMOND
+    buy-price: 4000
+    sell-price: 600
+  '6':
+    id: QUARTZ
+    buy-price: 750
+    sell-price:
+  '7':
+    id: EMERALD
+    buy-price: 6000
+    sell-price:
+  '8':
+    id: NETHERITE SCRAP
+    buy-price: 22500
+    sell-price: 4500
+  '9':
+    id: COAL BLOCK
+    buy-price: 400
+    sell-price:
+  '10':
+    id: LAPIS BLOCK
     buy-price: 100
-    sell-price: 50
-  3:
-    material: DIAMOND_SWORD
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  4:
-    material: WOODEN_PICKAXE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  5:
-    material: IRON_PICKAXE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  6:
-    material: DIAMOND_PICKAXE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  7:
-    material: WOODEN_AXE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  8:
-    material: IRON_AXE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  9:
-    material: DIAMOND_AXE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
+    sell-price:
+  '11':
+    id: IRON BLOCK
+    buy-price: 2400
+    sell-price:
+  '12':
+    id: REDSTONE BLOCK
+    buy-price: 200
+    sell-price:
+  '13':
+    id: GOLD BLOCK
+    buy-price: 2400
+    sell-price:
+  '15':
+    id: SMOOTH QUARTZ
+    buy-price: 3000
+    sell-price:
+  '16':
+    id: EMERALD BLOCK
+    buy-price: 6000
+    sell-price:
+  '14':
+    id: DIAMOND BLOCK
+    buy-price: 4000
+    sell-price:
+  '17':
+    id: NETHERITE BLOCK
+    buy-price: 425000
+    sell-price:
 therapist:
-  1:
-    material: GRASS_BLOCK
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  2:
-    material: STONE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  3:
-    material: DIRT
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  4:
-    material: WOOL
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  5:
-    material: COBBLESTONE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  6:
-    material: OBSIDIAN
-    amount: 1
-    buy-price: 100
-    sell-price: 50
+  '0':
+    type: SHOP
+    id: VINE
+    buy-price: 50
+    sell-price:
+    '1':
+      type: SHOP
+      id: LILY PAD
+      buy-price: 75
+      sell-price:
+    '2':
+      type: SHOP
+      id: WHEAT SEEDS
+      buy-price: 20
+      sell-price: 30
+    '3':
+      type: SHOP
+      id: NETHER WART
+      buy-price: 115
+      sell-price: 30
+    '4':
+      type: SHOP
+      id: PUMPKIN SEEDS
+      buy-price: 25
+      sell-price:
+    '5':
+      type: SHOP
+      id: MELON SEEDS
+      buy-price: 25
+      sell-price:
+    '6':
+      type: SHOP
+      id: COCOA BEANS
+      buy-price: 25
+      sell-price:
+    '7':
+      type: SHOP
+      id: OAK SAPLING
+      buy-price: 25
+      sell-price:
+    '8':
+      type: SHOP
+      id: SPRUCE SAPLING
+      buy-price: 25
+      sell-price:
+    '9':
+      type: SHOP
+      id: BIRCH SAPLING
+      buy-price: 25
+      sell-price:
+    '10':
+      type: SHOP
+      id: ACACIA SAPLING
+      buy-price: 25
+      sell-price:
+    '11':
+      type: SHOP
+      id: JUNGLE SAPLING
+      buy-price: 25
+      sell-price:
+    '12':
+      type: SHOP
+      id: DARK OAK SAPLING
+      buy-price: 25
+      sell-price:
+    '13':
+      type: SHOP
+      id: MELON SLICE
+      buy-price: 25
+      sell-price: 15
+    '14':
+      type: SHOP
+      id: POTATO
+      buy-price: 250
+      sell-price: 125
+    '15':
+      type: SHOP
+      id: MUSHROOM STEW
+      buy-price: 50
+      sell-price:
+    '16':
+      type: SHOP
+      id: CARROT
+      buy-price: 350
+      sell-price: 150
+    '17':
+      type: SHOP
+      id: WHEAT
+      buy-price: 150
+      sell-price: 50
+    '18':
+      type: SHOP
+      id: MELON
+      buy-price: 200
+      sell-price: 25
+    '19':
+      type: SHOP
+      id: PUMPKIN
+      buy-price: 400
+      sell-price: 35
+    '20':
+      type: SHOP
+      id: SUGAR CANE
+      buy-price: 200
+      sell-price: 70
+    '21':
+      type: SHOP
+      id: CACTUS
+      buy-price: 225
+      sell-price: 125
+    '22':
+      type: SHOP
+      id: RED MUSHROOM
+      buy-price: 200
+      sell-price: 40
+    '23':
+      type: SHOP
+      id: BROWN MUSHROOM
+      buy-price: 200
+      sell-price: 40
+    '24':
+      type: SHOP
+      id: APPLE
+      buy-price: 450
+      sell-price: 100
+    '25':
+      type: SHOP
+      id: COOKIE
+      buy-price: 50
+      sell-price:
+    '26':
+      type: SHOP
+      id: ENCHANTED GOLDEN APPLE
+      buy-price: 12500
+      sell-price:
+    '27':
+      type: SHOP
+      id: CAKE
+      buy-price: 100
+      sell-price: 15
+    '28':
+      type: SHOP
+      id: PUMPKIN PIE
+      buy-price: 250
+      sell-price:
+    '29':
+      type: SHOP
+      id: BAKED POTATO
+      buy-price: 200
+      sell-price:
+    '30':
+      type: SHOP
+      id: COOKED MUTTON
+      buy-price: 250
+      sell-price:
+    '31':
+      type: SHOP
+      id: COOKED CHICKEN
+      buy-price: 175
+      sell-price:
+    '32':
+      type: SHOP
+      id: COOKED PORKCHOP
+      buy-price: 300
+      sell-price:
+    '33':
+      type: SHOP
+      id: COOKED BEEF
+      buy-price: 300
+      sell-price:
 alchemist:
-  1:
-    material: POTION
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  2:
-    material: BLAZE_ROD
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  3:
-    material: SULPHER
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  4:
-    material: SPIDER_EYE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
+    '0':
+      type: SHOP
+      id: STONE
+      buy-price: 275
+      sell-price: 75
+    '1':
+      type: SHOP
+      id: BLACKSTONE
+      buy-price: 600
+      sell-price: 120
+    '2':
+      type: SHOP
+      id: COBBLESTONE
+      buy-price: 175
+      sell-price: 45
+    '3':
+      type: SHOP
+      id: GRANITE
+      buy-price: 250
+      sell-price: 50
+    '4':
+      type: SHOP
+      id: ANDESITE
+      buy-price: 250
+      sell-price: 50
+    '5':
+      type: SHOP
+      id: MOSSY COBBLESTONE
+      buy-price: 100
+      sell-price: 20
+    '6':
+      type: SHOP
+      id: STONE BRICKS
+      buy-price: 300
+      sell-price: 70
+    '7':
+      type: SHOP
+      id: MOSSY STONE BRICKS
+      buy-price: 215
+      sell-price: 45
+    '8':
+      type: SHOP
+      id: CRACKED STONE BRICKS
+      buy-price: 180
+      sell-price: 40
+    '9':
+      type: SHOP
+      id: CHISELED STONE BRICKS
+      buy-price: 250
+      sell-price: 50
+    '10':
+      type: SHOP
+      id: DIRT
+      buy-price: 900
+      sell-price: 180
+    '11':
+      type: SHOP
+      id: GRASS
+      buy-price: 1050
+      sell-price: 200
+    '12':
+      type: SHOP
+      id: COARSE DIRT
+      buy-price: 500
+      sell-price: 100
+    '13':
+      type: SHOP
+      id: PODZOL
+      buy-price: 500
+      sell-price: 100
+    '14':
+      type: SHOP
+      id: MYCELIUM
+      buy-price: 750
+      sell-price: 125
+    '15':
+      type: SHOP
+      id: CLAY
+      buy-price: 450
+      sell-price: 90
+    '16':
+      type: SHOP
+      id: GRAVEL
+      buy-price: 150
+      sell-price: 30
+    '17':
+      type: SHOP
+      id: SAND
+      buy-price: 200
+      sell-price: 40
+    '18':
+      type: SHOP
+      id: RED SAND
+      buy-price: 200
+      sell-price: 40
+    '19':
+      type: SHOP
+      id: SANDSTONE
+      buy-price: 140
+      sell-price: 25
+    '20':
+      type: SHOP
+      id: GLASS
+      buy-price: 250
+      sell-price: 50
+    '21':
+      type: SHOP
+      id: TERRACOTTA
+      buy-price: 500
+      sell-price: 100
+    '22':
+      type: SHOP
+      id: END STONE
+      buy-price: 750
+      sell-price: 150
+    '23':
+      type: SHOP
+      id: DIORITE
+      buy-price: 250
+      sell-price: 50
+    '24':
+      type: SHOP
+      id: OBSIDIAN
+      buy-price: 250
+      sell-price: 50
+    '25':
+      type: SHOP
+      id: BRICKS
+      buy-price: 400
+      sell-price: 80
+    '26':
+      type: SHOP
+      id: ICE
+      buy-price: 800
+      sell-price: 160
+    '27':
+      type: SHOP
+      id: PACKED ICE
+      buy-price: 1100
+      sell-price: 225
+    '28':
+      type: SHOP
+      id: SNOW BLOCK
+      buy-price: 350
+      sell-price: 70
+    '29':
+      type: SHOP
+      id: NETHERRACK
+      buy-price: 150
+      sell-price: 30
+    '30':
+      type: SHOP
+      id: SOUL SAND
+      buy-price: 200
+      sell-price: 40
+    '31':
+      type: SHOP
+      id: SMOOTH_QUARTZ
+      buy-price: 12000
+      sell-price: 1000
+    '32':
+      type: SHOP
+      id: NETHER BRICKS
+      buy-price: 450
+      sell-price: 90
+    '33':
+      type: SHOP
+      id: SEA LANTERN
+      buy-price: 1500
+      sell-price: 300
+    '34':
+      type: SHOP
+      id: SPONGE
+      buy-price: 400
+      sell-price: 80
+    '35':
+      type: SHOP
+      id: PRISMARINE
+      buy-price: 300
+      sell-price: 60
+    '36':
+      type: SHOP
+      id: WARPED STEM
+      buy-price: 600
+      sell-price: 120
+    '37':
+      type: SHOP
+      id: PRISMARINE_BRICKS
+      buy-price: 400
+      sell-price: 80
+    '38':
+      type: SHOP
+      id: DARK PRISMARINE
+      buy-price: 350
+      sell-price: 65
+    '39':
+      type: SHOP
+      id: GLOWSTONE
+      buy-price: 1600
+      sell-price: 350
+    '40':
+      type: SHOP
+      id: REDSTONE LAMP
+      buy-price: 1200
+      sell-price: 240
+    '41':
+      type: SHOP
+      id: SLIME BLOCK
+      buy-price: 1200
+      sell-price: 240
+    '42':
+      type: SHOP
+      id: SMOOTH SANDSTONE
+      buy-price: 200
+      sell-price: 40
+    '43':
+      type: SHOP
+      id: SMOOTH STONE
+      buy-price: 250
+      sell-price: 50
+    '44':
+      type: SHOP
+      id: SMOOTH RED SANDSTONE
+      buy-price: 250
+      sell-price: 50
 warlord:
-  1:
-    material: IRON_HELMET
-    amount: 1
-    buy-price: 100
+  '0':
+    type: SHOP
+    id: STONE
+    buy-price: 275
+    sell-price: 75
+  '1':
+    type: SHOP
+    id: BLACKSTONE
+    buy-price: 600
+    sell-price: 120
+  '2':
+    type: SHOP
+    id: COBBLESTONE
+    buy-price: 175
+    sell-price: 45
+  '3':
+    type: SHOP
+    id: GRANITE
+    buy-price: 250
     sell-price: 50
-  2:
-    material: IRON_CHESTPLATE
-    amount: 1
-    buy-price: 100
+  '4':
+    type: SHOP
+    id: ANDESITE
+    buy-price: 250
     sell-price: 50
-  3:
-    material: IRON_LEGGINGS
-    amount: 1
+  '5':
+    type: SHOP
+    id: MOSSY COBBLESTONE
     buy-price: 100
+    sell-price: 20
+  '6':
+    type: SHOP
+    id: STONE BRICKS
+    buy-price: 300
+    sell-price: 70
+  '7':
+    type: SHOP
+    id: MOSSY STONE BRICKS
+    buy-price: 215
+    sell-price: 45
+  '8':
+    type: SHOP
+    id: CRACKED STONE BRICKS
+    buy-price: 180
+    sell-price: 40
+  '9':
+    type: SHOP
+    id: CHISELED STONE BRICKS
+    buy-price: 250
     sell-price: 50
-  4:
-    material: IRON_BOOTS
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  5:
-    material: DIAMOND_HELMET
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  6:
-    material: DIAMOND_CHESTPLATE
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  7:
-    material: DIAMOND_LEGGINGS
-    amount: 1
-    buy-price: 100
-    sell-price: 50
-  8:
-    material: DIAMOND_BOOTS
-    amount: 1
-    buy-price: 100
-    sell-price: 50
+  '10':
+    type: SHOP
+    id: DIRT
+    buy-price: 900
+    sell-price: 180
+  '11':
+    type: SHOP
+    id: GRASS
+    buy-price: 1050
+    sell-price: 200
+  '12':
+    id: REDSTONE BLOCK
+    buy-price: 200
+    sell-price:
+    '13':
+      id: GOLD BLOCK
+      buy-price: 2400
+      sell-price:
+    '15':
+      id: SMOOTH QUARTZ
+      buy-price: 3000
+      sell-price:
+    '16':
+      id: EMERALD BLOCK
+      buy-price: 6000
+      sell-price:
+    '14':
+      id: DIAMOND BLOCK
+      buy-price: 4000
+      sell-price:
+    '17':
+      id: NETHERITE BLOCK
+      buy-price: 425000
+      sell-price:

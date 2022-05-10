@@ -187,6 +187,8 @@ public class GameCommand implements CommandExecutor {
                                 return false;
                             }
                             game.addExtraction(args[2], player.getLocation());
+                            player.sendMessage(Utils.color("&c&lMineX &7| New extraction added!"));
+
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("spawns")) {

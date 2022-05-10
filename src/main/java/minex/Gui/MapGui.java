@@ -25,7 +25,7 @@ public class MapGui {
 
 
     public void makeGui(Player p, Game game) {
-        Gui.NoobPage g  = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
+        Gui.NoobPage g = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
         Utils.makeFormat("MapSelector.yml", g, "items");
         Utils.makeSpawnFormat(game,"MapSelector.yml", g, "items");
         gui.show(p, 0);

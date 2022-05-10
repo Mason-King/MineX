@@ -59,6 +59,8 @@ public class GameManager {
         pipeline.set(game.getId(), json);
         pipeline.sync();
 
+        System.out.println(json);
+
         Main.gameCollection.replaceOne(Filters.eq("id", game.getId()), Document.parse(json), new UpdateOptions().upsert(true));
 
     }

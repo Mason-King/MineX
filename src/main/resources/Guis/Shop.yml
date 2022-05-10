@@ -1,0 +1,30 @@
+#Map selector gui config
+
+title: "&lShop"
+format:
+  - "# # # # # # # # #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# # < # # # > # #"
+
+next: 42
+previous: 38
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    name: ""
+  '<':
+    material: PAPER
+    name: "&c&lPrevious Page"
+    lore:
+      - ""
+      - "&7Click to go back a page"
+  '>':
+    material: PAPER
+    name: "&c&lNext Page"
+    lore:
+      - ""
+      - "&7Click to go forward a page"
