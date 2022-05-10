@@ -1,6 +1,8 @@
 package minex.Gui;
 
 import minex.Main;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,10 +10,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import minex.Utils.Utils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
@@ -156,8 +161,42 @@ public class Gui implements Listener {
         return (NoobPage) pages[0];
     }
 
-    public GuiPage createTemplate(String name, int size) {
-        return new GuiPage(color(name)[0], size);
+    public NoobPage create(GuiPage template) {
+        GuiPage page = template.clone();
+        pages[this.size] = new NoobPage(page);
+        this.size += 1;
+        return (NoobPage) pages[0];
+    }
+
+
+    public GuiPage configTemplate(String file) {
+        File f = new File(plugin.getDataFolder().getAbsoluteFile() + "/Guis/" + file);
+        return configTemplate(f);
+    }
+
+    public GuiPage configTemplate(File f) {
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
+        String name = config.getString("title");
+        List<String> format = config.getStringList("format");
+        int size = format.size() * 9;
+        String position = StringUtils.join(format, "").replaceAll("\\s", "");
+        GuiPage page = new GuiPage(color(name)[0], size);
+        Map<String, ItemStack> items = new HashMap<>();
+        for (String s : config.getConfigurationSection("items").getKeys(false))
+            if (config.isSet("items." + s))
+                items.put(s, getItem(new ItemStack(Material.matchMaterial(config.getString("items." + s + ".material")), (config.getInt("items." + s + ".amount") == 0 ? 1 : config.getInt("items." + s + ".amount")), (short) config.getInt("items." + s + ".damage")),
+                        config.getString("items." + s + ".name"), Utils.color(config.getStringList("items." + s + ".lore"))));
+        for (int i = 0; i < position.length(); i++)
+            page.setItem(i, items.get("" + position.charAt(i)));
+        int prev = config.getInt("previous");
+        int next = config.getInt("next");
+        page.noClick().onClick(e -> {
+            if (e.getSlot() == next)
+                this.getViewers().forEach(p -> nextPage(p));
+            else if (e.getSlot() == prev)
+                this.getViewers().forEach(p -> prevPage(p));
+        });
+        return page;
     }
 
     // Macro for getting a subarray
@@ -736,6 +775,7 @@ public class Gui implements Listener {
         item.setItemMeta(im);
         return item;
     }
+
 
     public String[] color(String... strings) {
         String[] s = new String[strings.length];

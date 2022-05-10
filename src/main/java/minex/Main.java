@@ -11,6 +11,7 @@ import minex.Events.JoinEvent;
 import minex.Game.BankCommand;
 import minex.Game.Game;
 import minex.Game.GameCommand;
+import minex.Game.ShopCommand;
 import minex.LootChest.Items;
 import minex.Managers.GameManager;
 import minex.Managers.PlayerManager;
@@ -52,8 +53,10 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/Stash.yml", false);
         this.saveResource("Guis/Bank.yml", false);
         this.saveResource("Guis/BankSelection.yml", false);
+        this.saveResource("Guis/Shop.yml", false);
         this.saveResource("game.yml", false);
         this.saveResource("Enchantments.yml", false);
+        this.saveResource("shops.yml", false);
         // Plugin startup logic
         instance = this;
 
@@ -70,6 +73,7 @@ public final class Main extends JavaPlugin {
         new PartyCommand();
         new GameCommand();
         new BankCommand();
+        new ShopCommand();
     }
 
     @Override
