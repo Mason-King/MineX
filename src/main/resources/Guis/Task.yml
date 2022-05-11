@@ -1,0 +1,31 @@
+#Map selector gui config
+
+title: "&l{type} Trader Sell"
+format:
+  - "# # # # # # # # #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# # # < # > # # #"
+
+tasks: 15
+sell: 11
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    amount: 1
+    name: ""
+  '<':
+    material: PAPER
+    amount: 1
+    name: "&c&lPrevious page"
+    lore:
+      - "&7Return to the previous page"
+  '>':
+    material: PAPER
+    amount: 1
+    name: "&c&lNext page"
+    lore:
+      - "&7Return to the next page"

@@ -49,6 +49,7 @@ public class BankSelectionGui {
 
 
             if(type.equalsIgnoreCase("withdraw")) {
+                if(slot > e.getInventory().getSize()) return;
                 String key = keys.get(slot);
                 if(slot == confirm) {
                     if(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() >= amount) {
@@ -90,6 +91,7 @@ public class BankSelectionGui {
                     g.setItem(confirm, newConfirm);
                 }
             } else if(type.equalsIgnoreCase("deposit")) {
+                if(slot > e.getInventory().getSize()) return;
                 String key = keys.get(slot);
                 if(slot == confirm) {
                     ItemStack ingot = new ItemStack(Material.matchMaterial(main.getConfig().getString("economy.item.material")));

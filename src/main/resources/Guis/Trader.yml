@@ -1,0 +1,32 @@
+#Map selector gui config
+
+title: "&l{type} Trader"
+format:
+  - "# # # # # # # # #"
+  - "# # @ # # # ! # #"
+  - "# # # # # # # # #"
+
+tasks: 15
+sell: 11
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    amount: 1
+    name: ""
+  '@':
+    material: GOLD_INGOT
+    amount: 1
+    name: "&c&lSell"
+    lore:
+      - "&7Offer all the items you have to"
+      - "&7sell to the trader"
+  '!':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    amount: 1
+    name: "&c&lTasks"
+      lore:
+        - "&7Complete Tasks to upgrade"
+        - "&7your trader"

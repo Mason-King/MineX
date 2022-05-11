@@ -4,7 +4,7 @@ blacksmith:
     buy-price: 400
     sell-price: 30
   '1':
-    id: LAPIS LAZULI
+    id: STONE
     buy-price: 100
     sell-price: 3
   '2':
@@ -26,43 +26,33 @@ blacksmith:
   '6':
     id: QUARTZ
     buy-price: 750
-    sell-price:
   '7':
     id: EMERALD
     buy-price: 6000
-    sell-price:
   '9':
     id: COAL BLOCK
     buy-price: 400
-    sell-price:
   '10':
     id: LAPIS BLOCK
     buy-price: 100
-    sell-price:
   '11':
     id: IRON BLOCK
     buy-price: 2400
-    sell-price:
   '12':
     id: REDSTONE BLOCK
     buy-price: 200
-    sell-price:
   '13':
     id: GOLD BLOCK
     buy-price: 2400
-    sell-price:
   '15':
-    id: SMOOTH QUARTZ
+    id: QUARTZ_BLOCK
     buy-price: 3000
-    sell-price:
   '16':
     id: EMERALD BLOCK
     buy-price: 6000
-    sell-price:
   '14':
     id: DIAMOND BLOCK
     buy-price: 4000
-    sell-price:
 
 
 therapist:
