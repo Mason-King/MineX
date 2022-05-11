@@ -1,7 +1,14 @@
 package minex.Game;
 
+import com.sk89q.worldedit.BlockVector;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldguard.bukkit.RegionContainer;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import minex.Arena.Arena;
 import minex.Arena.Lobby;
+import minex.Events.RegionListener;
 import minex.Gui.GameSelectorGui;
 import minex.Gui.MapGui;
 import minex.Gui.StashGui;
@@ -22,7 +29,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameCommand implements CommandExecutor {
@@ -95,6 +104,43 @@ public class GameCommand implements CommandExecutor {
                                 player.teleport(arena.getSpawn(index));
                             }
                         }
+                    }
+                } else if(args[0].equalsIgnoreCase("region")) {
+                    if(args.length < 2) {
+                        player.sendMessage(Utils.color("&c&lMineX &7| Region hepl"));
+                        return false;
+                    }
+                    if(args[1].equalsIgnoreCase("give")) {
+                        org.bukkit.inventory.ItemStack axe = new org.bukkit.inventory.ItemStack(Material.GOLD_AXE);
+                        ItemMeta im = axe.getItemMeta();
+                        im.setDisplayName(Utils.color("&c&lRegion Selection"));
+                        List<String> lore = new ArrayList<>();
+                        lore.add(Utils.color("&7Create a new game region"));
+                        lore.add(Utils.color(""));
+                        lore.add(Utils.color("&7Right-click to set pos1"));
+                        lore.add(Utils.color("&7Left-click to set pos2"));
+
+                        axe.setItemMeta(im);
+
+                        ItemStack stack = CraftItemStack.asNMSCopy(axe);
+                        NBTTagCompound tag = (stack.hasTag() ? stack.getTag() : new NBTTagCompound());
+                        tag.setBoolean("region", true);
+                        axe = CraftItemStack.asBukkitCopy(stack);
+
+                        player.getInventory().addItem(axe);
+                    } else if(args[1].equalsIgnoreCase("create")) {
+                        if(args.length < 4) {
+                            player.sendMessage(Utils.color("&c&lMineX &7| Region create usage"));
+                            return false;
+                        }
+                        WorldGuardPlugin wgp = main.getWorldGuard();
+                        RegionContainer regionContainer = wgp.getRegionContainer();
+                        RegionManager rm = regionContainer.get(player.getWorld());
+                        Location pos1 = RegionListener.pos1.get(player.getUniqueId());
+                        Location pos2 = RegionListener.pos2.get(player.getUniqueId());
+
+                        ProtectedCuboidRegion region = new ProtectedCuboidRegion(args[3], new BlockVector(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ()), new BlockVector(pos2.getBlockX(), pos2.getBlockY(), pos2.getBlockZ()));
+                        rm.addRegion(region);
                     }
                 } else if(args[0].equalsIgnoreCase("leave")) {
                     mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());

@@ -16,6 +16,7 @@ public class Arena {
     private List<String> claimed;
     private Map<String, String> extractionNames;
     private List<String> extractions;
+    private List<String> regions;
     private Map<Team, String> teamSpawns;
 
 
@@ -34,6 +35,7 @@ public class Arena {
         this.teamSpawns = new HashMap<>();
         this.extractionNames = new HashMap<>();
         this.extractions = new ArrayList<>();
+        this.regions = new ArrayList<>();
 
         initWorld();
     }

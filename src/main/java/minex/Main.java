@@ -5,9 +5,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import minex.Events.ChestPlace;
-import minex.Events.ExtractionListener;
-import minex.Events.JoinEvent;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import minex.Events.*;
 import minex.Game.BankCommand;
 import minex.Game.Game;
 import minex.Game.GameCommand;
@@ -21,6 +20,7 @@ import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
 
@@ -53,7 +53,9 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/Stash.yml", false);
         this.saveResource("Guis/Bank.yml", false);
         this.saveResource("Guis/BankSelection.yml", false);
-        this.saveResource("Guis/Shop.yml", false);
+        this.saveResource("Guis/Sell.yml", false);
+        this.saveResource("Guis/Task.yml", false);
+        this.saveResource("Guis/Trader.yml", false);
         this.saveResource("game.yml", false);
         this.saveResource("Enchantments.yml", false);
         this.saveResource("shops.yml", false);
@@ -65,6 +67,8 @@ public final class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
         this.getServer().getPluginManager().registerEvents(new ExtractionListener(), this);
+        this.getServer().getPluginManager().registerEvents(new RegionEnterListener(), this);
+        this.getServer().getPluginManager().registerEvents(new RegionListener(), this);
 
         for(Player p : Bukkit.getOnlinePlayers()) {
             PlayerManager.createPlayer(p);
@@ -110,5 +114,16 @@ public final class Main extends JavaPlugin {
             });
 
         }
+
+    public WorldGuardPlugin getWorldGuard() {
+        Plugin plugin = getServer().getPluginManager().getPlugin("WorldGuard");
+
+        // WorldGuard may not be loaded
+        if (plugin == null || !(plugin instanceof WorldGuardPlugin)) {
+            return null; // Maybe you want throw an exception instead
+        }
+
+        return (WorldGuardPlugin) plugin;
+    }
 
 }

@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TraderGui {
+public class    TraderGui {
 
     Main main = Main.getInstance();
     Gui gui = new Gui(main);

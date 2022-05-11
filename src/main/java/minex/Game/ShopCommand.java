@@ -1,5 +1,6 @@
 package minex.Game;
 
+import minex.Gui.TraderGui;
 import minex.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,7 +18,7 @@ public class ShopCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Player p = (Player) commandSender;
-        new ShopGui().makeGui(p, args[0]);
+        new TraderGui().makeGui(p, args[0]);
         return false;
     }
 }

@@ -105,5 +105,7 @@
     <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:3.11.0" level="project" />
     <orderEntry type="library" name="Maven: org.bstats:bstats-bukkit:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.bstats:bstats-base:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: net.raidstone:WorldGuardEvents:1.18.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.jetbrains:annotations:20.1.0" level="project" />
   </component>
 </module>

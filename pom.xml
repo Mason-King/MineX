@@ -89,6 +89,7 @@
             <id>enginehub-maven</id>
             <url>https://maven.enginehub.org/repo/</url>
         </repository>
+
     </repositories>
 
     <dependencies>
@@ -132,6 +133,12 @@
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.raidstone</groupId>
+            <artifactId>WorldGuardEvents</artifactId>
+            <version>1.18.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
