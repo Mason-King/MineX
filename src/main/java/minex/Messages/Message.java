@@ -9,20 +9,34 @@ import java.util.Map;
 
 public enum Message {
     // Declare all the messages
-    PREFIX("prefix"),
-    CONSOLE_ERROR("consoleError"),
+    GAME_WORLD("gameWorld"),
+    LOOTCHEST_PLACED("lootchestPlaced"),
+    EXTRACTION_CANCELED("extractionCanceled"),
+    EXTRACTION("extraction"),
+    POS1("pos1"),
+    POS2("pos2"),
+    BANK_GIVE_USAGE("bankGiveUsage"),
+    NO_PERMISSION("noPermission"),
+    CONSOLE("console"),
     GAME_CREATE_USAGE("gameCreateUsage"),
     GAME_EXISTS("gameExists"),
     GAME_CREATING("gameCreating"),
-    GAME_TP_USAGE("gameTpUsage"),
+    ADD_MOB_SPAWN_USAGE("addMobSpawnUsage"),
+    INVALID_GAME("invalidGame"),
+    INVALID_MOB_TYPE("invalidMobType"),
+    GAME_TELEPORT_USAGE("gameTeleportUsage"),
+    INVALID_SPAWN("invalidSpawn"),
+    REGION_WAND("regionWand"),
+    REGION_CREATE_USAGE("regionCreateUsage"),
+    REGION_CREATED("regionCreated"),
     NO_GAME("noGame"),
-    NO_SPAWN("noSpawn"),
-    GAME_ADDSPAWN_USAGE("gameAddspawnUsage"),
-    GAME_SPAWN_SET("gameSpawnSet"),
-    //GAME_LOBBY_HELP("gameLobbyHelp"),
-    GAME_LOBBY_SPAWN("gameLobbySpawn"),
-    GAME_LOBBY_SPAWN_USAGE("gameLobbySpawnUsage"),
-    GAME_LOBBY_TP_USAGE("gameLobbyTpUsage");
+    LEFT_GAME("leftGame"),
+    LOOTCHEST_GIVE_USAGE("lootchestGiveUsage"),
+    LOOTCHEST_GIVE("lootchestGive"),
+    INVALID_TYPE("invalidType"),
+    ADD_SPAWN_USAGE("addspawnUsage"),
+    ADDED_SPAWN("addedSpawn");
+
 
 
     private final String text;
@@ -36,13 +50,13 @@ public enum Message {
 
     public String getMessage() {
         Main m = Main.getPlugin(Main.class);
-        return ChatColor.translateAlternateColorCodes('&',  m.getConfig().getString("messages.prefix") +  messages.get(text));
+        return ChatColor.translateAlternateColorCodes('&',  messages.get(text));
     }
 
     // The send method, makes it so you can use Message.PERMISSION.send(player);
     public void send(CommandSender sender) {
         Main m = Main.getPlugin(Main.class);
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', m.getConfig().getString("messages.prefix") + messages.get(text)));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.get(text)));
     }
 
     // Static initializer to initialize the messages from the config

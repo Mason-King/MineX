@@ -6,6 +6,8 @@ import com.mongodb.client.model.UpdateOptions;
 import minex.Game.Game;
 import minex.Main;
 import minex.Player.mPlayer;
+import minex.Quests.Quest;
+import minex.Quests.QuestManager;
 import org.bson.Document;
 import org.bukkit.entity.Player;
 import redis.clients.jedis.Pipeline;
@@ -13,6 +15,8 @@ import redis.clients.jedis.Pipeline;
 import java.util.*;
 
 public class PlayerManager {
+
+    Main main = Main.getInstance();
 
     public static List<mPlayer> players = new ArrayList<>();
     public static Map<UUID, mPlayer> uuidPlayers = new HashMap<>();
@@ -22,6 +26,8 @@ public class PlayerManager {
         mPlayer mp = new mPlayer(p);
         players.add(mp);
         uuidPlayers.put(p.getUniqueId(), mp);
+
+        loadQuests(mp);
 
         save(mp);
 
@@ -47,6 +53,13 @@ public class PlayerManager {
 
         Main.playerCollection.replaceOne(Filters.eq("id", mp.getId()), Document.parse(json), new UpdateOptions().upsert(true));
 
+    }
+
+    public static void loadQuests(mPlayer mp) {
+        for(Quest q : Main.getInstance().getManager().getAllQuest()) {
+            mp.addQuest(q);
+        }
+        save(mp);
     }
 
 }

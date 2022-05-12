@@ -1,5 +1,121 @@
-blacksmith:
+#Valid quest types:
+# Visit - visit a specific location on the map
+# BREAK - Break a specific block x times
+# PLACE - Place a specific block x times
+# MOB_KILL - Kill x mobs
+# PLAYER_KILL - kill x players
+# PLAYER_KILL_DISTANCE - kill x players at y distance
 
+blacksmith:
+  1:
+    #Name of quest that shows in gui
+    name: "&7Break x10 Stone"
+    #Quest type
+    type: BREAK
+    #Amount for quest
+    amount: 10
+    #id of item to break
+    id: STONE
+    #amount of karma received for completing
+    karma: 10
+    #Lore that shows in gui
+    lore:
+      - "&7Complete this task to gain rewards!"
+      - "&7"
+      - "&c&lDescription:"
+      - "&7  Break x10 stone blocks"
+      - "&7"
+      - "&c&lRewards:"
+      - "&7  - x1 Diamond"
+    #commands to run when complete
+    commands:
+      - "[MESSAGE] &c&lMineX &7| You have completed a black smith quest!"
+      - "[CONSOLE] give {player} diamond 1"
+  2:
+    name: "&7Visit The lab"
+    type: VISIT
+    #Case sensitive to area!
+    area: "Lab"
+    karma: 10
+    lore:
+      - "&7Complete this task to gain rewards!"
+      - "&7"
+      - "&c&lDescription:"
+      - "&7  Visit the lab"
+      - "&7"
+      - "&c&lRewards:"
+      - "&7  - x2 Diamond"
+    commands:
+      - "[MESSAGE] &c&lMineX &7| You have completed a black smith quest!"
+      - "[CONSOLE] give {player} diamond 1"
+  3:
+    name: "&7Place x10 cobblestone"
+    type: PLACE
+    amount: 10
+    id: COBBLESTONE
+    karma: 10
+    lore:
+      - "&7Complete this task to gain rewards!"
+      - "&7"
+      - "&c&lDescription:"
+      - "&7  Place 10 cobblestone"
+      - "&7"
+      - "&c&lRewards:"
+      - "&7  - x2 Diamond"
+    commands:
+      - "[MESSAGE] &c&lMineX &7| You have completed a black smith quest!"
+      - "[CONSOLE] give {player} diamond 2"
+  4:
+    name: "&7Kill 1 player"
+    type: PLAYER_KILL
+    amount: 1
+    karma: 10
+    lore:
+      - "&7Complete this task to gain rewards!"
+      - "&7"
+      - "&c&lDescription:"
+      - "&7  Kill 1 player"
+      - "&7"
+      - "&c&lRewards:"
+      - "&7  - x2 Diamond"
+    commands:
+      - "[MESSAGE] &c&lMineX &7| You have completed a black smith quest!"
+      - "[CONSOLE] give {player} diamond 2"
+  5:
+    name: "&7Kill 10 Zombies"
+    type: MOB_KILL
+    id: ZOMBIE
+    amount: 1
+    karma: 10
+    lore:
+      - "&7Complete this task to gain rewards!"
+      - "&7"
+      - "&c&lDescription:"
+      - "&7  Kill 10 zombies"
+      - "&7"
+      - "&c&lRewards:"
+      - "&7  - x2 Diamond"
+    commands:
+      - "[MESSAGE] &c&lMineX &7| You have completed a black smith quest!"
+      - "[CONSOLE] give {player} diamond 2"
+  6:
+    name: "&7Kill 10 Zombies"
+    type: PLAYER_KILL_DISTANCE
+    distance: 50
+    id: ZOMBIE
+    amount: 1
+    karma: 10
+    lore:
+      - "&7Complete this task to gain rewards!"
+      - "&7"
+      - "&c&lDescription:"
+      - "&7  Kill 10 zombies"
+      - "&7"
+      - "&c&lRewards:"
+      - "&7  - x2 Diamond"
+    commands:
+      - "[MESSAGE] &c&lMineX &7| You have completed a black smith quest!"
+      - "[CONSOLE] give {player} diamond 2"
 therapist:
 
 alchemist:

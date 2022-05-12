@@ -3,7 +3,10 @@ package minex.Player;
 import it.unimi.dsi.fastutil.Hash;
 import minex.Game.Game;
 import minex.Game.Team;
+import minex.Managers.PlayerManager;
 import minex.Party.Party;
+import minex.Quests.Quest;
+import minex.Quests.QuestType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,16 +23,21 @@ public class mPlayer {
     private int stashSize = 9;
     private Team team;
     private int balance;
+    private int karma;
+    private List<Quest> quests;
 
 
     public mPlayer(UUID id) {
         this.id = id;
         this.balance = 0;
+
+        this.quests = new ArrayList<>();
     }
 
     public mPlayer(Player player) {
         this.id = player.getUniqueId();
         this.balance = 0;
+        this.quests = new ArrayList<>();
     }
 
     public void addSelectedItem(ItemStack stack) {
@@ -111,4 +119,25 @@ public class mPlayer {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+
+    public void addQuest(Quest q) {
+        quests.add(q);
+    }
+
+    public List<Quest> getQuests() {
+        return quests;
+    }
+
+    public List<Quest> getQuestByType(QuestType type) {
+        List<Quest> temp = new ArrayList<>();
+        for(Quest q : quests) {
+            if(q.getType().equals(type)) {
+                temp.add(q);
+            }
+        }
+        return temp;
+    }
+
 }
+
+

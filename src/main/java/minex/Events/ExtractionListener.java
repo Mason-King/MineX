@@ -3,6 +3,7 @@ package minex.Events;
 import minex.Game.Game;
 import minex.Main;
 import minex.Managers.PlayerManager;
+import minex.Messages.Message;
 import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import org.bukkit.Location;
@@ -48,9 +49,8 @@ public class ExtractionListener implements Listener {
             //they have an active extraction
             System.out.println(extracted);
             if(closest.distanceSquared(player.getLocation()) > 2) {
-                System.out.println(closest.distanceSquared(player.getLocation()));
                 extracted.remove(player.getUniqueId());
-                player.sendMessage(Utils.color("&c&lMineX &7| Extraction cancled!"));
+                player.sendMessage(Message.EXTRACTION_CANCELED.getMessage());
                 runnable.cancel();
                 return;
             }
@@ -65,7 +65,7 @@ public class ExtractionListener implements Listener {
                         if(count == 5 && !extracted.contains(player.getUniqueId())) {
                             extracted.add(player.getUniqueId());
                         }
-                        player.sendMessage(Utils.color("&c&lMineX &7| You will be extracted in " + count + " seconds! Do not move!"));
+                        player.sendMessage(Message.EXTRACTION.getMessage().replace("{time}", count + ""));
                         if(count == 0) cancel();
                         count--;
                     }

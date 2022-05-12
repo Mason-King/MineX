@@ -6,6 +6,7 @@ import minex.LootChest.LootChest;
 import minex.LootChest.LootType;
 import minex.Main;
 import minex.Managers.GameManager;
+import minex.Messages.Message;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -26,7 +27,7 @@ public class ChestPlace implements Listener {
             //placing a block
             if(clicked.getItemInHand().getType().equals(Material.CHEST)) {
                 if(!clicked.getWorld().getName().contains("Game")) {
-                    clicked.sendMessage(Utils.color("&c&lMineX &7| You must be in a game world!"));
+                    clicked.sendMessage(Message.GAME_WORLD.getMessage());
                 }
 
                 ItemStack nbtStack = CraftItemStack.asNMSCopy(clicked.getItemInHand());
@@ -39,6 +40,7 @@ public class ChestPlace implements Listener {
                     e.getClickedBlock().getLocation().getWorld().getBlockAt(e.getClickedBlock().getLocation().add(0, 1, 0)).setType(Material.CHEST);
                     Game game = GameManager.getGame(clicked.getWorld().getName().replace("Game", ""));
                     game.addChest(lootChest);
+                    clicked.sendMessage(Message.LOOTCHEST_PLACED.getMessage());
                 }
             }
         }

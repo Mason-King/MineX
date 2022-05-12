@@ -25,19 +25,13 @@ public class RegionEnterListener implements Listener {
         Location to = e.getTo();
         Location from = e.getFrom();
 
-        System.out.println(1);
-
         if (to.getBlockX() == from.getBlockX() && to.getBlockY() == from.getBlockY() && to.getBlockZ() == from.getBlockZ()) return;
-
-        System.out.println(2);
 
         RegionManager regionManager = Main.getInstance().getWorldGuard().getRegionManager(p.getWorld());
 
         ApplicableRegionSet set = regionManager.getApplicableRegions(to);
         ProtectedRegion r = null;
         for(ProtectedRegion pr : set) {
-            System.out.println(pr);
-            System.out.println(pr.getId());
             if(r == null) {
                 r = pr;
                 break;
@@ -46,24 +40,11 @@ public class RegionEnterListener implements Listener {
 
         if(r == null) return;
 
-        System.out.println(r.getId() + " id");
 
         if(r.contains(p.getLocation().getBlockX(), p.getLocation().getBlockY(), p.getLocation().getBlockZ())) {
             System.out.println("inside!");
         }
 
-    }
-
-    @EventHandler
-    public void onLeave(RegionEnteredEvent e) {
-        System.out.println(e.getRegionName());
-        System.out.println(e.getPlayer());
-    }
-
-    @EventHandler
-    public void onEnter(RegionLeftEvent e) {
-        System.out.println(e.getRegionName());
-        System.out.println(e.getPlayer());
     }
 
 }

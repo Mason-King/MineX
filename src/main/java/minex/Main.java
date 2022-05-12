@@ -16,6 +16,8 @@ import minex.Managers.GameManager;
 import minex.Managers.PlayerManager;
 import minex.Party.PartyCommand;
 import minex.Player.mPlayer;
+import minex.Quests.QuestManager;
+import minex.Quests.QuestTypes.Type.*;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
@@ -32,6 +34,8 @@ public final class Main extends JavaPlugin {
 
     private static Main instance;
     public static Jedis jedis;
+
+    public QuestManager manager;
 
     public static MongoClient client = MongoClients.create("mongodb+srv://mason:Mjking68@minex.kx0a3.mongodb.net/MineX?retryWrites=true&w=majority");
     public static MongoDatabase database = client.getDatabase("MineX");
@@ -58,21 +62,26 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/Trader.yml", false);
         this.saveResource("game.yml", false);
         this.saveResource("Enchantments.yml", false);
+        this.saveResource("Task.yml", false);
         this.saveResource("shops.yml", false);
         // Plugin startup logic
         instance = this;
 
         Items.loadItem(this);
 
+        manager = new QuestManager(this);
+        manager.loadQuests();
+
         this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
         this.getServer().getPluginManager().registerEvents(new ExtractionListener(), this);
-        this.getServer().getPluginManager().registerEvents(new RegionEnterListener(), this);
         this.getServer().getPluginManager().registerEvents(new RegionListener(), this);
 
-        for(Player p : Bukkit.getOnlinePlayers()) {
-            PlayerManager.createPlayer(p);
-        }
+        this.getServer().getPluginManager().registerEvents(new Destroy(), this);
+        this.getServer().getPluginManager().registerEvents(new MobKill(), this);
+        this.getServer().getPluginManager().registerEvents(new Place(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerKill(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerKillDistance(),this);
 
         new PartyCommand();
         new GameCommand();
@@ -124,6 +133,10 @@ public final class Main extends JavaPlugin {
         }
 
         return (WorldGuardPlugin) plugin;
+    }
+
+    public QuestManager getManager() {
+        return manager;
     }
 
 }

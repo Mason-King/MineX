@@ -45,7 +45,7 @@ public class GameCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player))  {
-            sender.sendMessage(Message.CONSOLE_ERROR.getMessage());
+            sender.sendMessage(Message.CONSOLE.getMessage());
         } else {
             Player player = (Player) sender;
             if(args.length == 0) {
@@ -69,37 +69,37 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("addmobspawn")) {
                     if(args.length < 3) {
-                        player.sendMessage(Utils.color("&c&lMineX &7| Incorrect mobspawn usage try: /game addmobspawn <id> <type>"));
+                        player.sendMessage(Message.ADD_MOB_SPAWN_USAGE.getMessage());
                         return false;
                     }
                     Game game = GameManager.getGame(args[1]);
                     if(game == null) {
-                        player.sendMessage(Utils.color("&c&lMineX &7| There is no valid game"));
+                        player.sendMessage(Message.INVALID_GAME.getMessage());
                         return false;
                     }
                     String loc = Utils.toString(player.getLocation());
                     EntityType type = EntityType.fromName(args[2]);
                     if(type == null) {
-                        player.sendMessage(Utils.color("&c&lMineX &7| Invalid mob type!"));
+                        player.sendMessage(Message.INVALID_MOB_TYPE.getMessage());
                         return false;
                     }
                     MobSpawn ms = new MobSpawn(loc, game.getId());
                     ms.addEntity(args[2]);
                     game.addMobSpawn(ms);
 
-                } else if(args[0].equalsIgnoreCase("tp")) {
+                } else if(args[0].equalsIgnoreCase("tp") || args[0].equalsIgnoreCase("teleport")) {
                     if (args.length < 2) {
-                        player.sendMessage(Message.GAME_TP_USAGE.getMessage());
+                        player.sendMessage(Message.GAME_TELEPORT_USAGE.getMessage());
                     } else {
                         String id = args[1];
                         Game game = GameManager.getGame(id);
                         int index = (args.length >= 3) ? Integer.valueOf(args[2]) : 0;
                         if (game == null) {
-                            player.sendMessage(Message.NO_GAME.getMessage());
+                            player.sendMessage(Message.INVALID_GAME.getMessage());
                         } else {
                             Arena arena = game.getArena();
                             if (index > arena.getSpawns().size()) {
-                                player.sendMessage(Message.NO_SPAWN.getMessage());
+                                player.sendMessage(Message.INVALID_SPAWN.getMessage());
                             } else {
                                 player.teleport(arena.getSpawn(index));
                             }
@@ -128,9 +128,10 @@ public class GameCommand implements CommandExecutor {
                         axe = CraftItemStack.asBukkitCopy(stack);
 
                         player.getInventory().addItem(axe);
+                        player.sendMessage(Message.REGION_WAND.getMessage());
                     } else if(args[1].equalsIgnoreCase("create")) {
                         if(args.length < 4) {
-                            player.sendMessage(Utils.color("&c&lMineX &7| Region create usage"));
+                            player.sendMessage(Message.REGION_CREATE_USAGE.getMessage());
                             return false;
                         }
                         WorldGuardPlugin wgp = main.getWorldGuard();
@@ -141,15 +142,16 @@ public class GameCommand implements CommandExecutor {
 
                         ProtectedCuboidRegion region = new ProtectedCuboidRegion(args[3], new BlockVector(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ()), new BlockVector(pos2.getBlockX(), pos2.getBlockY(), pos2.getBlockZ()));
                         rm.addRegion(region);
+                        player.sendMessage(Message.REGION_CREATED.getMessage().replace("{id}", args[3]));
                     }
                 } else if(args[0].equalsIgnoreCase("leave")) {
                     mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
                     Game game = mp.getCurrGame();
                     if (game == null) {
-                        player.sendMessage(Utils.color("&c&lMineX &7| You are not in a game!"));
+                        player.sendMessage(Message.NO_GAME.getMessage());
                     } else {
                         game.leaveGame(player.getUniqueId());
-                        player.sendMessage(Utils.color("&c&lMineX &7| You have left a game!"));
+                        player.sendMessage(Message.LEFT_GAME.getMessage());
                     }
                 } else if(args[0].equalsIgnoreCase("stash")) {
                     mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
@@ -161,7 +163,7 @@ public class GameCommand implements CommandExecutor {
                     } else {
                         if(args[1].equalsIgnoreCase("give")) {
                             if (args.length < 3) {
-                                player.sendMessage(Utils.color("&c&lMineX &7| Lootchest give usage"));
+                                player.sendMessage(Message.LOOTCHEST_GIVE_USAGE.getMessage());
                             } else {
                                 org.bukkit.inventory.ItemStack uncommon = Utils.getItem(new org.bukkit.inventory.ItemStack(Material.CHEST), "&a&lUncommon Chest", "&7Place this down to place", "&7A uncommon loot chest", "", "&7&o(( Shift-Right click to edit ))");
                                 org.bukkit.inventory.ItemStack common = Utils.getItem(new org.bukkit.inventory.ItemStack(Material.CHEST), "&a&lCommon Chest", "&7Place this down to place", "&7A common loot chest", "", "&7&o(( Shift-Right click to edit ))");
@@ -175,7 +177,7 @@ public class GameCommand implements CommandExecutor {
                                     uncommon = CraftItemStack.asBukkitCopy(nbtStack);
 
                                     player.getInventory().addItem(uncommon);
-                                    player.sendMessage(Utils.color("&c&lMineX &7| You have given yourself a uncommon lootchest"));
+                                    player.sendMessage(Message.LOOTCHEST_GIVE.getMessage().replace("{type}", "uncommon"));
                                 } else if (type.equalsIgnoreCase("common")) {
                                     ItemStack nbtStack = CraftItemStack.asNMSCopy(      common);
                                     NBTTagCompound tag = (nbtStack.hasTag() ? nbtStack.getTag() : new NBTTagCompound());
@@ -183,7 +185,7 @@ public class GameCommand implements CommandExecutor {
                                     common = CraftItemStack.asBukkitCopy(nbtStack);
 
                                     player.getInventory().addItem(common);
-                                    player.sendMessage(Utils.color("&c&lMineX &7| You have given yourself a common lootchest"));
+                                    player.sendMessage(Message.LOOTCHEST_GIVE.getMessage().replace("{type}", "common"));
                                 } else if (type.equalsIgnoreCase("rare")) {
                                     ItemStack nbtStack = CraftItemStack.asNMSCopy(rare);
                                     NBTTagCompound tag = (nbtStack.hasTag() ? nbtStack.getTag() : new NBTTagCompound());
@@ -191,16 +193,16 @@ public class GameCommand implements CommandExecutor {
                                     rare = CraftItemStack.asBukkitCopy(nbtStack);
 
                                     player.getInventory().addItem(rare);
-                                    player.sendMessage(Utils.color("&c&lMineX &7| You have given yourself a common lootchest"));
+                                    player.sendMessage(Message.LOOTCHEST_GIVE.getMessage().replace("{type}", "rare"));
                                 } else {
-                                    player.sendMessage(Utils.color("&c&lMineX &7| Invalid type!"));
+                                    player.sendMessage(Message.INVALID_TYPE.getMessage());
                                 }
                             }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addSpawn")) {
                     if (args.length < 3 || args.length > 3) {
-                        player.sendMessage(Message.GAME_ADDSPAWN_USAGE.getMessage());
+                        player.sendMessage(Message.ADD_SPAWN_USAGE.getMessage());
                     } else {
                         String id = args[1];
                         String name = args[2];
@@ -212,7 +214,7 @@ public class GameCommand implements CommandExecutor {
                                 player.sendMessage(Utils.color("&c&lMineX &7| A game already exists with this name"));
                             } else {
                                 game.addSpawn(player.getLocation(), name);
-                                player.sendMessage(Message.GAME_SPAWN_SET.getMessage());
+                                player.sendMessage(Message.ADDED_SPAWN.getMessage().replace("{name}", name));
                             }
                         }
                     }

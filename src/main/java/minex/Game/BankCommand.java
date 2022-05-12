@@ -2,6 +2,7 @@ package minex.Game;
 
 import minex.Gui.BankGui;
 import minex.Main;
+import minex.Messages.Message;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Material;
@@ -29,7 +30,7 @@ public class BankCommand implements CommandExecutor {
         } else if(args[0].equalsIgnoreCase("give")) {
             if(p.hasPermission("economy.give")) {
                 if(args.length < 2) {
-                    p.sendMessage(Utils.color("&c&lMineX &7| Invalid usage : /bank give <amount>"));
+                    p.sendMessage(Message.BANK_GIVE_USAGE.getMessage());
                     return false;
                 }
                 ItemStack ingot = new ItemStack(Material.matchMaterial(main.getConfig().getString("economy.item.material")));
@@ -46,6 +47,8 @@ public class BankCommand implements CommandExecutor {
                 for(int i = 0; i < Integer.parseInt(args[1]); i++) {
                     p.getInventory().addItem(ingot);
                 }
+            } else {
+                p.sendMessage(Message.NO_PERMISSION.getMessage());
             }
         }
         return false;
