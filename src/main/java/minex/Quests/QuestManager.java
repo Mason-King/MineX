@@ -53,6 +53,15 @@ public class QuestManager {
         System.out.println(blacksmith);
     }
 
+    public List<Quest> dupeQuests() {
+        List<Quest> quests = new ArrayList<>();
+        for(Quest q : allQuest) {
+            Quest newQ = new Quest(q.getTraderType(), q.getType(), q.getAmount(), q.getId(), q.getKarma(), q.getDistance(), q.getName(), q.getLore(), q.getCommands() , q.getArea(), false, 0);
+            quests.add(newQ);
+        }
+        return quests;
+    }
+
     public List<Quest> getAllQuest() {
         return this.allQuest;
     }

@@ -85,7 +85,7 @@ blacksmith:
     name: "&7Kill 10 Zombies"
     type: MOB_KILL
     id: ZOMBIE
-    amount: 1
+    amount: 10
     karma: 10
     lore:
       - "&7Complete this task to gain rewards!"

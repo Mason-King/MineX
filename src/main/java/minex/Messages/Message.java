@@ -35,7 +35,28 @@ public enum Message {
     LOOTCHEST_GIVE("lootchestGive"),
     INVALID_TYPE("invalidType"),
     ADD_SPAWN_USAGE("addspawnUsage"),
-    ADDED_SPAWN("addedSpawn");
+    ADDED_SPAWN("addedSpawn"),
+    ADD_EXTRACTION_USAGE("addextractionUsage"),
+    EXTRACTION_EXISTS("extractionExists"),
+    NEW_EXTRACTION("newExtrction"),
+    IN_GAME("inGame"),
+    GAME_LOBBY_SETSPAWN_USAGE("gameLobbySetspawnUsage"),
+    GAME_LOBBY_SPAWNSET("gameLobbySpawnSet"),
+    GAME_LOBBY_TP_USAGE("gameLobbyTpUsage"),
+    PARTY_INVITE_USAGE("partyInviteUsage"),
+    INVALID_PLAYER("invalidPlayer"),
+    PARTY_INVITED("partyInvited"),
+    PARTY_INVITED_PLAYER("partyInvitePlayer"),
+    PARTY_JOINED("partyJoined"),
+    PARTY_JOINED_PLAYER("partyJoinedPlayer"),
+    PARTY_MAX("partyMax"),
+    NO_INVITE("noInvite"),
+    ALREADY_IN_PARTY("alreadyInParty"),
+    PARTY_CREATED("partyCreated"),
+    NO_PARTY("noParty"),
+    PLAYER_KICKED("playerKicked"),
+    NOT_LOADER("notLoader"),
+    PARTY_DISBAND("partyDisband");
 
 
 

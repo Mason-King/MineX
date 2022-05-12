@@ -26,6 +26,8 @@ public class Place implements Listener {
         Block b = e.getBlock();
         Material bType = b.getType();
 
+        System.out.println(questList);
+
         for(Quest q : questList) {
             String blockNeeded = q.getId();
 

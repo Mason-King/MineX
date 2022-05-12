@@ -3,15 +3,20 @@ package minex.Quests;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import minex.Main;
+import minex.Utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Quest {
 
     private String traderType;
     private QuestType type;
     private int amount;
+    private String player;
     private String id;
     private int karma;
     private int distance;
@@ -121,6 +126,14 @@ public class Quest {
         return progress;
     }
 
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
     public void setProgress(int progress) {
         this.progress = progress;
     }
@@ -135,7 +148,21 @@ public class Quest {
 
     public void incProgress() {
         progress++;
-        System.out.println(progress);
+        System.out.println(progress + "/" + amount);
+        if(progress == amount) {
+            for(String s : commands) {
+                String[] split = s.split(" ", 2);
+                if (split[0].equals("[CONSOLE]")) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), split[1].replace("{player}", Bukkit.getPlayer(UUID.fromString(player)).getName()));
+                } else if (split[0].equals("[MESSAGE]")) {
+                    Bukkit.getPlayer(UUID.fromString(player)).sendMessage(Utils.color(split[1]).replace("{player}", Bukkit.getPlayer(UUID.fromString(player)).getName()));
+                } else if (split[0].equals("[PLAYER]")) {
+                    Bukkit.dispatchCommand(Bukkit.getPlayer(UUID.fromString(split[0])), split[1].replace("{player}", Bukkit.getPlayer(UUID.fromString(player)).getName()));
+                }
+            }
+            this.completed = true;
+        }
     }
+
 
 }

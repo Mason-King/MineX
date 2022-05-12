@@ -77,7 +77,7 @@ public class GameCommand implements CommandExecutor {
                         player.sendMessage(Message.INVALID_GAME.getMessage());
                         return false;
                     }
-                    String loc = Utils.toString(player.getLocation());
+                    String loc = Utils.toString(new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5)));
                     EntityType type = EntityType.fromName(args[2]);
                     if(type == null) {
                         player.sendMessage(Message.INVALID_MOB_TYPE.getMessage());
@@ -211,31 +211,33 @@ public class GameCommand implements CommandExecutor {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
                             if (game.getArena().exists(name)) {
-                                player.sendMessage(Utils.color("&c&lMineX &7| A game already exists with this name"));
+                                player.sendMessage(Message.GAME_EXISTS.getMessage());
                             } else {
-                                game.addSpawn(player.getLocation(), name);
+                                Location loc = new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5));
+                                game.addSpawn(loc, name);
                                 player.sendMessage(Message.ADDED_SPAWN.getMessage().replace("{name}", name));
                             }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addextraction")) {
                     if(args.length < 2) {
-                        player.sendMessage(Utils.color("&c&lMineX &7| Invalid usage try: /game addextraction <id> <name>"));
+                        player.sendMessage(Message.ADD_EXTRACTION_USAGE.getMessage());
                     } else {
                         if(GameManager.getGame(args[1]) == null) {
-                            player.sendMessage(Utils.color("&c&lMineX &7| There is no game with this id!"));
+                            player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
                             Game game = GameManager.getGame(args[1]);
                             if(game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
-                                player.sendMessage(Utils.color("&c&lMineX &7| An extraction already exists at this location!"));
+                                player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
                                 return false;
                             }
                             if(game.getArena().getExtractionNames().containsKey(args[2])) {
-                                player.sendMessage(Utils.color("&c&lMineX &7| An extraction already exists with this name!"));
+                                player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
                                 return false;
                             }
-                            game.addExtraction(args[2], player.getLocation());
-                            player.sendMessage(Utils.color("&c&lMineX &7| New extraction added!"));
+                            Location loc = new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5));
+                            game.addExtraction(args[2], loc);
+                            player.sendMessage(Message.NEW_EXTRACTION.getMessage());
 
                         }
                     }
@@ -243,7 +245,7 @@ public class GameCommand implements CommandExecutor {
                     if (args.length < 2) {
                         mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
                         if(mp.getCurrGame() == null) {
-                            player.sendMessage(Utils.color("&c&lMineX &7| You must be in a game to do this!"));
+                            player.sendMessage(Message.IN_GAME.getMessage());
                         } else {
                             new MapGui().makeGui(player, mp.getCurrGame());
                         }
@@ -268,7 +270,7 @@ public class GameCommand implements CommandExecutor {
                     } else {
                         if(args[1].equalsIgnoreCase("setspawn")) {
                             if(args.length < 3) {
-                                player.sendMessage(Message.GAME_LOBBY_SPAWN_USAGE.getMessage());
+                                player.sendMessage(Message.GAME_LOBBY_SETSPAWN_USAGE.getMessage());
                             } else {
                                 String id = args[2];
                                 Game game = GameManager.getGame(id);
@@ -276,10 +278,10 @@ public class GameCommand implements CommandExecutor {
                                     player.sendMessage(Message.NO_GAME.getMessage());
                                 } else {
                                     game.setLobbySpawn(player.getLocation());
-                                    player.sendMessage(Message.GAME_SPAWN_SET.getMessage());
+                                    player.sendMessage(Message.GAME_LOBBY_SPAWNSET.getMessage());
                                 }
                             }
-                        } else if(args[1].equalsIgnoreCase("tp")) {
+                        } else if(args[1].equalsIgnoreCase("tp") || args[1].equalsIgnoreCase("teleport")) {
                             if(args.length < 3) {
                                 player.sendMessage(Message.GAME_LOBBY_TP_USAGE.getMessage());
                             } else {

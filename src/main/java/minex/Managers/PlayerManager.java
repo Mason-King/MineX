@@ -56,7 +56,8 @@ public class PlayerManager {
     }
 
     public static void loadQuests(mPlayer mp) {
-        for(Quest q : Main.getInstance().getManager().getAllQuest()) {
+        for(Quest q : Main.getInstance().getManager().dupeQuests()) {
+            q.setPlayer(mp.getId().toString());
             mp.addQuest(q);
         }
         save(mp);

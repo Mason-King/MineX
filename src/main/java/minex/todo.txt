@@ -1,8 +1,6 @@
 ToDo:
 
 - center all teleports
-- Create new instance of mPlayer if null on join
-- Fix placeholders
-- Remove player saving multiple times.
 - Add check when setting spawns and such that they are in their respective worlds
 - add extraction message
+- add permissions

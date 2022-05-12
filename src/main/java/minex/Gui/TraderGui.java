@@ -34,11 +34,12 @@ public class    TraderGui {
 
         g.onClick(e -> {
            int slot = e.getSlot();
-           int task = config.getInt("task");
+           int task = config.getInt("tasks");
            int sell = config.getInt("sell");
            if(slot == task) {
                 new TaskGui().makeGui(p, type);
            } else if(slot == sell) {
+               System.out.println("tasks");
                 new SellGui().makeGui(p, type);
            } else {
                e.setCancelled(true);

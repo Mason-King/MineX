@@ -18,6 +18,7 @@ public class ShopCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Player p = (Player) commandSender;
+        if(args.length < 1) return false;
         new TraderGui().makeGui(p, args[0]);
         return false;
     }
