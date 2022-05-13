@@ -43,11 +43,11 @@ public class ExtractionListener implements Listener {
             }
         }
 
+        if(closest == null) return;
         if(!player.getWorld().getName().contains("Game")) return;
 
         if(extracted.contains(player.getUniqueId())) {
             //they have an active extraction
-            System.out.println(extracted);
             if(closest.distanceSquared(player.getLocation()) > 2) {
                 extracted.remove(player.getUniqueId());
                 player.sendMessage(Message.EXTRACTION_CANCELED.getMessage());
@@ -66,7 +66,10 @@ public class ExtractionListener implements Listener {
                             extracted.add(player.getUniqueId());
                         }
                         player.sendMessage(Message.EXTRACTION.getMessage().replace("{time}", count + ""));
-                        if(count == 0) cancel();
+                        if(count == 0) {
+                            game.leaveGame(player.getUniqueId());
+                            cancel();
+                        }
                         count--;
                     }
                 }.runTaskTimer(Main.getInstance(), 0, 20);

@@ -1,6 +1,4 @@
 ToDo:
 
-- center all teleports
-- Add check when setting spawns and such that they are in their respective worlds
-- add extraction message
-- add permissions
+- Player instance saving twice idk why
+- game ending mech * maybe fixed need to test *

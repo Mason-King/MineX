@@ -128,10 +128,17 @@ public class mPlayer {
         return quests;
     }
 
+    public int getKarma() {
+        return karma;
+    }
+
+    public void setKarma(int karma) {
+        this.karma = karma;
+    }
+
     public List<Quest> getQuestByType(QuestType type) {
         List<Quest> temp = new ArrayList<>();
         for(Quest q : quests) {
-            System.out.println(q);
             if(q.getType().equals(type)) {
                 temp.add(q);
             }

@@ -61,7 +61,8 @@ public class Arena {
     }
 
     public Location getSpawn(int index) {
-        return Utils.fromString(getSpawns().get(index));
+        if(getSpawns().size() <= index) return null;
+        return Utils.fromString((spawnNames.get(getSpawns().get(index)) == null ? getSpawns().get(index) : spawnNames.get(getSpawns().get(index))));
     }
 
     public boolean exists(String name) {
@@ -163,6 +164,12 @@ public class Arena {
     public List<String> getExtractions() {
         return this.extractions;
     }
+
+    public void reset() {
+        this.claimed = new ArrayList<>();
+        this.teamSpawns = new HashMap<>();
+    }
+
 }
 
 

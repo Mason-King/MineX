@@ -26,6 +26,10 @@ public class ChestPlace implements Listener {
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             //placing a block
             if(clicked.getItemInHand().getType().equals(Material.CHEST)) {
+                if(!clicked.hasPermission("minex.chest.place")) {
+                    clicked.sendMessage(Message.NO_PERMISSION.getMessage());
+                    return;
+                }
                 if(!clicked.getWorld().getName().contains("Game")) {
                     clicked.sendMessage(Message.GAME_WORLD.getMessage());
                 }
@@ -40,7 +44,7 @@ public class ChestPlace implements Listener {
                     e.getClickedBlock().getLocation().getWorld().getBlockAt(e.getClickedBlock().getLocation().add(0, 1, 0)).setType(Material.CHEST);
                     Game game = GameManager.getGame(clicked.getWorld().getName().replace("Game", ""));
                     game.addChest(lootChest);
-                    clicked.sendMessage(Message.LOOTCHEST_PLACED.getMessage());
+                    clicked.sendMessage(Message.LOOTCHEST_PLACED.getMessage().replace("{type}", tag.getString("type")));
                 }
             }
         }

@@ -62,13 +62,16 @@
 
         public void leaveGame(UUID u) {
             this.players.remove(u);
+            this.playerTeams.remove(u);
             currPlayers = currPlayers - 1;
             if(currPlayers == 0) {
                 scheduler.cancel();
             }
+            // TODO - edit spawn here
             Bukkit.getPlayer(u).teleport(new Location(Bukkit.getWorld("world"), 0, 73, 0));
             mPlayer mp = PlayerManager.getmPlayer(u);
             mp.setCurrGame(null);
+            mp.setTeam(null);
         }
 
         public void joinGame(UUID u) {
@@ -284,6 +287,7 @@
 
         public void addMobSpawn(MobSpawn s) {
             this.spawns.add(s);
+            GameManager.save(this);
         }
 
         public void lobbyCountdown(Game game) {
@@ -379,4 +383,25 @@
             }.runTaskTimer(Main.getInstance(), 0, 20);
         }
 
+        public void reset() {
+            for(UUID u : players) {
+                mPlayer mp = PlayerManager.getmPlayer(u);
+                mp.setCurrGame(null);
+                mp.setTeam(null);
+            }
+            players = new ArrayList<>();
+            for(Team t : allTeams) {
+                for(UUID member : t.getMembers()) {
+                    t.removeMember(member);
+                }
+            }
+            playerTeams = new HashMap<>();
+            currPlayers = 0;
+            getArena().reset();
+            this.lobbyCountdown = 120;
+            this.inGame = false;
+
+            GameManager.save(this);
+
+        }
     }

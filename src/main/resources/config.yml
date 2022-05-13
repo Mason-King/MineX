@@ -48,6 +48,8 @@ messages:
   playerKicked: "&c&lMineX &7| You have kicked {name} from your party"
   notLeader: "&c&LMineX &7| You are not the party leader!"
   partyDisband: "&c&lMineX &7| You have disband your party"
+  spawnExists: "&c&lMineX &7| A spawn with this id already exists!"
+  mobspawnAdded: "&c&lMineX &7| You have added a new mobspawn at your location!"
 
 economy:
   bank: true

@@ -24,12 +24,12 @@ import java.util.List;
 public class Utils {
 
     public static String toString(Location loc) {
-        return loc.getWorld().getName() + ";" + loc.getBlockX() + ";" + loc.getBlockY() + ";" + loc.getBlockZ();
+        return loc.getWorld().getName() + ";" + loc.getX()+ ";" + loc.getY() + ";" + loc.getZ();
     }
 
     public static Location fromString(String s) {
         String[] split = s.split(";");
-        return new Location(Bukkit.getWorld(split[0]), Integer.valueOf(split[1]), Integer.valueOf(split[2]), Integer.valueOf(split[3]));
+        return new Location(Bukkit.getWorld(split[0]), Double.valueOf(split[1]), Double.valueOf(split[2]), Double.valueOf(split[3]));
     }
 
     public static void makeFormat(String file, Gui.NoobPage gui, String keyForItems) {

@@ -91,7 +91,9 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        for(Game g : GameManager.games) {
+            g.reset();
+        }
     }
 
     public static Main getInstance() {

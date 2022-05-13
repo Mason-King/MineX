@@ -50,7 +50,6 @@ public class QuestManager {
             blacksmith.add(q);
             allQuest.add(q);
         });
-        System.out.println(blacksmith);
     }
 
     public List<Quest> dupeQuests() {

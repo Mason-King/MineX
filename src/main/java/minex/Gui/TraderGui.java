@@ -39,8 +39,7 @@ public class    TraderGui {
            if(slot == task) {
                 new TaskGui().makeGui(p, type);
            } else if(slot == sell) {
-               System.out.println("tasks");
-                new SellGui().makeGui(p, type);
+               new SellGui().makeGui(p, type);
            } else {
                e.setCancelled(true);
                return;

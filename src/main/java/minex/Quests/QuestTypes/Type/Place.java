@@ -18,7 +18,6 @@ public class Place implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent e) {
-        System.out.println("place");
         Player p = e.getPlayer();
         mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
         List<Quest> questList = mp.getQuestByType(QuestType.PLACE);
@@ -26,7 +25,6 @@ public class Place implements Listener {
         Block b = e.getBlock();
         Material bType = b.getType();
 
-        System.out.println(questList);
 
         for(Quest q : questList) {
             String blockNeeded = q.getId();

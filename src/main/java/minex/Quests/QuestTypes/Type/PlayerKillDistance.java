@@ -15,8 +15,8 @@ public class PlayerKillDistance implements Listener {
 
     @EventHandler
     public void onPlayerKill(PlayerDeathEvent e) {
-        System.out.println("player kill distance");
         Player p = e.getEntity().getKiller();
+        if(!(p.getKiller() instanceof Player)) return;
         Player killer = p.getKiller();
         mPlayer mp = PlayerManager.getmPlayer(killer.getUniqueId());
         List<Quest> questList = mp.getQuestByType(QuestType.PLAYER_KILL_DISTANCE);

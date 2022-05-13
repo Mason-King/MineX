@@ -9,6 +9,7 @@ import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import minex.Arena.Arena;
 import minex.Arena.Lobby;
 import minex.Events.RegionListener;
+import minex.Gui.FarmGui;
 import minex.Gui.GameSelectorGui;
 import minex.Gui.MapGui;
 import minex.Gui.StashGui;
@@ -52,6 +53,10 @@ public class GameCommand implements CommandExecutor {
                 player.sendMessage("Game command help!");
             } else {
                 if(args[0].equalsIgnoreCase("create")) {
+                    if(!player.hasPermission("minex.create")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if(args.length < 2) {
                         player.sendMessage(Message.GAME_CREATE_USAGE.getMessage());
                     } else {
@@ -64,10 +69,18 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("list")) {
+                    if(!player.hasPermission("minex.list")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     for (Game game : GameManager.games) {
                         player.sendMessage(game.getId());
                     }
                 } else if(args[0].equalsIgnoreCase("addmobspawn")) {
+                    if(!player.hasPermission("minex.mobspawn.add")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if(args.length < 3) {
                         player.sendMessage(Message.ADD_MOB_SPAWN_USAGE.getMessage());
                         return false;
@@ -86,8 +99,13 @@ public class GameCommand implements CommandExecutor {
                     MobSpawn ms = new MobSpawn(loc, game.getId());
                     ms.addEntity(args[2]);
                     game.addMobSpawn(ms);
+                    player.sendMessage(Message.MOBSPAWN_ADDED.getMessage());
 
                 } else if(args[0].equalsIgnoreCase("tp") || args[0].equalsIgnoreCase("teleport")) {
+                    if(!player.hasPermission("minex.tp")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if (args.length < 2) {
                         player.sendMessage(Message.GAME_TELEPORT_USAGE.getMessage());
                     } else {
@@ -101,11 +119,19 @@ public class GameCommand implements CommandExecutor {
                             if (index > arena.getSpawns().size()) {
                                 player.sendMessage(Message.INVALID_SPAWN.getMessage());
                             } else {
+                                if(arena.getSpawn(index) == null) {
+                                    player.sendMessage(Message.INVALID_SPAWN.getMessage());
+                                    return false;
+                                }
                                 player.teleport(arena.getSpawn(index));
                             }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("region")) {
+                    if(!player.hasPermission("minex.region")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if(args.length < 2) {
                         player.sendMessage(Utils.color("&c&lMineX &7| Region hepl"));
                         return false;
@@ -155,9 +181,14 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("stash")) {
                     mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
+                    if(mp.getCurrGame() != null) return false;
                     Game game = mp.getCurrGame();
                     new StashGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("lootchest")) {
+                    if(!player.hasPermission("minex.lootchest")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if(args.length < 2) {
                         player.sendMessage(Utils.color("&c&lMineX &7| Lootchest help!"));
                     } else {
@@ -201,6 +232,10 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addSpawn")) {
+                    if(!player.hasPermission("minex.spawn.add")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if (args.length < 3 || args.length > 3) {
                         player.sendMessage(Message.ADD_SPAWN_USAGE.getMessage());
                     } else {
@@ -211,8 +246,9 @@ public class GameCommand implements CommandExecutor {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
                             if (game.getArena().exists(name)) {
-                                player.sendMessage(Message.GAME_EXISTS.getMessage());
+                                player.sendMessage(Message.SPAWN_EXISTS.getMessage());
                             } else {
+                                if(!player.getWorld().getName().equals(args[1] + "Game")) return false;
                                 Location loc = new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5));
                                 game.addSpawn(loc, name);
                                 player.sendMessage(Message.ADDED_SPAWN.getMessage().replace("{name}", name));
@@ -220,6 +256,10 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addextraction")) {
+                    if(!player.hasPermission("minex.extraction.add")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if(args.length < 2) {
                         player.sendMessage(Message.ADD_EXTRACTION_USAGE.getMessage());
                     } else {
@@ -227,6 +267,7 @@ public class GameCommand implements CommandExecutor {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
                             Game game = GameManager.getGame(args[1]);
+                            if(!player.getWorld().getName().equals(args[1] + "Game")) return false;
                             if(game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
                                 player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
                                 return false;
@@ -242,6 +283,10 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("spawns")) {
+                    if(!player.hasPermission("minex.spawns")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if (args.length < 2) {
                         mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
                         if(mp.getCurrGame() == null) {
@@ -264,7 +309,13 @@ public class GameCommand implements CommandExecutor {
                     }
                 } else if(args[0].equalsIgnoreCase("join")) {
                     new GameSelectorGui().makeGui(player);
+                } else if(args[0].equalsIgnoreCase("farm")) {
+                    new FarmGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("lobby")) {
+                    if(!player.hasPermission("minex.lobby")) {
+                        player.sendMessage(Message.NO_PERMISSION.getMessage());
+                        return false;
+                    }
                     if(args.length < 2) {
                         player.sendMessage("game lobby help command");
                     } else {
@@ -274,8 +325,9 @@ public class GameCommand implements CommandExecutor {
                             } else {
                                 String id = args[2];
                                 Game game = GameManager.getGame(id);
+                                if(!player.getWorld().getName().equals(id + "Lobby")) return false;
                                 if(game == null) {
-                                    player.sendMessage(Message.NO_GAME.getMessage());
+                                    player.sendMessage(Message.INVALID_GAME.getMessage());
                                 } else {
                                     game.setLobbySpawn(player.getLocation());
                                     player.sendMessage(Message.GAME_LOBBY_SPAWNSET.getMessage());

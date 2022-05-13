@@ -62,34 +62,5 @@ public class RegionListener implements Listener {
 
     }
 
-    @EventHandler
-    public void onMove(PlayerMoveEvent e) {
-        Player p = e.getPlayer();
-
-        Location to = e.getTo();
-        Location from = e.getFrom();
-
-        if (to.getBlockX() == from.getBlockX() && to.getBlockY() == from.getBlockY() && to.getBlockZ() == from.getBlockZ()) return;
-
-        RegionManager regionManager = Main.getInstance().getWorldGuard().getRegionManager(p.getWorld());
-
-        ApplicableRegionSet set = regionManager.getApplicableRegions(to);
-        ProtectedRegion r = null;;
-        for(ProtectedRegion pr : set) {
-            System.out.println(pr);
-            if(r == null) {
-                r = pr;
-                break;
-            }
-        }
-
-        if(r == null) return;
-
-
-        if(r.contains(p.getLocation().getBlockX(), p.getLocation().getBlockY(), p.getLocation().getBlockZ())) {
-            System.out.println("inside!");
-        }
-
-    }
 
 }

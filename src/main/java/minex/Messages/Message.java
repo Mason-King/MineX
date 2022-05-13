@@ -38,7 +38,7 @@ public enum Message {
     ADDED_SPAWN("addedSpawn"),
     ADD_EXTRACTION_USAGE("addextractionUsage"),
     EXTRACTION_EXISTS("extractionExists"),
-    NEW_EXTRACTION("newExtrction"),
+    NEW_EXTRACTION("newExtraction"),
     IN_GAME("inGame"),
     GAME_LOBBY_SETSPAWN_USAGE("gameLobbySetspawnUsage"),
     GAME_LOBBY_SPAWNSET("gameLobbySpawnSet"),
@@ -56,7 +56,9 @@ public enum Message {
     NO_PARTY("noParty"),
     PLAYER_KICKED("playerKicked"),
     NOT_LOADER("notLoader"),
-    PARTY_DISBAND("partyDisband");
+    PARTY_DISBAND("partyDisband"),
+    SPAWN_EXISTS("spawnExists"),
+    MOBSPAWN_ADDED("mobspawnAdded");
 
 
 

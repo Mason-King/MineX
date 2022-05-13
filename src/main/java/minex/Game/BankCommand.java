@@ -28,7 +28,7 @@ public class BankCommand implements CommandExecutor {
         if(args.length == 0) {
             new BankGui().makeGui(p);
         } else if(args[0].equalsIgnoreCase("give")) {
-            if(p.hasPermission("economy.give")) {
+            if(p.hasPermission("minex.economy.give")) {
                 if(args.length < 2) {
                     p.sendMessage(Message.BANK_GIVE_USAGE.getMessage());
                     return false;

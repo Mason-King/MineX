@@ -1,12 +1,32 @@
-blacksmith:
-  DIAMOND: 10
-  EMERAL: 20
-therapist:
-  BED: 10
-  WOOL: 20
-alchemist:
-  POTION: 5
-  BLAZE_ROD: 25
-warlord:
-  IRON_INGOT: 10
-  GOLD_INGOY: 8
+sell:
+  blacksmith:
+    DIAMOND: 10
+    EMERAL: 20
+  therapist:
+    BED: 10
+    WOOL: 20
+  alchemist:
+    POTION: 5
+    BLAZE_ROD: 25
+  warlord:
+    IRON_INGOT: 10
+    GOLD_INGOY: 8
+
+buy:
+  blacksmith:
+    1:
+      material: STONE
+      amount: 1
+      cost: 10
+      lore:
+        - "&c&lBuy-price&7: 10"
+        - "&c&lAmount&7: 1"
+  therapist:
+    BED: 10
+    WOOL: 20
+  alchemist:
+    POTION: 5
+    BLAZE_ROD: 25
+  warlord:
+    IRON_INGOT: 10
+    GOLD_INGOY: 8

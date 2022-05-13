@@ -3,6 +3,8 @@ package minex.Quests;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import minex.Main;
+import minex.Managers.PlayerManager;
+import minex.Player.mPlayer;
 import minex.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -148,7 +150,6 @@ public class Quest {
 
     public void incProgress() {
         progress++;
-        System.out.println(progress + "/" + amount);
         if(progress == amount) {
             for(String s : commands) {
                 String[] split = s.split(" ", 2);
@@ -160,6 +161,8 @@ public class Quest {
                     Bukkit.dispatchCommand(Bukkit.getPlayer(UUID.fromString(split[0])), split[1].replace("{player}", Bukkit.getPlayer(UUID.fromString(player)).getName()));
                 }
             }
+            mPlayer mp = PlayerManager.getmPlayer(UUID.fromString(player));
+            mp.setKarma(mp.getKarma() + this.karma);
             this.completed = true;
         }
     }
