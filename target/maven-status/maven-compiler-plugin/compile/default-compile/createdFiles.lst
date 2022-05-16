@@ -50,6 +50,5 @@ minex\Game\GameCommand.class
 minex\Quests\QuestManager.class
 minex\Quests\QuestTypes\Type\PlayerKillDistance.class
 minex\LootChest\LootType.class
-minex\SaveTask.class
 minex\Quests\QuestType.class
 minex\Managers\PlayerManager.class

@@ -34,13 +34,13 @@
         private List<Team> allTeams = new ArrayList<>();
         private Map<UUID, Team> playerTeams = new HashMap<>();
         private List<LootChest> chests = new ArrayList<>();
-        //private List<MobSpawn> spawns = new ArrayList<>();
+        private List<MobSpawn> spawns = new ArrayList<>();
         private int currPlayers;
         private Arena arena;
         private int lobbyCountdown = 30;
         private boolean inGame;
         private Lobby lobby;
-        private BukkitTask scheduler;
+        private transient BukkitTask scheduler;
 
 
         public Game(String id, int maxPlayers, int currPlayers) {
@@ -53,7 +53,7 @@
 
         public Game(String id) {
            this.id = id;
-           //this.arena = new Arena(id);
+           this.arena = new Arena(id);
            this.lobby = new Lobby(id);
            this.currPlayers = 0;
 
@@ -64,7 +64,9 @@
             this.players.remove(u);
             this.playerTeams.remove(u);
             currPlayers = currPlayers - 1;
+            System.out.println(currPlayers + " curr players");
             if(currPlayers == 0) {
+                System.out.println("here?");
                 this.reset();
             }
             // TODO - edit spawn here
@@ -77,6 +79,7 @@
         public void joinGame(UUID u) {
             Player player = Bukkit.getPlayer(u);
             mPlayer mp = PlayerManager.getmPlayer(u);
+            System.out.println(lobby.getSpawn());
             player.teleport(lobby.getSpawn());
             addPlayer(u);
             mp.setCurrGame(this);
@@ -88,11 +91,16 @@
                 t.addMember(u);
                 mp.setTeam(t);
             }
-            if(currPlayers == 0) lobbyCountdown(this);
+            System.out.println(this.lobbyCountdown);;
+            currPlayers++;
+            if(currPlayers == 1) lobbyCountdown(this);
         }
 
         public void joinGame(Party p) {
             Team t = getRandomEmptyTeam();
+            if(currPlayers == 0) {
+                lobbyCountdown(this);
+            }
             for(UUID u : p.getMembers()) {
                 Player player = Bukkit.getPlayer(u);
                 mPlayer mp = PlayerManager.getmPlayer(u);
@@ -105,8 +113,8 @@
                     t.addMember(u);
                     mp.setTeam(t);
                 }
+                currPlayers++;
             }
-            if(currPlayers == 0) lobbyCountdown(this);
         }
 
         public Team getRandomEmptyTeam() {
@@ -168,14 +176,19 @@
 
         public void addSpawn(Location loc, String name) {
             this.arena.addSpawn(name, loc);
+            GameManager.save(this);
+
         }
 
         public void addExtraction(String name, Location loc) {
             this.arena.addExtractionPoint(name, loc);
+            GameManager.save(this);
+
         }
 
         public void setLobbySpawn(Location loc) {
             this.lobby.setSpawn(loc);
+            GameManager.save(this);
         }
 
         public Arena getArena() {
@@ -267,23 +280,26 @@
 
         public void addChest(LootChest c) {
             chests.add(c);
+            GameManager.save(this);
+
         }
 
         public void removeChest(LootChest c) {
             chests.remove(c);
         }
 
-//        public List<MobSpawn> getSpawns() {
-//            return spawns;
-//        }
-//
-//        public void setSpawns(List<MobSpawn> spawns) {
-//            this.spawns = spawns;
-//        }
-//
-//        public void addMobSpawn(MobSpawn s) {
-//            this.spawns.add(s);
-//        }
+        public List<MobSpawn> getSpawns() {
+            return spawns;
+        }
+
+        public void setSpawns(List<MobSpawn> spawns) {
+            this.spawns = spawns;
+        }
+
+        public void addMobSpawn(MobSpawn s) {
+            this.spawns.add(s);
+            GameManager.save(this);
+        }
 
         public void lobbyCountdown(Game game) {
             scheduler = new BukkitRunnable() {
@@ -330,9 +346,9 @@
                             chest.fill();
                         }
 
-//                        for(MobSpawn spawn : game.getSpawns()) {
-//                            spawn.spawn();
-//                        }
+                        for(MobSpawn spawn : game.getSpawns()) {
+                            spawn.spawn();
+                        }
 
                         setInGame(true);
                         return;
@@ -389,9 +405,11 @@
                 mp.setTeam(null);
             }
             players = new ArrayList<>();
-            for(Team t : allTeams) {
-                for(UUID member : t.getMembers()) {
-                    t.removeMember(member);
+            if(allTeams != null) {
+                for(Team t : allTeams) {
+                    for(UUID member : t.getMembers()) {
+                        t.removeMember(member);
+                    }
                 }
             }
             playerTeams = new HashMap<>();
@@ -400,6 +418,6 @@
             this.lobbyCountdown = 120;
             this.inGame = false;
 
-//            GameManager.save(this);
+            GameManager.save(this);
         }
     }

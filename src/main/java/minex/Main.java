@@ -85,8 +85,6 @@ public final class Main extends JavaPlugin {
         new GameCommand();
         new BankCommand();
         new ShopCommand();
-
-        new SaveTask().runTaskTimerAsynchronously(this, 0, 180 * 20);
     }
 
     @Override
@@ -114,7 +112,8 @@ public final class Main extends JavaPlugin {
 
             gameCollection.find().forEach((Consumer<Document>) document -> {
                 Game game = gson.fromJson(document.toJson(), Game.class);
-                //getServer().createWorld(new WorldCreator(game.getArena().getWorld()));
+                getServer().createWorld(new WorldCreator(game.getArena().getWorld()));
+                getServer().createWorld(new WorldCreator(game.getLobby().getWorld()));
                 GameManager.addGame(game);
             });
 

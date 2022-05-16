@@ -85,6 +85,7 @@ public class Arena {
 
     public Location getSpawn(String name) {
         System.out.println(name);
+        System.out.println(spawns);
         System.out.println(spawnNames);
         System.out.println(spawnNames.get(name));
         return Utils.fromString(spawnNames.get(name));

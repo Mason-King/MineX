@@ -40,9 +40,9 @@ public class MapGui {
            if(!nbtStack.hasTag()) return;
             NBTTagCompound nbt = nbtStack.getTag();
 
-//            Location spawnLoc = game.getArena().getSpawn(nbt.getString("spawnId"));
-//            Team team = mp.getTeam();
-//            game.setTeamSpawn(team, Utils.toString(spawnLoc));
+            Location spawnLoc = game.getArena().getSpawn(nbt.getString("spawnId"));
+            Team team = mp.getTeam();
+            game.setTeamSpawn(team, Utils.toString(spawnLoc));
             clicked.closeInventory();
         });
 

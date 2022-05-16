@@ -69,4 +69,7 @@ public class Lobby {
         this.world = world.getName();
     }
 
+    public String getWorld() {
+        return world;
+    }
 }

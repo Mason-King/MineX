@@ -33,15 +33,15 @@ public class ExtractionListener implements Listener {
         mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
         if(mp.getCurrGame() == null) return;
         Game game = mp.getCurrGame();
-       // List<String> locs = game.getArena().getExtractions();
+        List<String> locs = game.getArena().getExtractions();
         Location closest = null;
-//        for(String s : locs) {
-//            if(closest == null) {
-//                closest = Utils.fromString(s);
-//            } else if(Utils.fromString(s).distanceSquared(player.getLocation()) < closest.distanceSquared(player.getLocation())) {
-//                closest = Utils.fromString(s);
-//            }
-//        }
+        for(String s : locs) {
+            if(closest == null) {
+                closest = Utils.fromString(s);
+            } else if(Utils.fromString(s).distanceSquared(player.getLocation()) < closest.distanceSquared(player.getLocation())) {
+                closest = Utils.fromString(s);
+            }
+        }
 
         if(closest == null) return;
         if(!player.getWorld().getName().contains("Game")) return;
