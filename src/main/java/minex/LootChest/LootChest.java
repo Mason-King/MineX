@@ -36,8 +36,8 @@ public class LootChest {
     }
 
     public void loadMinMax() {
-        this.maxItems = Main.getInstance().getConfig().getInt("lootChest." + type.toString() + ".maxItems");
-        this.minItems = Main.getInstance().getConfig().getInt("lootChest." + type.toString() + ".minItems");
+        this.maxItems = Main.getInstance().getConfig().getInt("lootChest.settings." + type.toString() + ".maxItems");
+        this.minItems = Main.getInstance().getConfig().getInt("lootChest.settings." + type.toString() + ".minItems");
     }
 
     public String getLocation() {

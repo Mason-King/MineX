@@ -43,7 +43,7 @@ public class ChestPlace implements Listener {
                     LootChest lootChest = new LootChest(Utils.toString(e.getClickedBlock().getLocation().add(0, 1, 0)), LootType.valueOf(tag.getString("type")));
                     e.getClickedBlock().getLocation().getWorld().getBlockAt(e.getClickedBlock().getLocation().add(0, 1, 0)).setType(Material.CHEST);
                     Game game = GameManager.getGame(clicked.getWorld().getName().replace("Game", ""));
-                    game.addChest(lootChest);
+                    //game.addChest(lootChest);
                     clicked.sendMessage(Message.LOOTCHEST_PLACED.getMessage().replace("{type}", tag.getString("type")));
                 }
             }

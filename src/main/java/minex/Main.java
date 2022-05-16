@@ -60,8 +60,6 @@ public final class Main extends JavaPlugin {
         this.saveResource("Guis/Sell.yml", false);
         this.saveResource("Guis/Task.yml", false);
         this.saveResource("Guis/Trader.yml", false);
-        this.saveResource("game.yml", false);
-        this.saveResource("Enchantments.yml", false);
         this.saveResource("Task.yml", false);
         this.saveResource("shops.yml", false);
         // Plugin startup logic
@@ -76,17 +74,19 @@ public final class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new ChestPlace(), this);
         this.getServer().getPluginManager().registerEvents(new ExtractionListener(), this);
         this.getServer().getPluginManager().registerEvents(new RegionListener(), this);
-
         this.getServer().getPluginManager().registerEvents(new Destroy(), this);
         this.getServer().getPluginManager().registerEvents(new MobKill(), this);
         this.getServer().getPluginManager().registerEvents(new Place(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerKill(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerKillDistance(),this);
+        this.getServer().getPluginManager().registerEvents(new PlayerDeath(),this);
 
         new PartyCommand();
         new GameCommand();
         new BankCommand();
         new ShopCommand();
+
+        new SaveTask().runTaskTimerAsynchronously(this, 0, 180 * 20);
     }
 
     @Override

@@ -26,7 +26,11 @@ public class BankCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Player p = (Player) commandSender;
         if(args.length == 0) {
-            new BankGui().makeGui(p);
+            if(main.getConfig().getBoolean("economy.bank")) {
+                new BankGui().makeGui(p);
+            } else {
+                p.sendMessage(Message.BANK_DISABLED.getMessage());
+            }
         } else if(args[0].equalsIgnoreCase("give")) {
             if(p.hasPermission("minex.economy.give")) {
                 if(args.length < 2) {

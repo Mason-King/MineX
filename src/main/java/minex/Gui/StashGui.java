@@ -41,14 +41,13 @@ public class StashGui {
                 //They are shift clicking an item in or out
                 if(!(e.getClickedInventory().getHolder() instanceof Player)) {
                     //They clicked inside the gui so they are taking it out
-                    ItemStack remove = e.getCurrentItem().clone();
+                    ItemStack temp = e.getCurrentItem().clone();
+                    ItemStack remove = temp.clone();
 
                     if(remove.getType().equals(Material.AIR)) return;
 
                     net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(remove);
-                    NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
-                    tag.remove("active");
-                    stack.setTag(tag);
+                    stack.setTag(new NBTTagCompound());
                     remove = CraftItemStack.asBukkitCopy(stack);
 
                     remove.getItemMeta().setLore(null);
@@ -58,9 +57,11 @@ public class StashGui {
                     clicked.getInventory().addItem(remove);
                     e.setCurrentItem(null);
 
-                    mp.removeItem(remove);
-                    if(mp.getSelectedStash().contains(remove)) {
-                        mp.removeSelectedItem(remove);
+                    if(mp.getFullStash().contains(temp)) {
+                        mp.removeItem(temp);
+                    }
+                    if(mp.getSelectedStash().contains(temp)) {
+                        mp.removeSelectedItem(temp);
                     }
                 } else {
                     //They clicked inside their inv so they are putting it in
@@ -76,30 +77,31 @@ public class StashGui {
 
                     net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(put);
                     NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
-                    tag.setBoolean("active", false);
+                    tag.setBoolean("active", true);
                     stack.setTag(tag);
                     put = CraftItemStack.asBukkitCopy(stack);
 
-                    List<String> lore = config.getStringList("selectItemLore");
+                    List<String> lore = config.getStringList("deselectItemLore");
                     ItemMeta im = put.getItemMeta();
                     im.setLore(Utils.color(lore));
                     put.setItemMeta(im);
                     g.addItem(put);
                     e.setCurrentItem(null);
-                    mp.addItem(put);
+                    mp.addSelectedItem(put);
+                    g.clear();
+                    genGui(mp, p, g);
                 }
             } else if(e.getClick().equals(ClickType.LEFT)) {
                 if(!(e.getClickedInventory().getHolder() instanceof Player)) {
                     //inside gui
                     if(e.getCursor().getType().equals(Material.AIR)) {
                         //picking up item
-                        ItemStack remove = e.getCurrentItem().clone();
+                        ItemStack temp = e.getCurrentItem().clone();
+                        ItemStack remove = temp.clone();
 
                         //remove nbt tags
                         net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(remove);
-                        NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
-                        tag.remove("active");
-                        stack.setTag(tag);
+                        stack.setTag(new NBTTagCompound());
                         remove = CraftItemStack.asBukkitCopy(stack);
 
                         remove.getItemMeta().setLore(null);
@@ -109,9 +111,11 @@ public class StashGui {
                         e.setCursor(remove);
                         e.setCurrentItem(null);
 
-                        mp.removeItem(remove);
-                        if(mp.getSelectedStash().contains(remove)) {
-                            mp.removeSelectedItem(remove);
+                        if(mp.getFullStash().contains(temp)) {
+                            mp.removeItem(temp);
+                        }
+                        if(mp.getSelectedStash().contains(temp)) {
+                            mp.removeSelectedItem(temp);
                         }
                     } else if(e.getCurrentItem().getType().equals(Material.AIR)) {
                         //placing item
@@ -125,7 +129,7 @@ public class StashGui {
 
                         net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(put);
                         NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
-                        tag.setBoolean("active", false);
+                        tag.setBoolean("active", true);
                         stack.setTag(tag);
                         put = CraftItemStack.asBukkitCopy(stack);
 
@@ -136,7 +140,9 @@ public class StashGui {
                         g.setItem(slot, put);
                         e.setCursor(null);
 
-                        mp.addItem(put);
+                        mp.addSelectedItem(put);
+                        g.clear();
+                        genGui(mp, p, g);
                     }
                 }
             } else if(e.getClick().equals(ClickType.RIGHT)) {

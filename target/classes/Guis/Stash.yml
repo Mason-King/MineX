@@ -1,6 +1,4 @@
-#Map selector gui config
-
-title: "&lTeam Selector"
+title: "&lStash"
 format:
   - "# # # # # # # # #"
   - "# @ @ @ @ @ @ @ #"

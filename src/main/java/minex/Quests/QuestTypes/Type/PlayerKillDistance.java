@@ -15,7 +15,7 @@ public class PlayerKillDistance implements Listener {
 
     @EventHandler
     public void onPlayerKill(PlayerDeathEvent e) {
-        Player p = e.getEntity().getKiller();
+        Player p = e.getEntity();
         if(!(p.getKiller() instanceof Player)) return;
         Player killer = p.getKiller();
         mPlayer mp = PlayerManager.getmPlayer(killer.getUniqueId());

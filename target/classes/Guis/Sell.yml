@@ -1,4 +1,10 @@
-#Map selector gui config
-
 title: "&l{type} Trader Sell"
 size: 54
+
+confirm:
+  slot: 53
+  item:
+    material: BOOK
+    name: "&c&lConfirm for: ${amount}"
+    lore:
+      - "&7Click to confirm sell"

@@ -51,6 +51,10 @@ public class Arena {
     }
 
     public Location getTeamSpawn(Team t) {
+        System.out.println(t.getId() + " 5");
+        System.out.println(t + " 6");
+        System.out.println(teamSpawns + " 7");
+        System.out.println(teamSpawns.get(t) + " 8");
         return getSpawn(teamSpawns.get(t));
     }
 
@@ -80,6 +84,9 @@ public class Arena {
 
 
     public Location getSpawn(String name) {
+        System.out.println(name);
+        System.out.println(spawnNames);
+        System.out.println(spawnNames.get(name));
         return Utils.fromString(spawnNames.get(name));
     }
 

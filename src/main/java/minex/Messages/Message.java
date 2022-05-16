@@ -58,7 +58,9 @@ public enum Message {
     NOT_LOADER("notLoader"),
     PARTY_DISBAND("partyDisband"),
     SPAWN_EXISTS("spawnExists"),
-    MOBSPAWN_ADDED("mobspawnAdded");
+    MOBSPAWN_ADDED("mobspawnAdded"),
+    BANK_DISABLED("bankDisabled"),
+    SOLD("sold");
 
 
 

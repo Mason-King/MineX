@@ -14,6 +14,7 @@ C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\TraderGui.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\MobSpawns\MobSpawn.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Quests\QuestTypes\Type\Destroy.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\LootChest\Items.java
+C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\SaveTask.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Game\Game.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\LootChest\LootChest.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Quests\Quest.java
@@ -28,6 +29,7 @@ C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Quests\QuestTypes\Type\Pla
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Events\ExtractionListener.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\Gui.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\TaskGui.java
+C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Events\PlayerDeath.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Quests\QuestTypes\Type\Enter.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Quests\QuestTypes\Type\PlayerKillDistance.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Arena\Arena.java

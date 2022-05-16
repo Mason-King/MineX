@@ -1,0 +1,11 @@
+title: "&lBitcoin Farm"
+#leave this at 1 for a 3x3 gui
+size: 1
+
+gpu:
+  material: ACACIA_DOOR
+  amount: 1
+  name: "&c&lGPU"
+  lore:
+    - "&7Place this inside your bitcoin"
+    - "&7farm to earn passive income!"

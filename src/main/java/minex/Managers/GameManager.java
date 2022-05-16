@@ -54,10 +54,12 @@ public class GameManager {
     public static void save(Game game) {
         Gson gson = new Gson();
         String json = gson.toJson(game).trim();
+//
+//        Pipeline pipeline = Main.jedis.pipelined();
+//        pipeline.set(game.getId(), json);
+//        pipeline.sync();
 
-        Pipeline pipeline = Main.jedis.pipelined();
-        pipeline.set(game.getId(), json);
-        pipeline.sync();
+        System.out.println(json);
 
         Main.gameCollection.replaceOne(Filters.eq("id", game.getId()), Document.parse(json), new UpdateOptions().upsert(true));
 

@@ -130,16 +130,16 @@ public class Utils {
         File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);
         YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
 
-        for(int i = 1; i < game.getArena().getSpawns().size(); i++) {
-            ItemStack stack = getItem(new ItemStack(Material.matchMaterial(config.getString("spawnItem.material")), (config.getInt("spawnItem.amount") == 0) ? 1 : config.getInt("spawnItem.amount"), (short) config.getInt("spawnItem.damage")), (config.getString("spawnItem.name")).replace("{name}", (game.getArena().getName(game.getArena().getSpawns().get(i)) == null) ? "null" : game.getArena().getName(game.getArena().getSpawns().get(i))), color(config.getStringList("spawnItem.lore")));
-            net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
-            NBTTagCompound nbt = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
-            String spawnId = (game.getArena().getName(game.getArena().getSpawns().get(i)) == null) ? "null" : game.getArena().getName(game.getArena().getSpawns().get(i));
-            nbt.setString("spawnId", spawnId);
-            nbtStack.setTag(nbt);
-            stack = CraftItemStack.asBukkitCopy(nbtStack);
-            gui.addItem(stack);
-        }
+//        for(int i = 1; i < game.getArena().getSpawns().size(); i++) {
+//            ItemStack stack = getItem(new ItemStack(Material.matchMaterial(config.getString("spawnItem.material")), (config.getInt("spawnItem.amount") == 0) ? 1 : config.getInt("spawnItem.amount"), (short) config.getInt("spawnItem.damage")), (config.getString("spawnItem.name")).replace("{name}", (game.getArena().getName(game.getArena().getSpawns().get(i)) == null) ? "null" : game.getArena().getName(game.getArena().getSpawns().get(i))), color(config.getStringList("spawnItem.lore")));
+//            net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
+//            NBTTagCompound nbt = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+//            String spawnId = (game.getArena().getName(game.getArena().getSpawns().get(i)) == null) ? "null" : game.getArena().getName(game.getArena().getSpawns().get(i));
+//            nbt.setString("spawnId", spawnId);
+//            nbtStack.setTag(nbt);
+//            stack = CraftItemStack.asBukkitCopy(nbtStack);
+//            gui.addItem(stack);
+//        }
 
         config.getConfigurationSection(keyForItems).getKeys(false).forEach(key -> {
             gui.fill(new ItemStack(Material.matchMaterial(config.getString(keyForItems + "." + key + ".material")), (config.getInt(keyForItems + "." + key + ".amount") == 0 ? 1 : config.getInt(keyForItems + "." + key + ".amount")), (short) config.getInt(keyForItems + "." + key + ".damage")));

@@ -33,15 +33,15 @@ public class ExtractionListener implements Listener {
         mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
         if(mp.getCurrGame() == null) return;
         Game game = mp.getCurrGame();
-        List<String> locs = game.getArena().getExtractions();
+       // List<String> locs = game.getArena().getExtractions();
         Location closest = null;
-        for(String s : locs) {
-            if(closest == null) {
-                closest = Utils.fromString(s);
-            } else if(Utils.fromString(s).distanceSquared(player.getLocation()) < closest.distanceSquared(player.getLocation())) {
-                closest = Utils.fromString(s);
-            }
-        }
+//        for(String s : locs) {
+//            if(closest == null) {
+//                closest = Utils.fromString(s);
+//            } else if(Utils.fromString(s).distanceSquared(player.getLocation()) < closest.distanceSquared(player.getLocation())) {
+//                closest = Utils.fromString(s);
+//            }
+//        }
 
         if(closest == null) return;
         if(!player.getWorld().getName().contains("Game")) return;
@@ -56,12 +56,13 @@ public class ExtractionListener implements Listener {
             }
             return;
         } else {
+            if(!closest.getWorld().equals(player.getWorld())) return;
             if(closest.distanceSquared(player.getLocation()) < 2) {
                 runnable = new BukkitRunnable() {
                     int count = 5;
                     @Override
                     public void run() {
-                        if(extracted.contains(player.getUniqueId())) cancel();
+                        System.out.println(count);
                         if(count == 5 && !extracted.contains(player.getUniqueId())) {
                             extracted.add(player.getUniqueId());
                         }

@@ -34,7 +34,7 @@
         private List<Team> allTeams = new ArrayList<>();
         private Map<UUID, Team> playerTeams = new HashMap<>();
         private List<LootChest> chests = new ArrayList<>();
-        private List<MobSpawn> spawns = new ArrayList<>();
+        //private List<MobSpawn> spawns = new ArrayList<>();
         private int currPlayers;
         private Arena arena;
         private int lobbyCountdown = 30;
@@ -53,7 +53,7 @@
 
         public Game(String id) {
            this.id = id;
-           this.arena = new Arena(id);
+           //this.arena = new Arena(id);
            this.lobby = new Lobby(id);
            this.currPlayers = 0;
 
@@ -65,7 +65,7 @@
             this.playerTeams.remove(u);
             currPlayers = currPlayers - 1;
             if(currPlayers == 0) {
-                scheduler.cancel();
+                this.reset();
             }
             // TODO - edit spawn here
             Bukkit.getPlayer(u).teleport(new Location(Bukkit.getWorld("world"), 0, 73, 0));
@@ -168,17 +168,14 @@
 
         public void addSpawn(Location loc, String name) {
             this.arena.addSpawn(name, loc);
-            GameManager.save(this);
         }
 
         public void addExtraction(String name, Location loc) {
             this.arena.addExtractionPoint(name, loc);
-            GameManager.save(this);
         }
 
         public void setLobbySpawn(Location loc) {
             this.lobby.setSpawn(loc);
-            GameManager.save(this);
         }
 
         public Arena getArena() {
@@ -270,25 +267,23 @@
 
         public void addChest(LootChest c) {
             chests.add(c);
-            GameManager.save(this);
         }
 
         public void removeChest(LootChest c) {
             chests.remove(c);
         }
 
-        public List<MobSpawn> getSpawns() {
-            return spawns;
-        }
-
-        public void setSpawns(List<MobSpawn> spawns) {
-            this.spawns = spawns;
-        }
-
-        public void addMobSpawn(MobSpawn s) {
-            this.spawns.add(s);
-            GameManager.save(this);
-        }
+//        public List<MobSpawn> getSpawns() {
+//            return spawns;
+//        }
+//
+//        public void setSpawns(List<MobSpawn> spawns) {
+//            this.spawns = spawns;
+//        }
+//
+//        public void addMobSpawn(MobSpawn s) {
+//            this.spawns.add(s);
+//        }
 
         public void lobbyCountdown(Game game) {
             scheduler = new BukkitRunnable() {
@@ -311,6 +306,10 @@
                                     }
                                 }
                             }
+                            System.out.println(game + " 1");
+                            System.out.println(game.getArena() + " 2");
+                            System.out.println(mp.getTeam() + " 3");
+                            System.out.println(mp.getTeam().getId() + " 4");
                             pl.teleport(game.getArena().getTeamSpawn(mp.getTeam()));
                             for(ItemStack remove : mp.getSelectedStash()) {
                                 net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(remove);
@@ -331,9 +330,9 @@
                             chest.fill();
                         }
 
-                        for(MobSpawn spawn : game.getSpawns()) {
-                            spawn.spawn();
-                        }
+//                        for(MobSpawn spawn : game.getSpawns()) {
+//                            spawn.spawn();
+//                        }
 
                         setInGame(true);
                         return;
@@ -401,7 +400,6 @@
             this.lobbyCountdown = 120;
             this.inGame = false;
 
-            GameManager.save(this);
-
+//            GameManager.save(this);
         }
     }

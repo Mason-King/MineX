@@ -98,7 +98,7 @@ public class GameCommand implements CommandExecutor {
                     }
                     MobSpawn ms = new MobSpawn(loc, game.getId());
                     ms.addEntity(args[2]);
-                    game.addMobSpawn(ms);
+                    //game.addMobSpawn(ms);
                     player.sendMessage(Message.MOBSPAWN_ADDED.getMessage());
 
                 } else if(args[0].equalsIgnoreCase("tp") || args[0].equalsIgnoreCase("teleport")) {
@@ -115,16 +115,16 @@ public class GameCommand implements CommandExecutor {
                         if (game == null) {
                             player.sendMessage(Message.INVALID_GAME.getMessage());
                         } else {
-                            Arena arena = game.getArena();
-                            if (index > arena.getSpawns().size()) {
+                            //Arena arena = game.getArena();
+                            //if (index > arena.getSpawns().size()) {
                                 player.sendMessage(Message.INVALID_SPAWN.getMessage());
-                            } else {
-                                if(arena.getSpawn(index) == null) {
+                           // } else {
+                               // if(arena.getSpawn(index) == null) {
                                     player.sendMessage(Message.INVALID_SPAWN.getMessage());
                                     return false;
-                                }
-                                player.teleport(arena.getSpawn(index));
-                            }
+                               // }
+                                //player.teleport(arena.getSpawn(index));
+                           // }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("region")) {
@@ -245,14 +245,14 @@ public class GameCommand implements CommandExecutor {
                         if (game == null) {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
-                            if (game.getArena().exists(name)) {
-                                player.sendMessage(Message.SPAWN_EXISTS.getMessage());
-                            } else {
-                                if(!player.getWorld().getName().equals(args[1] + "Game")) return false;
-                                Location loc = new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5));
-                                game.addSpawn(loc, name);
-                                player.sendMessage(Message.ADDED_SPAWN.getMessage().replace("{name}", name));
-                            }
+//                            if (game.getArena().exists(name)) {
+//                                player.sendMessage(Message.SPAWN_EXISTS.getMessage());
+//                            } else {
+//                                if(!player.getWorld().getName().equals(args[1] + "Game")) return false;
+//                                Location loc = new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5));
+//                                game.addSpawn(loc, name);
+//                                player.sendMessage(Message.ADDED_SPAWN.getMessage().replace("{name}", name));
+//                            }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addextraction")) {
@@ -268,16 +268,16 @@ public class GameCommand implements CommandExecutor {
                         } else {
                             Game game = GameManager.getGame(args[1]);
                             if(!player.getWorld().getName().equals(args[1] + "Game")) return false;
-                            if(game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
-                                player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
-                                return false;
-                            }
-                            if(game.getArena().getExtractionNames().containsKey(args[2])) {
-                                player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
-                                return false;
-                            }
+//                            if(game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
+//                                player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
+//                                return false;
+//                            }
+//                            if(game.getArena().getExtractionNames().containsKey(args[2])) {
+//                                player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
+//                                return false;
+//                            }
                             Location loc = new Location(player.getWorld(), Math.round(player.getLocation().getBlockX() + 0.5), player.getLocation().getBlockY(), Math.round(player.getLocation().getBlockZ() + 0.5));
-                            game.addExtraction(args[2], loc);
+                           // game.addExtraction(args[2], loc);
                             player.sendMessage(Message.NEW_EXTRACTION.getMessage());
 
                         }
@@ -300,11 +300,11 @@ public class GameCommand implements CommandExecutor {
                         if (game == null) {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
-                            List<String> spawns = game.getArena().getSpawns();
-                            for (int i = 0; i < spawns.size(); i++) {
-                                Location loc = Utils.fromString(spawns.get(i));
-                                player.sendMessage(i + ": " + "x: " + loc.getBlockX() + " y:" + loc.getBlockY() + " z:" + loc.getBlockZ());
-                            }
+//                            List<String> spawns = game.getArena().getSpawns();
+//                            for (int i = 0; i < spawns.size(); i++) {
+//                                Location loc = Utils.fromString(spawns.get(i));
+//                                player.sendMessage(i + ": " + "x: " + loc.getBlockX() + " y:" + loc.getBlockY() + " z:" + loc.getBlockZ());
+//                            }
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("join")) {

@@ -45,9 +45,11 @@ minex\Quests\QuestTypes\Type\MobKill.class
 minex\Gui\Gui.class
 minex\Arena\Lobby.class
 minex\Quests\QuestListener.class
+minex\Events\PlayerDeath.class
 minex\Game\GameCommand.class
 minex\Quests\QuestManager.class
 minex\Quests\QuestTypes\Type\PlayerKillDistance.class
 minex\LootChest\LootType.class
+minex\SaveTask.class
 minex\Quests\QuestType.class
 minex\Managers\PlayerManager.class
