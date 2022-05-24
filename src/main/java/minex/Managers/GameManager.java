@@ -1,24 +1,12 @@
 package minex.Managers;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
-import minex.Game.Game;
+import minex.Objects.Game;
 import minex.Main;
 import org.bson.Document;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.json.simple.JSONObject;
-import redis.clients.jedis.Pipeline;
 
-import javax.print.Doc;
-import java.io.File;
 import java.util.*;
 
 public class GameManager {
@@ -50,7 +38,6 @@ public class GameManager {
     }
 
     public static Game getGame(String id) {
-        System.out.println(allGames);
         return allGames.get(id);
     }
 

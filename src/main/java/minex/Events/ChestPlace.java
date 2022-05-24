@@ -1,12 +1,10 @@
 package minex.Events;
 
-import com.mongodb.client.model.Filters;
-import minex.Game.Game;
-import minex.LootChest.LootChest;
-import minex.LootChest.LootType;
-import minex.Main;
+import minex.Objects.Game;
+import minex.Objects.LootChest;
+import minex.Enums.LootType;
 import minex.Managers.GameManager;
-import minex.Messages.Message;
+import minex.Enums.Message;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;

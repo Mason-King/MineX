@@ -12,7 +12,7 @@ messages:
   gameCreateUsage: "&c&lMineX &7| Invalid usage try: /game create <id>"
   gameExists: "&c&lMineX &7| A game with this id already exists!"
   gameCreating: "&c&lMineX &7| Creating a game with the id {id}"
-  addMobSpawnUsage: "&c&lMineX &7| Invalid usage try: /game addmobspawn <id> <type>"
+  addMobSpawnUsage: "&c&lMineX &7| Invalid usage try: /game addmobspawn <id> <type> <min> <max>"
   invalidGame: "&c&lMineX &7| No game can be found matching this id!"
   invalidMobType: "&c&lMineX &7| Invalid mob type!"
   gameTeleportUsage: "&c&lMineX &7| Invalid usage try: /game teleport <id>"
@@ -52,6 +52,31 @@ messages:
   mobspawnAdded: "&c&lMineX &7| You have added a new mobspawn at your location!"
   bankDisabled: "&c&lMineX &7| The bank has been disabled!"
   sold: "&c&lMineX &7| You have sold {amount} worth of items!"
+  playerKilled: "&c&lMineX &7| {player} has been killed by {killer}"
+  maxStash: "&c&lMineX &7| Sorry, you have reached the max stash size!"
+
+helpCommand:
+  - "&c&l/game create <id> &7- Create a new game"
+  - "&c&l/game addmobspawn <id> <type> <min> <max> &7- Create a new mob spawn"
+  - "&c&l/game teleport <id> &7- Teleport to a game world"
+  - "&c&l/game region create <id> <name> &7- Create a new region"
+  - "&c&l/game lootchest give <type> &7- Give yourself a lootchest"
+  - "&c&l/game addsapwn <id> <name> &7- Add a new spawn to a game"
+  - "&c&l/game addextraction <id> <name> &7- Add a new extraction to a game"
+  - "&c&l/game lobby setspawn <id> &7- Set the game's lobby spawn"
+  - ""
+  - "&c&l/trader <type> &7- Open the trader"
+  - "&c&l/Party help &7- Displays the party help menu"
+  - "&c&l/Bank help &7- Displays the bank help menu"
+partyHelp:
+  - "&c&l/party invite <player> &7- Invite a player to your party"
+  - "&c&l/party join <player> &7- Join a player's party"
+  - "&c&l/party leave &7- Leave your party"
+  - "&c&l/party disband &7- Disband your party"
+
+bankHelp:
+  - "&c&l/bank give <player> <amount> &7- Give a player physical currency"
+  - "&c&l/bank &7- Open the bank gui"
 
 economy:
   bank: true

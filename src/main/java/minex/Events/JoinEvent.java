@@ -1,11 +1,12 @@
 package minex.Events;
 
 import minex.Managers.PlayerManager;
-import minex.Player.mPlayer;
+import minex.Objects.mPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class JoinEvent implements Listener {
 
@@ -17,5 +18,15 @@ public class JoinEvent implements Listener {
             mPlayer mp = PlayerManager.createPlayer(joined);
         }
     }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e) {
+        Player quit = e.getPlayer();
+        mPlayer mp = PlayerManager.getmPlayer(quit.getUniqueId());
+        if(mp.getCurrGame() != null) {
+            mp.getCurrGame().leaveGame(mp.getId());
+        }
+    }
+
 
 }

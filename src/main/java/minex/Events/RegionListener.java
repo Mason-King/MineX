@@ -1,19 +1,7 @@
 package minex.Events;
 
-import com.sk89q.worldguard.protection.ApplicableRegionSet;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import minex.Game.Game;
-import minex.LootChest.LootChest;
-import minex.LootChest.LootType;
-import minex.Main;
-import minex.Managers.GameManager;
-import minex.Messages.Message;
-import minex.Utils.Utils;
+import minex.Enums.Message;
 import net.minecraft.server.v1_8_R3.ItemStack;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.raidstone.wgevents.events.RegionEnteredEvent;
-import net.raidstone.wgevents.events.RegionLeftEvent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -22,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.HashMap;
 import java.util.Map;

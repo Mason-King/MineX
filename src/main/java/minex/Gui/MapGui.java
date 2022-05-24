@@ -1,10 +1,10 @@
 package minex.Gui;
 
-import minex.Game.Game;
-import minex.Game.Team;
+import minex.Objects.Game;
+import minex.Objects.Team;
 import minex.Main;
 import minex.Managers.PlayerManager;
-import minex.Player.mPlayer;
+import minex.Objects.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Location;
@@ -20,14 +20,14 @@ public class MapGui {
     Main main = Main.getInstance();
     Gui gui = new Gui(main);
 
-    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/MapSelector.yml");
+    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/MapGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
 
     public void makeGui(Player p, Game game) {
         Gui.NoobPage g = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
-        Utils.makeFormat("MapSelector.yml", g, "items");
-        Utils.makeSpawnFormat(game,"MapSelector.yml", g, "items");
+        Utils.makeFormat("MapGui.yml", g, "items");
+        Utils.makeSpawnFormat(game,"MapGui.yml", g, "items");
         gui.show(p, 0);
 
         g.onClick(e -> {

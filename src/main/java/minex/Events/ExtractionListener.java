@@ -1,10 +1,10 @@
 package minex.Events;
 
-import minex.Game.Game;
+import minex.Objects.Game;
 import minex.Main;
 import minex.Managers.PlayerManager;
-import minex.Messages.Message;
-import minex.Player.mPlayer;
+import minex.Enums.Message;
+import minex.Objects.mPlayer;
 import minex.Utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -62,7 +62,6 @@ public class ExtractionListener implements Listener {
                     int count = 5;
                     @Override
                     public void run() {
-                        System.out.println(count);
                         if(count == 5 && !extracted.contains(player.getUniqueId())) {
                             extracted.add(player.getUniqueId());
                         }

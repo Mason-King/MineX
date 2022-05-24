@@ -152,13 +152,22 @@ public class Gui implements Listener {
         return page;
     }
 
+    public GuiPage getViewerPage(Player p) {
+        return viewing.get(p.getUniqueId());
+    }
+
+    public GuiPage createTemplate(String name, int size) {
+        return new GuiPage(color(name)[0], size);
+    }
+
+
     public NoobPage create(GuiPage template, int amount, ItemStack... items) {
         for (int i = 0; i <= items.length / amount; i++) {
             GuiPage page = template.clone().addItems(subArray(items, amount * i, amount * i + amount - 1));
             pages[this.size] = new NoobPage(page);
             this.size += 1;
         }
-        return (NoobPage) pages[0];
+        return (NoobPage) pages[this.size - 1];
     }
 
     public NoobPage create(GuiPage template) {

@@ -10,4 +10,4 @@ commands:
   game:
   bank:
     aliases: ['money', 'bal', 'balance']
-  shop:
+  trader:

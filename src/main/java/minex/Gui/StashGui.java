@@ -1,22 +1,20 @@
 package minex.Gui;
 
-import minex.Game.Game;
 import minex.Main;
 import minex.Managers.PlayerManager;
-import minex.Player.mPlayer;
+import minex.Enums.Message;
+import minex.Objects.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StashGui {
@@ -24,175 +22,160 @@ public class StashGui {
     Main main = Main.getInstance();
     Gui gui = new Gui(main);
 
-    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/Stash.yml");
+    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/StashGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
 
     public void makeGui(Player p) {
         mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
-        Gui.NoobPage g  = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
-        genGui(mp, p, g);
-        gui.show(p, 0);
-        g.onClick(e -> {
-            Player clicked = (Player) e.getWhoClicked();
+        Gui.GuiPage template = Utils.makeFormat("StashGui.yml", gui.createTemplate(Utils.color(config.getString("title")), config.getStringList("format").size() * 9), "items");
+        template.onClick(e -> {
             int slot = e.getSlot();
+            int next = config.getInt("next");
+            int previous = config.getInt("previous");
 
-            if(e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) {
-                //They are shift clicking an item in or out
-                if(!(e.getClickedInventory().getHolder() instanceof Player)) {
-                    //They clicked inside the gui so they are taking it out
-                    ItemStack temp = e.getCurrentItem().clone();
-                    ItemStack remove = temp.clone();
+            if(e.getClickedInventory() == null) return;
 
-                    if(remove.getType().equals(Material.AIR)) return;
+            Gui.GuiPage page = gui.getViewerPage(p);
 
-                    net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(remove);
-                    stack.setTag(new NBTTagCompound());
-                    remove = CraftItemStack.asBukkitCopy(stack);
+            e.setCancelled(true);
 
-                    remove.getItemMeta().setLore(null);
-                    ItemMeta im = e.getCurrentItem().getItemMeta();
-                    im.setLore(null);
-                    remove.setItemMeta(im);
-                    clicked.getInventory().addItem(remove);
-                    e.setCurrentItem(null);
-
-                    if(mp.getFullStash().contains(temp)) {
-                        mp.removeItem(temp);
-                    }
-                    if(mp.getSelectedStash().contains(temp)) {
-                        mp.removeSelectedItem(temp);
-                    }
-                } else {
-                    //They clicked inside their inv so they are putting it in
-                    if((mp.getFullStash().size() + mp.getSelectedStash().size()) == mp.getStashSize()) {
-                        e.setCancelled(true);
-                        p.sendMessage(Utils.color("&c&lMineX &7| You must upgrade you inventory to add more items!"));
-                        return;
-                    }
-
-                    ItemStack put = e.getCurrentItem().clone();
-
-                    if(put.getType().equals(Material.AIR)) return;
-
-                    net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(put);
-                    NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
-                    tag.setBoolean("active", true);
-                    stack.setTag(tag);
-                    put = CraftItemStack.asBukkitCopy(stack);
-
-                    List<String> lore = config.getStringList("deselectItemLore");
-                    ItemMeta im = put.getItemMeta();
-                    im.setLore(Utils.color(lore));
-                    put.setItemMeta(im);
-                    g.addItem(put);
-                    e.setCurrentItem(null);
-                    mp.addSelectedItem(put);
-                    g.clear();
-                    genGui(mp, p, g);
+            //page functions
+            if(slot == next) {
+                if(isFull(gui.getViewerPage(p).getContents())) {
+                    gui.nextPage(p);
                 }
-            } else if(e.getClick().equals(ClickType.LEFT)) {
-                if(!(e.getClickedInventory().getHolder() instanceof Player)) {
-                    //inside gui
-                    if(e.getCursor().getType().equals(Material.AIR)) {
-                        //picking up item
-                        ItemStack temp = e.getCurrentItem().clone();
-                        ItemStack remove = temp.clone();
+            } else if(slot == previous) {
+                gui.prevPage(p);
+            } else {
+                ItemStack clickedStack = e.getCurrentItem().clone();
 
-                        //remove nbt tags
-                        net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(remove);
-                        stack.setTag(new NBTTagCompound());
-                        remove = CraftItemStack.asBukkitCopy(stack);
-
-                        remove.getItemMeta().setLore(null);
-                        ItemMeta im = e.getCurrentItem().getItemMeta();
-                        im.setLore(null);
-                        remove.setItemMeta(im);
-                        e.setCursor(remove);
-                        e.setCurrentItem(null);
-
-                        if(mp.getFullStash().contains(temp)) {
-                            mp.removeItem(temp);
-                        }
-                        if(mp.getSelectedStash().contains(temp)) {
-                            mp.removeSelectedItem(temp);
-                        }
-                    } else if(e.getCurrentItem().getType().equals(Material.AIR)) {
-                        //placing item
-                        if((mp.getFullStash().size() + mp.getSelectedStash().size()) == mp.getStashSize()) {
-                            e.setCancelled(true);
-                            p.sendMessage(Utils.color("&c&lMineX &7| You must upgrade you inventory to add more items!"));
+                if(e.getClickedInventory().getHolder() instanceof Player) {
+                    //Clicking inside player inventory
+                    if((e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) && !e.getCurrentItem().getType().equals(Material.AIR)) {
+                        //Shifting into the inv
+                        if(mp.getFullStash().size() >= mp.getStashSize()) {
+                            p.sendMessage(Message.MAX_STASH.getMessage());
                             return;
                         }
-
-                        ItemStack put = e.getCursor().clone();
-
-                        net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(put);
-                        NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
+                        ItemStack add = e.getCurrentItem();
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(e.getCurrentItem());
+                        NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
                         tag.setBoolean("active", true);
-                        stack.setTag(tag);
-                        put = CraftItemStack.asBukkitCopy(stack);
+                        nbtStack.setTag(tag);
 
-                        List<String> lore = config.getStringList("deselectItemLore");
-                        ItemMeta im = put.getItemMeta();
-                        im.setLore(Utils.color(lore));
-                        put.setItemMeta(im);
-                        g.setItem(slot, put);
+                        add = CraftItemStack.asBukkitCopy(nbtStack);
+
+                        page.addItem(add);
+                        mp.addItem(add);
+                        e.setCurrentItem(null);
+
+                    }
+                    if(e.getCursor().getType().equals(Material.AIR) && !e.getCurrentItem().getType().equals(Material.AIR)) {
+                        System.out.println("taking it out?");
+                    }
+                } else {
+                    //Clicking inside the custom gui
+                    if((e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) && !e.getCurrentItem().getType().equals(Material.AIR)) {
+                        ItemStack add = e.getCurrentItem().clone();
+                        mp.removeItem(add);
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(e.getCurrentItem());
+                        NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+                        if(!tag.hasKey("active")) return;
+                        nbtStack.setTag(null);
+
+                        ItemStack stack = new ItemStack(add.getType(), add.getAmount(), add.getData().getData());
+
+                        page.setItem(slot, Material.AIR);
+                        p.getInventory().addItem(stack);
+                        return;
+                    }
+                    if(!e.getCursor().getType().equals(Material.AIR) && e.getCurrentItem().getType().equals(Material.AIR)) {
+                        if(mp.getFullStash().size() >= mp.getStashSize()) {
+                            p.sendMessage(Message.MAX_STASH.getMessage());
+                            return;
+                        }
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(e.getCursor());
+                        NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+                        tag.setBoolean("active", true);
+                        nbtStack.setTag(tag);
+
+                        ItemStack add = CraftItemStack.asBukkitCopy(nbtStack);
+
                         e.setCursor(null);
+                        page.setItem(slot, add);
+                        mp.addItem(add);
+                        return;
+                    }
+                    if(e.getCursor().getType().equals(Material.AIR) && !e.getCurrentItem().getType().equals(Material.AIR) && e.getClick().equals(ClickType.LEFT)) {
+                        ItemStack add = e.getCurrentItem().clone();
+                        mp.removeItem(add);
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(e.getCurrentItem());
+                        NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+                        if(!tag.hasKey("active")) return;
 
-                        mp.addSelectedItem(put);
-                        g.clear();
-                        genGui(mp, p, g);
+                        ItemStack stack = new ItemStack(add.getType(), add.getAmount(), add.getData().getData());
+
+                        page.setItem(slot, Material.AIR);
+                        e.setCursor(stack);
+                        return;
+                    }
+                    if(!e.getCurrentItem().getType().equals(Material.AIR) && !e.getCursor().getType().equals(Material.AIR)) {
+                        ItemStack current = e.getCurrentItem().clone();
+                        mp.removeItem(current);
+                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(current);
+                        NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
+                        if(!tag.hasKey("active")) return;
+
+                        ItemStack newCursor = new ItemStack(current.getType(), current.getAmount(), current.getData().getData());
+
+                        ItemStack cursor = e.getCursor().clone();
+                        net.minecraft.server.v1_8_R3.ItemStack cursornbtStack = CraftItemStack.asNMSCopy(cursor);
+                        NBTTagCompound cursortag = (cursornbtStack.hasTag()) ? cursornbtStack.getTag() : new NBTTagCompound();
+                        cursortag.setBoolean("active", true);
+                        cursornbtStack.setTag(tag);
+
+                        cursor = CraftItemStack.asBukkitCopy(cursornbtStack);
+
+                        e.setCursor(newCursor);
+                        page.setItem(slot, cursor);
+                        mp.addItem(cursor);
+                        return;
                     }
                 }
-            } else if(e.getClick().equals(ClickType.RIGHT)) {
-                ItemStack stack = e.getCurrentItem();
-                if(stack == null || stack.getType().equals(Material.AIR)) return;
-
-                net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
-                NBTTagCompound tag = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
-                if(tag.getBoolean("active")) {
-                    tag.setBoolean("active", false);
-                    mp.removeSelectedItem(stack);
-                    stack = CraftItemStack.asBukkitCopy(nbtStack);
-                    mp.addItem(stack);
-                    g.clear();
-                    genGui(mp, p, g);
-                    return;
-                } else {
-                    tag.setBoolean("active", true);
-                    mp.removeItem(stack);
-                    stack = CraftItemStack.asBukkitCopy(nbtStack);
-                    mp.addSelectedItem(stack);
-                    g.clear();
-                    genGui(mp, p, g);
-                    return;
-                }
             }
-
         });
 
+        loadItems(p, mp, template);
+
     }
 
-    public void genGui(mPlayer mp, Player p, Gui.NoobPage g) {
-        Utils.makeFormat("Stash.yml", g, "items");
-
-        for(ItemStack stack : mp.getSelectedStash()) {
-            List<String> lore = config.getStringList("deselectItemLore");
-            ItemMeta im = stack.getItemMeta();
-            im.setLore(Utils.color(lore));
-            stack.setItemMeta(im);
-            g.addItem(stack);
+    public boolean isFull(ItemStack... items) {
+        for(ItemStack i : items) {
+            if(i == null || i.getType().equals(Material.AIR)) return false;
         }
-
-        for(ItemStack stack : mp.getFullStash()) {
-            if(mp.getSelectedStash().contains(stack)) continue;
-            List<String> lore = config.getStringList("selectItemLore");
-            ItemMeta im = stack.getItemMeta();
-            im.setLore(Utils.color(lore));
-            stack.setItemMeta(im);
-            g.addItem(stack);
-        }
+        return true;
     }
+
+    public void loadItems(Player p, mPlayer mp, Gui.GuiPage template) {
+        List<Integer> slots = new ArrayList<>();
+        double empty = 0;
+        for(int i = 0; i < template.size; i++) {
+            if(template.getContents()[i] == null || template.getContents()[i].getType().equals(Material.AIR)) {
+                empty++;
+                slots.add(i);
+            }
+        }
+        double pages = (Math.ceil(mp.getFullStash().size() / empty)) == 0 ? 1 : Math.ceil(mp.getFullStash().size() / empty);
+        for(int i = 0; i < pages; i++) {
+            Gui.GuiPage page = gui.create(template).c().s();
+            for(int x = 0; x < empty; x++) {
+                if(mp.getFullStash().size() == (x * i)) continue;
+                page.addItem(mp.getFullStash().get(x * i));
+            }
+        }
+        gui.show(p, 0);
+    }
+
 
 }

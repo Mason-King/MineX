@@ -2,8 +2,8 @@ package minex.Gui;
 
 import minex.Main;
 import minex.Managers.PlayerManager;
-import minex.Player.mPlayer;
-import minex.Quests.Quest;
+import minex.Objects.mPlayer;
+import minex.Objects.Quest;
 import minex.Utils.Utils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Material;
@@ -19,13 +19,13 @@ public class TaskGui {
     Main main = Main.getInstance();
     Gui gui = new Gui(main);
 
-    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/Task.yml");
+    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/TaskGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
 
     public void makeGui(Player p, String type) {
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title").replace("{type}", WordUtils.capitalizeFully(type))), config.getStringList("format").size() * 9).c().s();
-        Utils.makeFormat("Task.yml", g, "items");
+        Utils.makeFormat("TaskGui.yml", g, "items");
 
         mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
 

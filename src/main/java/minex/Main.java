@@ -7,25 +7,25 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import minex.Events.*;
-import minex.Game.BankCommand;
-import minex.Game.Game;
-import minex.Game.GameCommand;
-import minex.Game.ShopCommand;
-import minex.LootChest.Items;
+import minex.Commands.BankCommand;
+import minex.Events.Quests.*;
+import minex.Objects.Game;
+import minex.Commands.GameCommand;
+import minex.Commands.ShopCommand;
+import minex.Utils.Items;
 import minex.Managers.GameManager;
 import minex.Managers.PlayerManager;
-import minex.Party.PartyCommand;
-import minex.Player.mPlayer;
-import minex.Quests.QuestManager;
-import minex.Quests.QuestTypes.Type.*;
+import minex.Commands.PartyCommand;
+import minex.Objects.mPlayer;
+import minex.Managers.QuestManager;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
 
+import java.io.File;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,21 +47,20 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         setupDB();
 
-        Logger mongoLogger = Logger.getLogger( "org.mongodb.driver.cluster" );
+        Logger mongoLogger = Logger.getLogger( "com.mongodb" );
         mongoLogger.setLevel(Level.SEVERE);
 
         saveDefaultConfig();
-        this.saveResource("schematics/lobby.schem", false);
-        this.saveResource("Guis/GameSelector.yml", false);
-        this.saveResource("Guis/MapSelector.yml", false);
-        this.saveResource("Guis/Stash.yml", false);
-        this.saveResource("Guis/Bank.yml", false);
-        this.saveResource("Guis/BankSelection.yml", false);
-        this.saveResource("Guis/Sell.yml", false);
-        this.saveResource("Guis/Task.yml", false);
-        this.saveResource("Guis/Trader.yml", false);
-        this.saveResource("Task.yml", false);
-        this.saveResource("shops.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/GameGui.yml").exists()) this.saveResource("Guis/GameGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/MapGui.yml").exists())this.saveResource("Guis/MapGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/StashGui.yml").exists())this.saveResource("Guis/StashGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/BankGui.yml").exists())this.saveResource("Guis/BankGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/BankSelectionGui.yml").exists())this.saveResource("Guis/BankSelectionGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/SellGui.yml").exists())this.saveResource("Guis/SellGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/TaskGui.yml").exists())this.saveResource("Guis/TaskGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/TraderGui.yml").exists())this.saveResource("Guis/TraderGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Tasks.yml").exists())this.saveResource("Tasks.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Shops.yml").exists())this.saveResource("Shops.yml", false);
         // Plugin startup logic
         instance = this;
 
@@ -85,6 +84,8 @@ public final class Main extends JavaPlugin {
         new GameCommand();
         new BankCommand();
         new ShopCommand();
+
+        Bukkit.getLogger().log(Level.INFO, "[MineX] MineX plugin enabled");
     }
 
     @Override

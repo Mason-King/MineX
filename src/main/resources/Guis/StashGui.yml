@@ -1,0 +1,41 @@
+title: "&lStash"
+format:
+  - "# # # # # # # # #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# @ @ @ @ @ @ @ #"
+  - "# # < # $ # > # #"
+
+next: 42
+previous: 38
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    name: ""
+  '<':
+    material: PAPER
+    name: "&c&lPrevious Page"
+    lore:
+      - ""
+      - "&7Click to go back a page"
+  '>':
+    material: PAPER
+    name: "&c&lNext Page"
+    lore:
+      - ""
+      - "&7Click to go forward a page"
+  '$':
+    material: BOOK
+    name: "&c&lInfo"
+    lore:
+      - "&7Select which items you would"
+      - "&7like to take into war."
+      - ""
+      - "&7Upgrade the amount of items you can"
+      - "&7take into war with /upgrade"
+      - ""
+      - "&c&lRight-Click&7 items to remove from stash"
+      - "&c&lLeft-Click &7to add items to your stash"
+      - ""

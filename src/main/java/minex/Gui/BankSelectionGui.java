@@ -20,14 +20,14 @@ public class BankSelectionGui {
     Main main = Main.getInstance();
     Gui gui = new Gui(main);
 
-    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/BankSelection.yml");
+    File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/BankSelectionGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
     private int amount = 0;
 
 
     public void makeGui(Player p, String type) {
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
-        Utils.makeSelectorFormat("BankSelection.yml", g, "items", type);
+        Utils.makeSelectorFormat("BankSelectionGui.yml", g, "items", type);
         gui.show(p, 0);
         g.onClick(e -> {
             Player clicked = (Player) e.getWhoClicked();
