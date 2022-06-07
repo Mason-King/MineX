@@ -11,7 +11,6 @@ import java.io.File;
 public class TraderGui {
 
     Main main = Main.getInstance();
-    Gui gui = new Gui(main);
 
     File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/TraderGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -19,30 +18,32 @@ public class TraderGui {
     int task = config.getInt("tasks");
     int sell = config.getInt("sell");
 
-    public void makeGui(Player p, String type) {
-        System.out.println(gui);
+    public Gui makeGui(Player p, String type) {
+        Gui gui = new Gui(main);
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title").replace("{type}", WordUtils.capitalizeFully(type))), config.getStringList("format").size() * 9).c().s();
         Utils.makeFormat("TraderGui.yml", g, "items");
-        System.out.println(g);
+
+        System.out.println("after make GUI");
 
         g.onClick(e -> {
-            System.out.println("here?");
-           int slot = e.getSlot();
-            System.out.println(slot);
-           if(slot == task) {
-               System.out.println("here?");
-                new TaskGui().makeGui(p, type);
-           } else if(slot == sell) {
-               System.out.println("no");
-               p.closeInventory();
-               new SellGui().makeGui(p, type);
-           } else {
-               e.setCancelled(true);
-               return;
-           }
+            System.out.println(1);
+            int slot = e.getSlot();
+            System.out.println(2);
+            if(slot == task) {
+                System.out.println(3);
+                new TaskGui().makeGui(p, type).show(p,0);
+            } else if(slot == sell) {
+                System.out.println(4);
+                new SellGui().makeGui(p, type).show(p,0);
+            } else {
+                System.out.println(5);
+                e.setCancelled(true);
+                return;
+            }
+            System.out.println(6);
         });
 
-        gui.show(p, 0);
+        return gui;
     }
 
 }

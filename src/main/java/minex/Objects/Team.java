@@ -11,6 +11,7 @@ public class Team {
     //list of all people on team
     private List<UUID> members;
     private boolean hasMembers;
+    private String spawn;
 
     //constructor
 
@@ -71,4 +72,11 @@ public class Team {
         this.hasMembers = hasMembers;
     }
 
+    public String getSpawn() {
+        return spawn;
+    }
+
+    public void setSpawn(String spawn) {
+        this.spawn = spawn;
+    }
 }

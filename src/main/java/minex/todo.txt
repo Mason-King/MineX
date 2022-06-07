@@ -1,19 +1,19 @@
 ToDo:
 
-[Maybe done] Player instance saving twice idk why
+[Seems to be fixed] Player instance saving twice idk why
 [Needs Testing] game ending mech
 [Done] more mob spawns
 [Done] game not tping me after countdown
-- strange behaviour when interacting with items in the /shop gui an the stash gui
-- bottom row of stash gui not movable
+[Done]strange behaviour when interacting with items in the /shop gui an the stash gui (Not sure what is ment)
+[Done] bottom row of stash gui not movable (Not sure what is ment either
 - add back buttom to most of the guis, like the /shop and the /bank pages
 [Done] help commands
 - change value of gold to 10 and increase 1 & 10 in the /bank gui to 10 and 100
-- add 30 min timer to raid
+[Needs Testing] add 30 min timer to raid
 - make sure raid is over when all players are dead or leave
 [Needs Testing] make sure players are removed from game state when they leave the server
 [Needs Testing] Make sure players are removed when killed
 - Two players going into the same game spawn at same point
 [Done] Remove saving file messages onEnable
 [Done] disable pvp in lobby
-- Add items to stash on open
+[Done] Add items to stash on open

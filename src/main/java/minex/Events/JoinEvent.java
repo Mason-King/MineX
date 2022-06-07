@@ -14,6 +14,9 @@ public class JoinEvent implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player joined = e.getPlayer();
 
+        System.out.println(PlayerManager.getmPlayer(joined.getUniqueId()));
+        System.out.println(joined.getUniqueId());
+
         if(!joined.hasPlayedBefore() || PlayerManager.getmPlayer(joined.getUniqueId()) == null) {
             mPlayer mp = PlayerManager.createPlayer(joined);
         }

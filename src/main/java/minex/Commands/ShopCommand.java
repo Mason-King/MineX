@@ -1,5 +1,6 @@
 package minex.Commands;
 
+import minex.Gui.Gui;
 import minex.Gui.TraderGui;
 import minex.Main;
 import minex.Utils.Utils;
@@ -23,8 +24,10 @@ public class ShopCommand implements CommandExecutor {
             for(String sm : Utils.color(main.getConfig().getStringList("helpCommand"))) {
                 p.sendMessage(sm);
             }
+            return false;
         }
-        new TraderGui().makeGui(p, args[0]);
+        Gui gui = new TraderGui().makeGui(p, args[0]);
+        gui.show(p, 0);
         return false;
     }
 }

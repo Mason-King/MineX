@@ -62,7 +62,10 @@ public enum Message {
     BANK_DISABLED("bankDisabled"),
     SOLD("sold"),
     PLAYER_KILLED("playerKilled"),
-    MAX_STASH("maxStash");
+    MAX_STASH("maxStash"),
+    TIME_REMAINING("timeRemaining"),
+    GAME_ENDING("gameEnding"),
+    GAME_STARTING("gameStarting");
 
 
 

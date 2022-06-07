@@ -17,7 +17,6 @@ public class Arena {
     private Map<String, String> extractionNames;
     private List<String> extractions;
     private List<String> regions;
-    private Map<Team, String> teamSpawns;
 
 
     public Arena(String id, Location spawn) {
@@ -32,7 +31,6 @@ public class Arena {
         this.spawnNames = new HashMap<>();
         this.claimed = new ArrayList<>();
         this.spawns = new ArrayList<>();
-        this.teamSpawns = new HashMap<>();
         this.extractionNames = new HashMap<>();
         this.extractions = new ArrayList<>();
         this.regions = new ArrayList<>();
@@ -50,17 +48,6 @@ public class Arena {
         this.spawns.add(Utils.toString(new Location(Bukkit.getWorld(this.world), 0, 100, 0)));
     }
 
-    public Location getTeamSpawn(Team t) {
-        System.out.println(teamSpawns);
-        System.out.println(t);
-        return getSpawn(teamSpawns.get(t));
-    }
-
-    public void setTeamSpawn(Team t, String s) {
-        if(teamSpawns.containsKey(t)) teamSpawns.remove(t);
-        teamSpawns.put(t, s);
-        claimed.add(s);
-    }
 
     public Location getSpawn(int index) {
         if(getSpawns().size() <= index) return null;
@@ -143,12 +130,8 @@ public class Arena {
         this.claimed = claimed;
     }
 
-    public Map<Team, String> getTeamSpawns() {
-        return teamSpawns;
-    }
-
-    public void setTeamSpawn(Map<Team, String> teamSpawns) {
-        this.teamSpawns = teamSpawns;
+    public void addClaimed(String s) {
+        this.claimed.add(s);
     }
 
     public Map<String, String> getExtractionNames() {
@@ -169,7 +152,6 @@ public class Arena {
 
     public void reset() {
         this.claimed = new ArrayList<>();
-        this.teamSpawns = new HashMap<>();
     }
 
 }

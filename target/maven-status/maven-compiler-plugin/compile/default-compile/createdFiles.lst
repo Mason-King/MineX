@@ -36,6 +36,7 @@ minex\Events\Quests\Destroy.class
 minex\Utils\Items.class
 minex\Events\Quests\Place.class
 minex\Commands\BankCommand.class
+minex\Objects\Game$2.class
 minex\Objects\Party.class
 minex\Gui\Gui$1.class
 minex\Gui\SellGui.class

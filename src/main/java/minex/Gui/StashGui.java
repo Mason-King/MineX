@@ -72,7 +72,11 @@ public class StashGui {
 
                     }
                     if(e.getCursor().getType().equals(Material.AIR) && !e.getCurrentItem().getType().equals(Material.AIR)) {
-                        System.out.println("taking it out?");
+                        e.setCursor(e.getCurrentItem());
+                        p.getInventory().setItem(slot, new ItemStack(Material.AIR));
+                    } else if(!e.getCursor().getType().equals(Material.AIR) && e.getCurrentItem().getType().equals(Material.AIR)) {
+                        p.getInventory().setItem(slot, e.getCursor());
+                        e.setCursor(new ItemStack(Material.AIR));
                     }
                 } else {
                     //Clicking inside the custom gui
@@ -169,9 +173,11 @@ public class StashGui {
         double pages = (Math.ceil(mp.getFullStash().size() / empty)) == 0 ? 1 : Math.ceil(mp.getFullStash().size() / empty);
         for(int i = 0; i < pages; i++) {
             Gui.GuiPage page = gui.create(template).c().s();
+            System.out.println("page" + i);
             for(int x = 0; x < empty; x++) {
-                if(mp.getFullStash().size() == (x * i)) continue;
-                page.addItem(mp.getFullStash().get(x * i));
+                if(mp.getFullStash().size() == x) break;;
+                if(mp.getFullStash().get(x) == null || mp.getFullStash().get(x).getType().equals(Material.AIR)) break;
+                page.addItem(mp.getFullStash().get(x));
             }
         }
         gui.show(p, 0);

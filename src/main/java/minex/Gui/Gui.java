@@ -119,11 +119,14 @@ public class Gui implements Listener {
 
     // Manually open a gui page to a player
     public Gui show(Player p, int page) {
-        p.closeInventory();
-        if (viewing.size() == 0)
-            Bukkit.getPluginManager().registerEvents(this.li, plugin);
-        this.viewing.put(p.getUniqueId(), pages[page]);
-        p.openInventory(pages[page].i);
+        this.close(p);
+        p.updateInventory();
+        Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
+            if (viewing.size() == 0)
+                Bukkit.getPluginManager().registerEvents(this.li, plugin);
+                this.viewing.put(p.getUniqueId(), pages[page]);
+                p.openInventory(pages[page].i);
+                },2L);
         return this;
     }
 

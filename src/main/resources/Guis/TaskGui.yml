@@ -27,3 +27,12 @@ items:
     name: "&c&lNext page"
     lore:
       - "&7Return to the next page"
+
+
+back:
+  slot: 40
+  item:
+    material: PAPER
+    name: "&c&lBack"
+    lore:
+      - "&7Go back to the main gui"

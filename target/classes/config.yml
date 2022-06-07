@@ -54,6 +54,9 @@ messages:
   sold: "&c&lMineX &7| You have sold {amount} worth of items!"
   playerKilled: "&c&lMineX &7| {player} has been killed by {killer}"
   maxStash: "&c&lMineX &7| Sorry, you have reached the max stash size!"
+  timeRemaining: "&c&lMineX &7| This game has {minutes}m and {seconds}s remaining!"
+  gameEnding: "&c&lMineX &7| The game is ending!"
+  gameStarting: "&c&lMineX &7| The game is starting! try to stay alive!"
 
 helpCommand:
   - "&c&l/game create <id> &7- Create a new game"
@@ -85,6 +88,17 @@ economy:
     name: "&c&lMoney"
     lore:
       - "&7Use /bank to safely store this!"
+
+farm:
+  title: "&lBitcoin Farm"
+  rate: 10
+  gpu:
+    material: ACACIA_DOOR
+    amount: 1
+    name: "&c&lGPU"
+    lore:
+      - "&7Place this inside your bitcoin"
+      - "&7farm to earn passive income!"
 
 
 #Lootchest configuration

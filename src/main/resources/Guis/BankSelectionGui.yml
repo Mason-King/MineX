@@ -16,7 +16,7 @@ items:
     material: STAINED_GLASS_PANE
     damage: 5
     amount: 1
-    addAmount: 1
+    addAmount: 10
     name: "&c&lAdd 1"
     lore:
       - "&7Add one to the amount to {type}."

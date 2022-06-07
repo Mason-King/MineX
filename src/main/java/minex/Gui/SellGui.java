@@ -18,7 +18,6 @@ import java.io.File;
 public class SellGui {
 
     Main main = Main.getInstance();
-    Gui gui = new Gui(main);
 
     File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/SellGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -27,7 +26,8 @@ public class SellGui {
     YamlConfiguration shopConfig = YamlConfiguration.loadConfiguration(file2);
 
 
-    public void makeGui(Player p, String type) {
+    public Gui makeGui(Player p, String type) {
+        Gui gui = new Gui(main);
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title").replace("{type}", WordUtils.capitalizeFully(type))), config.getInt("size"));
 
         ItemStack stack = new ItemStack(Material.matchMaterial(config.getString("confirm.item.material")));
@@ -40,7 +40,7 @@ public class SellGui {
         ItemStack back = new ItemStack(Material.matchMaterial(config.getString("back.item.material")));
         ItemMeta m = back.getItemMeta();
         m.setLore(Utils.color(config.getStringList("back.item.lore")));
-        m.setDisplayName(Utils.color(config.getString("confirm.item.name")));
+        m.setDisplayName(Utils.color(config.getString("back.item.name")));
         back.setItemMeta(m);
         g.setItem(config.getInt("back.slot"), back);
 
@@ -79,7 +79,9 @@ public class SellGui {
                 mp.setBalance(mp.getBalance() + worth);
                 player.sendMessage(Message.SOLD.getMessage().replace("{amount}", worth + ""));
             } else if(slot == backBtn) {
-                new TraderGui().makeGui(p, type);
+                Gui trader = new TraderGui().makeGui(p, type);
+                trader.show(p, 0);
+                System.out.println("gui shown!");
                 return;
             } else {
                 ItemStack[] contents = e.getInventory().getContents();
@@ -141,7 +143,7 @@ public class SellGui {
 
         });
 
-        gui.show(p, 0);
+        return gui;
     }
 
 }

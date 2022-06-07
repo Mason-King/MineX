@@ -1,5 +1,6 @@
     package minex.Objects;
 
+    import minex.Enums.Message;
     import minex.Main;
     import minex.Managers.GameManager;
     import minex.Managers.PlayerManager;
@@ -29,6 +30,7 @@
         private int currPlayers;
         private Arena arena;
         private int lobbyCountdown = 30;
+        private int gameTimer = 1800;
         private boolean inGame;
         private Lobby lobby;
         private transient BukkitTask scheduler;
@@ -56,7 +58,7 @@
             this.players.remove(u);
             this.playerTeams.remove(u);
             currPlayers = currPlayers - 1;
-            if(currPlayers == 0) {
+            if(currPlayers <= 1) {
                 this.reset();
             }
             // TODO - edit spawn here
@@ -132,11 +134,8 @@
         }
 
         public void setTeamSpawn(Team team, String spawn) {
-            getArena().setTeamSpawn(team, spawn);
-        }
-
-        public Location getTeamSpawn(Team t) {
-            return getArena().getTeamSpawn(t);
+            team.setSpawn(spawn);
+            getArena().addClaimed(spawn);
         }
 
         public String getId() {
@@ -284,6 +283,48 @@
             GameManager.save(this);
         }
 
+        public void gameTimer(Game game) {
+            gameTimer = 1800;
+            timer = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    long minute = TimeUnit.SECONDS.toMinutes(gameTimer) - (TimeUnit.SECONDS.toHours(gameTimer) * 60);
+                    long second = TimeUnit.SECONDS.toSeconds(gameTimer) - (TimeUnit.SECONDS.toMinutes(gameTimer) * 60);
+
+                    if(gameTimer == 0) {
+                        game.broadcast(Message.GAME_ENDING.getMessage());
+                        reset();
+                        this.cancel();
+                    } else if(gameTimer <= 600) {
+                        //10 minutes or less
+                        if(gameTimer == 60) {
+                            //a minute left
+                            game.broadcast(Message.TIME_REMAINING.getMessage().replace("{minutes}", minute + "").replace("{seconds}", second + ""));
+                        }
+                        if(gameTimer == 300) {
+                            //a minute left
+                            game.broadcast(Message.TIME_REMAINING.getMessage().replace("{minutes}", minute + "").replace("{seconds}", second + ""));
+                        }
+                        if(gameTimer == 600) {
+                            game.broadcast(Message.TIME_REMAINING.getMessage().replace("{minutes}", minute + "").replace("{seconds}", second + ""));
+                        }
+                        if(gameTimer < 60) {
+                            if(gameTimer % 10 == 0) {
+                                game.broadcast(Message.TIME_REMAINING.getMessage().replace("{minutes}", minute + "").replace("{seconds}", second + ""));
+                            }
+                        }
+                        if(gameTimer <= 10) {
+                            game.broadcast(Message.TIME_REMAINING.getMessage().replace("{minutes}", minute + "").replace("{seconds}", second + ""));
+                        }
+                    } else if(gameTimer % 600 == 0) {
+                        //every 10 mins
+                        game.broadcast(Message.TIME_REMAINING.getMessage().replace("{minutes}", minute + "").replace("{seconds}", second + ""));
+                    }
+                    gameTimer--;
+                }
+            }.runTaskTimer(Main.getInstance(), 0, 20);
+        }
+
         public void lobbyCountdown(Game game) {
             scheduler = new BukkitRunnable() {
                 @Override
@@ -291,24 +332,28 @@
                     long minute = TimeUnit.SECONDS.toMinutes(lobbyCountdown) - (TimeUnit.SECONDS.toHours(lobbyCountdown) * 60);
                     long second = TimeUnit.SECONDS.toSeconds(lobbyCountdown) - (TimeUnit.SECONDS.toMinutes(lobbyCountdown) * 60);
                     if(lobbyCountdown == 0) {
+                        gameTimer(game);
                         this.cancel();
                         broadcast("&c&lMineX &7| Starting the game!");
                         //need a method to do this randomly if they havent choosen
                         for(UUID u : players) {
                             Player pl = Bukkit.getPlayer(u);
                             mPlayer mp = PlayerManager.getmPlayer(u);
-                            if(!game.getArena().getTeamSpawns().containsKey(mp.getTeam()) || game.getArena().getTeamSpawn(mp.getTeam()) == null) {
-                                System.out.println(game.getArena().getSpawnNames());
+                            if(mp.getTeam().getSpawn() == null) {
                                 for(Map.Entry e : game.getArena().getSpawnNames().entrySet()) {
-                                    System.out.println((String) e.getKey());
                                     if(!game.getArena().isClaimed((String) e.getKey())) {
-                                        System.out.println("not claimed!");
                                         game.setTeamSpawn(mp.getTeam(), (String) e.getKey());
-                                        System.out.println(mp.getTeam());
                                     }
                                 }
                             }
-                            pl.teleport(game.getArena().getTeamSpawn(mp.getTeam()));
+
+                            if (mp.getTeam().getSpawn() == null) {
+                                pl.teleport(game.getArena().getSpawn(1));
+                            } else {
+                                pl.teleport(getArena().getSpawn(mp.getTeam().getSpawn()));
+                            }
+
+
                             for(ItemStack remove : mp.getFullStash()) {
                                 net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(remove);
                                 NBTTagCompound tag = (stack.hasTag()) ? stack.getTag() : new NBTTagCompound();
@@ -321,6 +366,7 @@
                                 remove.setItemMeta(im);
 
                                 pl.getInventory().addItem(remove);
+                                mp.removeItem(remove);
                             }
                         }
 
@@ -331,6 +377,8 @@
                         for(MobSpawn spawn : game.getSpawns()) {
                             spawn.spawn();
                         }
+
+                        game.broadcast(Message.GAME_STARTING.getMessage());
 
                         setInGame(true);
                         return;
@@ -382,9 +430,7 @@
 
         public void reset() {
             for(UUID u : players) {
-                mPlayer mp = PlayerManager.getmPlayer(u);
-                mp.setCurrGame(null);
-                mp.setTeam(null);
+                leaveGame(u);
             }
             players = new ArrayList<>();
             if(allTeams != null) {
@@ -398,6 +444,11 @@
             this.lobbyCountdown = 30;
             this.inGame = false;
 
+
+            timer.cancel();
+            scheduler.cancel();
+
             GameManager.save(this);
         }
+
     }

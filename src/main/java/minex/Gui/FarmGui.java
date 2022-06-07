@@ -12,7 +12,7 @@ public class FarmGui {
 
 
     public void makeGui(Player p) {
-        Gui.NoobPage g = gui.create(Utils.color("&lBitcoin farm"), 1).c().s();
+        Gui.NoobPage g = gui.create(Utils.color(main.getConfig().getString("farm.title")), 1).c().s();
 
         gui.show(p, 0);
 

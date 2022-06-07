@@ -22,17 +22,26 @@ public class BankSelectionGui {
 
     File file = new File(main.getDataFolder().getAbsolutePath() + "/Guis/BankSelectionGui.yml");
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-    private int amount = 0;
+
+    String material = main.getConfig().getString("economy.item.material");
+    ItemStack ingot;
+    private int amount = 1;
 
 
     public void makeGui(Player p, String type) {
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title")), config.getStringList("format").size() * 9).c().s();
         Utils.makeSelectorFormat("BankSelectionGui.yml", g, "items", type);
         gui.show(p, 0);
+
+        //Simple function to optimize code a bit
+        loadGold();
+
         g.onClick(e -> {
+            System.out.println("click");
             Player clicked = (Player) e.getWhoClicked();
             int slot = e.getSlot();
             int confirm = config.getInt("confirm");
+            if(e.getClickedInventory() == null || e.getSlot() == -999) return;
 
             List<String> keys = new ArrayList<>();
 
@@ -66,13 +75,14 @@ public class BankSelectionGui {
                         nbt.setBoolean("eco", true);
                         ingot = CraftItemStack.asBukkitCopy(nbtStack);
 
-                        for(int i = 0; i < amount; i++) {
+                        for(int i = 0; i < (amount / 10); i++) {
                             clicked.getInventory().addItem(ingot);
                         }
 
                    } else {
                         clicked.closeInventory();
                         clicked.sendMessage(Utils.color("&c&lMineX &7| You do not have enough for this!"));
+                        return;
                     }
                 } else {
                     if(config.getInt("items." + key + ".addAmount") != 0) {
@@ -91,39 +101,47 @@ public class BankSelectionGui {
                     g.setItem(confirm, newConfirm);
                 }
             } else if(type.equalsIgnoreCase("deposit")) {
+                System.out.println("here?");
                 if(slot > e.getInventory().getSize()) return;
                 String key = keys.get(slot);
                 if(slot == confirm) {
-                    ItemStack ingot = new ItemStack(Material.matchMaterial(main.getConfig().getString("economy.item.material")));
-                    ItemMeta im = ingot.getItemMeta();
-                    im.setDisplayName(Utils.color(main.getConfig().getString("economy.item.name")));
-                    im.setLore(Utils.color(main.getConfig().getStringList("economy.item.lore")));
-                    ingot.setItemMeta(im);
-
                     int count = 0;
-
-                    for (ItemStack stack : clicked.getInventory().getContents()) {
-                        if(stack == null || stack.getType().equals(Material.AIR)) continue;
-                        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(stack);
-                        NBTTagCompound nbt = (nbtStack.hasTag()) ? nbtStack.getTag() : new NBTTagCompound();
-                        if(nbt.getBoolean("eco")) {
-                            count += stack.getAmount();
+                    for(ItemStack i : p.getInventory().getContents()) {
+                        if(i == null || i.getType().equals(Material.AIR)) continue;
+                        if(i.getType().equals(ingot.getType())) {
+                            net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(i);
+                            if(!nbtStack.hasTag()) continue;
+                            NBTTagCompound tag = nbtStack.getTag();
+                            if(!tag.getBoolean("eco")) continue;
+                            count += i.getAmount();
                         }
                     }
 
+
                     if(count < amount) {
-                        clicked.sendMessage(Utils.color("&c&lMineX &7| You do not have enough money for this!"));
+                        p.sendMessage("NEED MSG");
                         return;
                     }
-                    PlayerManager.getmPlayer(clicked.getUniqueId()).setBalance(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() + amount);
 
-                    for(ItemStack stack : clicked.getInventory().getContents()) {
-                        if(stack == null || stack.getType().equals(Material.AIR)) continue;
-                        int subtract = Math.min(stack.getAmount(), amount);
-                        stack.setAmount(stack.getAmount() - subtract);
-                        amount -= subtract;
+                    int num = 0;
+                    for(ItemStack i : clicked.getInventory().getContents()) {
+                        num++;
+                        if(i == null || i.getType().equals(Material.AIR)) continue;
+                        int subtract = Math.min(i.getAmount(), amount);
+                        if(i.getType().equals(ingot.getType())) {
+                            net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(i);
+                            if(!nbtStack.hasTag()) continue;
+                            NBTTagCompound tag = nbtStack.getTag();
+                            if(!tag.getBoolean("eco")) continue;
+                            if ((i.getAmount() - subtract) > 0) {
+                                i.setAmount(i.getAmount() - subtract);
+                            } else {
+                                p.getInventory().setItem(num - 1, new ItemStack(Material.AIR));
+                            }
+                            amount -= subtract;
+                        }
                     }
-
+                    p.closeInventory();
                 } else {
                     if(config.getInt("items." + key + ".addAmount") != 0) {
                         //adding
@@ -137,13 +155,31 @@ public class BankSelectionGui {
                     ItemMeta im = newConfirm.getItemMeta();
                     im.setDisplayName(Utils.color(config.getString("items." + k + ".name").replace("{amount}", "" + amount)));
                     im.setLore(Utils.color(config.getStringList("items." + k + ".lore")));
-
                     newConfirm.setItemMeta(im);
-
                     g.setItem(confirm, newConfirm);
                 }
+
             }
         });
+    }
+
+    public ItemStack getNewCount(int amount) {
+        return null;
+    }
+
+    public void loadGold() {
+        ItemStack ingot = new ItemStack(Material.matchMaterial(material));
+        ItemMeta im = ingot.getItemMeta();
+        im.setDisplayName(Utils.color(main.getConfig().getString("economy.item.name")));
+        im.setLore(Utils.color(main.getConfig().getStringList("economy.item.lore")));
+        ingot.setItemMeta(im);
+
+        net.minecraft.server.v1_8_R3.ItemStack nbtStack = CraftItemStack.asNMSCopy(ingot);
+        NBTTagCompound nbt = (nbtStack.hasTag() ? nbtStack.getTag() : new NBTTagCompound());
+        nbt.setBoolean("eco", true);
+        ingot = CraftItemStack.asBukkitCopy(nbtStack);
+
+        this.ingot = ingot;
     }
 
 }

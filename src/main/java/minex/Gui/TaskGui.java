@@ -23,7 +23,7 @@ public class TaskGui {
     YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
 
-    public void makeGui(Player p, String type) {
+    public Gui makeGui(Player p, String type) {
         Gui.NoobPage g  = gui.create(Utils.color(config.getString("title").replace("{type}", WordUtils.capitalizeFully(type))), config.getStringList("format").size() * 9).c().s();
         Utils.makeFormat("TaskGui.yml", g, "items");
 
@@ -49,7 +49,23 @@ public class TaskGui {
             }
         }
 
-        gui.show(p, 0);
+        ItemStack back = new ItemStack(Material.matchMaterial(config.getString("back.item.material")));
+        ItemMeta m = back.getItemMeta();
+        m.setLore(Utils.color(config.getStringList("back.item.lore")));
+        m.setDisplayName(Utils.color(config.getString("back.item.name")));
+        back.setItemMeta(m);
+        System.out.println(config.getInt("back.slot"));
+        g.setItem(config.getInt("back.slot"), back);
+
+        g.onClick(e -> {
+            if(e.getSlot() == config.getInt("back.slot")) {
+                p.closeInventory();
+                new TraderGui().makeGui(p, type);
+                return;
+            }
+        });
+
+        return gui;
     }
 
 }
