@@ -93,6 +93,10 @@ public final class Main extends JavaPlugin {
         for(Game g : GameManager.games) {
             g.reset();
         }
+
+        for(mPlayer mp : PlayerManager.players) {
+            mp.getBoard().delete();
+        }
     }
 
     public static Main getInstance() {

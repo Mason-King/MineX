@@ -18,12 +18,14 @@ C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Enums\Message.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\TraderGui.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Objects\MobSpawn.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Objects\Party.java
+C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Fastboard\FastReflection.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Objects\LootChest.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Objects\Lobby.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Objects\Quest.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Utils\Items.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Commands\ShopCommand.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Gui\StashGui.java
+C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Fastboard\FastBoard.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Events\Quests\PlayerKill.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Enums\QuestType.java
 C:\Users\mason\IdeaProjects\MineX\src\main\java\minex\Events\Quests\MobKill.java

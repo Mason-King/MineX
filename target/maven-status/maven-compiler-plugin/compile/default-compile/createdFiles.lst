@@ -21,6 +21,7 @@ minex\Gui\BankGui.class
 minex\Events\RegionListener.class
 minex\Gui\Gui$NoobPage.class
 minex\Objects\mPlayer.class
+minex\Fastboard\FastReflection.class
 minex\Gui\FarmGui.class
 minex\Objects\LootItem.class
 minex\Managers\GameManager.class
@@ -29,7 +30,9 @@ minex\Commands\GameCommand.class
 minex\Gui\Gui$clickEvent.class
 minex\Objects\Game$1.class
 minex\Gui\GameSelectorGui.class
+minex\Fastboard\FastBoard$ObjectiveMode.class
 minex\Objects\Team.class
+minex\Fastboard\FastBoard.class
 minex\Gui\TaskGui.class
 minex\Events\ChestPlace.class
 minex\Events\Quests\Destroy.class
@@ -37,11 +40,15 @@ minex\Utils\Items.class
 minex\Events\Quests\Place.class
 minex\Commands\BankCommand.class
 minex\Objects\Game$2.class
+minex\Fastboard\FastBoard$ScoreboardAction.class
 minex\Objects\Party.class
+minex\Fastboard\FastReflection$PacketConstructor.class
 minex\Gui\Gui$1.class
 minex\Gui\SellGui.class
 minex\Events\ExtractionListener$1.class
+minex\Fastboard\FastBoard$VersionType.class
 minex\Main.class
+minex\Fastboard\FastBoard$TeamMode.class
 minex\Commands\ShopCommand.class
 minex\Managers\QuestManager.class
 minex\Gui\Gui.class

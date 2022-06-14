@@ -22,6 +22,7 @@ import minex.Objects.mPlayer;
 import minex.Utils.Utils;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -314,7 +315,30 @@ public class GameCommand implements CommandExecutor {
                 } else if(args[0].equalsIgnoreCase("join")) {
                     new GameSelectorGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("farm")) {
-                    new FarmGui().makeGui(player);
+                    System.out.println(args.length);
+                    if(args.length < 2) {
+                        new FarmGui().makeGui(player);
+                    } else {
+                        if(args[1].equalsIgnoreCase("give")) {
+                            org.bukkit.inventory.ItemStack gpu = new org.bukkit.inventory.ItemStack(Material.matchMaterial(main.getConfig().getString("farm.gpu.material")));
+                            ItemMeta im = gpu.getItemMeta();
+                            im.setDisplayName(Utils.color(main.getConfig().getString("farm.gpu.name")));
+                            im.setLore(Utils.color(main.getConfig().getStringList("farm.gpu.lore")));
+                            gpu.setItemMeta(im);
+                            if(args.length == 2) {
+                                System.out.println(player);
+                                System.out.println(gpu);
+                                player.getInventory().addItem(gpu);
+                            } else {
+                                if(Bukkit.getPlayer(args[2]) == null) {
+                                    player.sendMessage(Message.INVALID_PLAYER.getMessage());
+                                } else {
+                                    Player t = Bukkit.getPlayer(args[2]);
+                                    t.getInventory().addItem(gpu);
+                                }
+                            }
+                        }
+                    }
                 } else if(args[0].equalsIgnoreCase("lobby")) {
                     if(!player.hasPermission("minex.lobby")) {
                         player.sendMessage(Message.NO_PERMISSION.getMessage());

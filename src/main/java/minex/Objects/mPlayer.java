@@ -1,6 +1,7 @@
 package minex.Objects;
 
 import minex.Enums.QuestType;
+import minex.Fastboard.FastBoard;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,6 +19,7 @@ public class mPlayer {
     private int balance;
     private int karma;
     private List<Quest> quests;
+    private FastBoard board;
 
 
     public mPlayer(UUID id) {
@@ -123,6 +125,17 @@ public class mPlayer {
         return temp;
     }
 
+    public void setQuests(List<Quest> quests) {
+        this.quests = quests;
+    }
+
+    public FastBoard getBoard() {
+        return board;
+    }
+
+    public void setBoard(FastBoard board) {
+        this.board = board;
+    }
 }
 
 

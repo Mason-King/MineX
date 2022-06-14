@@ -1,6 +1,7 @@
     package minex.Objects;
 
     import minex.Enums.Message;
+    import minex.Fastboard.FastBoard;
     import minex.Main;
     import minex.Managers.GameManager;
     import minex.Managers.PlayerManager;
@@ -36,7 +37,6 @@
         private transient BukkitTask scheduler;
         private transient BukkitTask timer;
 
-
         public Game(String id, int maxPlayers, int currPlayers) {
             this.id = id;
             this.maxPlayers = maxPlayers;
@@ -69,6 +69,8 @@
         }
 
         public void joinGame(UUID u) {
+            List<String> scoreboard = Main.getInstance().getConfig().getStringList("gameScoreboard");
+            String partyFormat = Main.getInstance().getConfig().getString("partyFormat");
             Player player = Bukkit.getPlayer(u);
             mPlayer mp = PlayerManager.getmPlayer(u);
             player.teleport(lobby.getSpawn());
@@ -85,7 +87,59 @@
             }
             currPlayers++;
             if(currPlayers == 1) lobbyCountdown(this);
+
+            FastBoard board = new FastBoard(player);
+
+            mp.setBoard(board);
+
+
+                Party p = mp.getParty();
+
+            List<String> lines = new ArrayList<>();
+            for(int i = 0; i < scoreboard.size(); i++) {
+                if(mp.getCurrGame() == null) continue;
+                Game game = mp.getCurrGame();
+                List<String> locs = game.getArena().getExtractions();
+                Location closest = null;
+                for(String s : locs) {
+                    if(closest == null) {
+                        closest = Utils.fromString(s);
+                    } else if(Utils.fromString(s).distanceSquared(Bukkit.getPlayer(u).getLocation()) < closest.distanceSquared(Bukkit.getPlayer(u).getLocation())) {
+                        closest = Utils.fromString(s);
+                    }
+                }
+
+                String exName = "null";
+                for(Map.Entry e : game.getArena().getExtractionNames().entrySet()) {
+                    if(((String) e.getValue()).equals(Utils.toString(closest))) {
+                        exName = (String) e.getKey();
+                    }
+                }
+
+                String string = Utils.color(scoreboard.get(i)
+                        .replace("{remaining}", "" + lobbyCountdown)
+                        .replace("{nearest_extraction}", exName));
+
+                if(string.contains("{party}")) {
+//                                if(p == null) {
+//                                    System.out.println("should not add " + string);
+//                                    board.removeLine(i);
+//                                    continue;
+//                                } else {
+//
+//                                }
+                    for(int x = 0; x < 4; x++) {
+                        lines.add(("test line " + x));
+                        continue;
+                    }
+                    continue;
+                }
+
+                lines.add(string);
+            }
+            System.out.println(lines);
         }
+
 
         public void joinGame(Party p) {
             Team t = getRandomEmptyTeam();
@@ -326,11 +380,62 @@
         }
 
         public void lobbyCountdown(Game game) {
+            List<String> scoreboard = Main.getInstance().getConfig().getStringList("gameScoreboard");
+            String partyFormat = Main.getInstance().getConfig().getString("partyFormat");
             scheduler = new BukkitRunnable() {
                 @Override
                 public void run() {
                     long minute = TimeUnit.SECONDS.toMinutes(lobbyCountdown) - (TimeUnit.SECONDS.toHours(lobbyCountdown) * 60);
                     long second = TimeUnit.SECONDS.toSeconds(lobbyCountdown) - (TimeUnit.SECONDS.toMinutes(lobbyCountdown) * 60);
+                    for(UUID u : players) {
+                        mPlayer mp = PlayerManager.getmPlayer(u);
+                        Party p = mp.getParty();
+
+                        FastBoard board = mp.getBoard();
+
+                        List<String> lines = new ArrayList<>();
+                        for(int i = 0; i < scoreboard.size(); i++) {
+                            if(mp.getCurrGame() == null) continue;
+                            Game game = mp.getCurrGame();
+                            List<String> locs = game.getArena().getExtractions();
+                            Location closest = null;
+                            for(String s : locs) {
+                                if(closest == null) {
+                                    closest = Utils.fromString(s);
+                                } else if(Utils.fromString(s).distanceSquared(Bukkit.getPlayer(u).getLocation()) < closest.distanceSquared(Bukkit.getPlayer(u).getLocation())) {
+                                    closest = Utils.fromString(s);
+                                }
+                            }
+
+                            String exName = "null";
+                            for(Map.Entry e : game.getArena().getExtractionNames().entrySet()) {
+                                if(((String) e.getValue()).equals(Utils.toString(closest))) {
+                                    exName = (String) e.getKey();
+                                }
+                            }
+
+                            String string = Utils.color(scoreboard.get(i)
+                                    .replace("{remaining}", "" + lobbyCountdown)
+                                    .replace("{nearest_extraction}", exName));
+
+                            if(string.contains("{party}")) {
+//                                if(p == null) {
+//                                    System.out.println("should not add " + string);
+//                                    board.removeLine(i);
+//                                    continue;
+//                                } else {
+//
+//                                }
+                                for(int x = 0; x < 4; x++) {
+                                    lines.add(("test line " + x));
+                                    continue;
+                                }
+                                continue;
+                            }
+
+                            lines.add(string);
+                        }
+                    }
                     if(lobbyCountdown == 0) {
                         gameTimer(game);
                         this.cancel();
@@ -445,8 +550,12 @@
             this.inGame = false;
 
 
-            timer.cancel();
-            scheduler.cancel();
+            if(timer != null) {
+                timer.cancel();
+            }
+            if(scheduler != null) {
+                scheduler.cancel();
+            }
 
             GameManager.save(this);
         }

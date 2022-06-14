@@ -93,13 +93,26 @@ farm:
   title: "&lBitcoin Farm"
   rate: 10
   gpu:
-    material: ACACIA_DOOR
+    material: IRON_BLOCK
     amount: 1
     name: "&c&lGPU"
     lore:
       - "&7Place this inside your bitcoin"
       - "&7farm to earn passive income!"
 
+
+partyFormat: "&e{username} &7: &c{health}&7/{maxHealth}"
+gameScoreboard:
+  - "     &e&lMineX.gg"
+  - "&e&m+--------------------+"
+  - "&e&lGame"
+  - "  &f{remaining}"
+  - ""
+  - "&e&lParty"
+  - "  &f{party}"
+  - ""
+  - "&e&lNearest Extraction"
+  - "  &f{nearest_extraction}"
 
 #Lootchest configuration
 lootChest:

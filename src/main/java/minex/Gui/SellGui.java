@@ -61,7 +61,7 @@ public class SellGui {
                 int worth = 0;
                 ItemStack[] contents = e.getInventory().getContents();
                 for (int i = 0; i < contents.length; i++) {
-                    if (i == confirm) continue;
+                    if (i == confirm || i == backBtn) continue;
                     ItemStack curr = contents[i];
                     if (curr == null || curr.getType().equals(Material.AIR)) continue;
                     if (shopConfig.isSet("sell." + type + "." + curr.getType())) {
@@ -81,7 +81,6 @@ public class SellGui {
             } else if(slot == backBtn) {
                 Gui trader = new TraderGui().makeGui(p, type);
                 trader.show(p, 0);
-                System.out.println("gui shown!");
                 return;
             } else {
                 ItemStack[] contents = e.getInventory().getContents();
