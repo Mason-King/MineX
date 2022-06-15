@@ -13,6 +13,8 @@ public class mPlayer {
 
     private UUID id;
     private Party party;
+    private int farmLimit = 3;
+    private int currGPU;
     private Game currGame;
     private int stashSize = 9;
     private Team team;
@@ -135,6 +137,22 @@ public class mPlayer {
 
     public void setBoard(FastBoard board) {
         this.board = board;
+    }
+
+    public int getFarmLimit() {
+        return farmLimit;
+    }
+
+    public void setFarmLimit(int farmLimit) {
+        this.farmLimit = farmLimit;
+    }
+
+    public int getCurrGPU() {
+        return currGPU;
+    }
+
+    public void setCurrGPU(int currGPU) {
+        this.currGPU = currGPU;
     }
 }
 

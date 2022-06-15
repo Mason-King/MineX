@@ -79,8 +79,11 @@ public class SellGui {
                 mp.setBalance(mp.getBalance() + worth);
                 player.sendMessage(Message.SOLD.getMessage().replace("{amount}", worth + ""));
             } else if(slot == backBtn) {
+                System.out.println("back btn");
                 Gui trader = new TraderGui().makeGui(p, type);
+                System.out.println("back2");
                 trader.show(p, 0);
+                System.out.println("back3");
                 return;
             } else {
                 ItemStack[] contents = e.getInventory().getContents();

@@ -141,6 +141,7 @@ public class Gui implements Listener {
 
     // List of players viewing the current gui not specific to pages
     public List<Player> getViewers() {
+        System.out.println("viewers");
         List<Player> viewers = new ArrayList<>();
         for (UUID u : this.viewing.keySet())
             viewers.add(Bukkit.getPlayer(u));

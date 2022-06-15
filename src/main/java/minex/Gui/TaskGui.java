@@ -54,7 +54,6 @@ public class TaskGui {
         m.setLore(Utils.color(config.getStringList("back.item.lore")));
         m.setDisplayName(Utils.color(config.getString("back.item.name")));
         back.setItemMeta(m);
-        System.out.println(config.getInt("back.slot"));
         g.setItem(config.getInt("back.slot"), back);
 
         g.onClick(e -> {

@@ -37,7 +37,6 @@ public class BankSelectionGui {
         loadGold();
 
         g.onClick(e -> {
-            System.out.println("click");
             Player clicked = (Player) e.getWhoClicked();
             int slot = e.getSlot();
             int confirm = config.getInt("confirm");
@@ -101,7 +100,6 @@ public class BankSelectionGui {
                     g.setItem(confirm, newConfirm);
                 }
             } else if(type.equalsIgnoreCase("deposit")) {
-                System.out.println("here?");
                 if(slot > e.getInventory().getSize()) return;
                 String key = keys.get(slot);
                 if(slot == confirm) {

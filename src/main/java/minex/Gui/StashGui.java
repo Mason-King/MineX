@@ -173,7 +173,6 @@ public class StashGui {
         double pages = (Math.ceil(mp.getFullStash().size() / empty)) == 0 ? 1 : Math.ceil(mp.getFullStash().size() / empty);
         for(int i = 0; i < pages; i++) {
             Gui.GuiPage page = gui.create(template).c().s();
-            System.out.println("page" + i);
             for(int x = 0; x < empty; x++) {
                 if(mp.getFullStash().size() == x) break;;
                 if(mp.getFullStash().get(x) == null || mp.getFullStash().get(x).getType().equals(Material.AIR)) break;

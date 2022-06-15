@@ -65,7 +65,8 @@ public enum Message {
     MAX_STASH("maxStash"),
     TIME_REMAINING("timeRemaining"),
     GAME_ENDING("gameEnding"),
-    GAME_STARTING("gameStarting");
+    GAME_STARTING("gameStarting"),
+    FARM_MAX("farmMax");
 
 
 

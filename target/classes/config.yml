@@ -57,6 +57,7 @@ messages:
   timeRemaining: "&c&lMineX &7| This game has {minutes}m and {seconds}s remaining!"
   gameEnding: "&c&lMineX &7| The game is ending!"
   gameStarting: "&c&lMineX &7| The game is starting! try to stay alive!"
+  farmMax: "&c&lMineX &7| You have reached your max farm size, use /upgrade to upgrade it!"
 
 helpCommand:
   - "&c&l/game create <id> &7- Create a new game"

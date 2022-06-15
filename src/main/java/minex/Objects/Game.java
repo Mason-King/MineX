@@ -78,7 +78,6 @@
             mp.setCurrGame(this);
 
             Team t = getRandomEmptyTeam();
-            System.out.println(t);
             if(t == null) {
                 this.lobbyCountdown = 5;
             } else {
@@ -137,7 +136,7 @@
 
                 lines.add(string);
             }
-            System.out.println(lines);
+            board.updateLines(lines);
         }
 
 
@@ -435,6 +434,7 @@
 
                             lines.add(string);
                         }
+                        board.updateLines(lines);
                     }
                     if(lobbyCountdown == 0) {
                         gameTimer(game);

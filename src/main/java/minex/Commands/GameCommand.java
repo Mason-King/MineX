@@ -35,6 +35,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class GameCommand implements CommandExecutor {
 
@@ -315,9 +316,9 @@ public class GameCommand implements CommandExecutor {
                 } else if(args[0].equalsIgnoreCase("join")) {
                     new GameSelectorGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("farm")) {
-                    System.out.println(args.length);
                     if(args.length < 2) {
                         new FarmGui().makeGui(player);
+                        return false;
                     } else {
                         if(args[1].equalsIgnoreCase("give")) {
                             org.bukkit.inventory.ItemStack gpu = new org.bukkit.inventory.ItemStack(Material.matchMaterial(main.getConfig().getString("farm.gpu.material")));
@@ -325,9 +326,13 @@ public class GameCommand implements CommandExecutor {
                             im.setDisplayName(Utils.color(main.getConfig().getString("farm.gpu.name")));
                             im.setLore(Utils.color(main.getConfig().getStringList("farm.gpu.lore")));
                             gpu.setItemMeta(im);
+                            ItemStack nbtStack = CraftItemStack.asNMSCopy(gpu);
+                            NBTTagCompound tag = (nbtStack.hasTag() ? nbtStack.getTag() : new NBTTagCompound());
+                            tag.setBoolean("gpu", true);
+                            tag.setString("unstackable", UUID.randomUUID().toString());
+                            nbtStack.setTag(tag);
+                            gpu = CraftItemStack.asBukkitCopy(nbtStack);
                             if(args.length == 2) {
-                                System.out.println(player);
-                                System.out.println(gpu);
                                 player.getInventory().addItem(gpu);
                             } else {
                                 if(Bukkit.getPlayer(args[2]) == null) {
