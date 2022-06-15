@@ -22,26 +22,21 @@ public class FarmGui {
 
 
         g.onClick(e -> {
-            System.out.println(e.getSlot() + " slot");
+            e.setCancelled(true);
+           int slow = e.getSlot();
+           Player clicked = (Player) e.getWhoClicked();
+           mPlayer mp = PlayerManager.getmPlayer(clicked.getUniqueId());
+            ItemStack stack = e.getCurrentItem();
+            if(stack == null || stack.getType().equals(Material.AIR)) return;
+            if(!CraftItemStack.asNMSCopy(stack).hasTag()) return;
+            if(mp.getFarmLimit() == mp.getCurrGPU()) {
+                clicked.sendMessage(Message.FARM_MAX.getMessage());
+                return;
+            } else {
+                g.addItem(e.getCurrentItem());
+                e.setCurrentItem(new ItemStack(Material.AIR));
+            }
         });
-
-//        g.onClick(e -> {
-//            e.setCancelled(true);
-//           int slow = e.getSlot();
-//           Player clicked = (Player) e.getWhoClicked();
-//           mPlayer mp = PlayerManager.getmPlayer(clicked.getUniqueId());
-//            ItemStack stack = e.getCurrentItem();
-//            if(stack == null || stack.getType().equals(Material.AIR)) return;
-//            if(!CraftItemStack.asNMSCopy(stack).hasTag()) return;
-//            if(mp.getFarmLimit() == mp.getCurrGPU()) {
-//                clicked.sendMessage(Message.FARM_MAX.getMessage());
-//                return;
-//            } else {
-//                g.addItem(e.getCurrentItem());
-//                e.setCurrentItem(new ItemStack(Material.AIR));
-//            }
-//            System.out.println("onClick");
-//        });
 
         gui.show(p, 0);
 
