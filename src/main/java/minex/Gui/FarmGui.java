@@ -46,38 +46,50 @@ public class FarmGui {
            int slow = e.getSlot();
            Player clicked = (Player) e.getWhoClicked();
            mPlayer mp = PlayerManager.getmPlayer(clicked.getUniqueId());
-            ItemStack stack = e.getCurrentItem();
-            if(stack == null || stack.getType().equals(Material.AIR)) return;
-            if(!CraftItemStack.asNMSCopy(stack).hasTag()) return;
+//            if(!CraftItemStack.asNMSCopy(stack).hasTag()) return;
             if(e.getClickedInventory().getHolder() instanceof  Player) {
                 //Players inv
+                System.out.println(e.getCurrentItem());
+                System.out.println(e.getCursor());
                 if((e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) && !e.getCurrentItem().getType().equals(Material.AIR)) {
                     //shifting into the gui
-                    System.out.println("here3");
+                    if(mp.getFarmLimit() == mp.getCurrGPU()) {
+                        clicked.sendMessage(Message.FARM_MAX.getMessage());
+                        return;
+                    } else {
+                        g.addItem(e.getCurrentItem());
+                        e.setCurrentItem(new ItemStack(Material.AIR));
+                        mp.setCurrGPU(mp.getCurrGPU() + 1);
+                    }
                 }
                 if(e.getCursor().getType().equals(Material.AIR) && !e.getCurrentItem().getType().equals(Material.AIR)) {
                     //picking it up
                     e.setCursor(e.getCurrentItem());
                     e.setCurrentItem(new ItemStack(Material.AIR));
-                    System.out.println("here1");
                 } else if(!e.getCursor().getType().equals(Material.AIR) && e.getCurrentItem().getType().equals(Material.AIR)) {
                     //placing it maybe?
                     e.setCurrentItem(e.getCursor());
                     e.setCursor(new ItemStack(Material.AIR));
-                    System.out.println("here2");
                 }
-
                 } else {
-                //gui
-            }
-            if(mp.getFarmLimit() == mp.getCurrGPU()) {
-                clicked.sendMessage(Message.FARM_MAX.getMessage());
-                return;
-            } else {
-                g.addItem(e.getCurrentItem());
-                e.setCurrentItem(new ItemStack(Material.AIR));
-                mp.setCurrGPU(mp.getCurrGPU() + 1);
-            }
+                    //gui
+                    if((e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) && !e.getCurrentItem().getType().equals(Material.AIR)) {
+                        p.getInventory().addItem(e.getCurrentItem());
+                        g.setItem(slow, new ItemStack(Material.AIR));
+                        mp.setCurrGPU(mp.getCurrGPU() - 1);
+                    }
+                if(e.getCursor().getType().equals(Material.AIR) && !e.getCurrentItem().getType().equals(Material.AIR)) {
+                    //picking it up
+                    e.setCursor(e.getCurrentItem());
+                    e.setCurrentItem(new ItemStack(Material.AIR));
+                    mp.setCurrGPU(mp.getCurrGPU() - 1);
+                } else if(!e.getCursor().getType().equals(Material.AIR) && e.getCurrentItem().getType().equals(Material.AIR)) {
+                    //placing it maybe?
+                    e.setCurrentItem(e.getCursor());
+                    e.setCursor(new ItemStack(Material.AIR));
+                    mp.setCurrGPU(mp.getCurrGPU() + 1);
+                }
+                }
         });
 
         gui.show(p, 0);

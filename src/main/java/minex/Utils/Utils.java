@@ -146,6 +146,36 @@ public class Utils {
         }
     }
 
+    public static void makeUpgradeFormat(String file, Gui.NoobPage gui, String keyForItems, Player p) {
+
+        File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
+        List<String> toFormat = config.getStringList("format");
+        int size = toFormat.size() * 9;
+
+        if(toFormat.size() == size / 9) {
+            for(int i = 0; i < (size / 9); i++) {
+                String s = toFormat.get(i);
+                for(int z = 0; z < 9; z++) {
+                    String removeSpaces = s.replaceAll(" ", "");
+                    char individual = removeSpaces.charAt(z);
+                    if(config.get(keyForItems + "." + individual) == null) continue;
+                    ItemStack stack = new ItemStack(Material.matchMaterial(config.getString(keyForItems + "." + individual + ".material")),(config.getInt(keyForItems + "." + individual + ".amount") == 0) ? 1 : config.getInt(keyForItems + "." + individual + ".amount"), (short) config.getInt(keyForItems + "." + individual + ".damage"));
+                    ItemMeta im = stack.getItemMeta();
+                    im.setDisplayName(color(config.getString(keyForItems + "." + individual + ".name")));
+                    List<String> lore = new ArrayList<>();
+                    for(String str : config.getStringList(keyForItems + "." + individual + ".lore")) {
+                        lore.add(Utils.color(str)
+                                .replace("{level}", ""));
+                    }
+
+                    gui.setItem((9 * i) + z, stack);
+                }
+            }
+
+        }
+    }
+
     public static void makeSpawnFormat(Game game, String file, Gui.NoobPage gui, String keyForItems) {
 
         File f = new File(Main.getInstance().getDataFolder().getAbsoluteFile() + "/Guis/" + file);

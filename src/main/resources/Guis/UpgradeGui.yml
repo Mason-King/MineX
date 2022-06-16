@@ -1,0 +1,61 @@
+
+title: "&lUpgrades"
+format:
+  - "# # # # # # # # #"
+  - "# # @ # # # $ # #"
+  - "# # # # # # # # #"
+
+items:
+  '#':
+    material: STAINED_GLASS_PANE
+    damage: 7
+    name: ""
+  '@':
+    material: CHEST
+    amount: 1
+    name: "&c&lStash Upgrade"
+    lore:
+      - "&7Upgrade the amount of items"
+      - "&7You can store in your stash!"
+      - ""
+      - "&c&lLevel&7: {level}"
+      - "&c&lNext Level&7: {nextLevel}"
+      - "&c&lCost&7: {cost}"
+      - ""
+      - "&7&o(( Click to upgrade ))"
+  '$':
+    material: DIAMOND
+    amount: 1
+    name: "&c&lFarm Upgrade"
+    lore:
+      - "&7Upgrade the amount of GPUs"
+      - "&7You can store in your farm!"
+      - ""
+      - "&c&lLevel&7: {level}"
+      - "&c&lNext Level&7: {nextLevel}"
+      - "&c&lCost&7: {cost}"
+      - ""
+      - "&7&o(( Click to upgrade ))"
+
+upgrades:
+  stash:
+    #base level
+    1:
+      amount: 9
+      cost: 0
+    2:
+      amount: 18
+      cost: 1000
+    3:
+      amount: 21
+      cost: 2000
+  farm:
+    1:
+      amount: 3
+      cost: 0
+    2:
+      amount: 6
+      cost: 1000
+    3:
+      amount: 9
+      cost: 2000

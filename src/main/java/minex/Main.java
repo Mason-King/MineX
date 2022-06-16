@@ -59,6 +59,7 @@ public final class Main extends JavaPlugin {
         if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/SellGui.yml").exists())this.saveResource("Guis/SellGui.yml", false);
         if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/TaskGui.yml").exists())this.saveResource("Guis/TaskGui.yml", false);
         if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/TraderGui.yml").exists())this.saveResource("Guis/TraderGui.yml", false);
+        if(!new File(this.getDataFolder().getAbsoluteFile() + "/Guis/UpgradeGui.yml").exists())this.saveResource("Guis/UpgradeGui.yml", false);
         if(!new File(this.getDataFolder().getAbsoluteFile() + "/Tasks.yml").exists())this.saveResource("Tasks.yml", false);
         if(!new File(this.getDataFolder().getAbsoluteFile() + "/Shops.yml").exists())this.saveResource("Shops.yml", false);
         // Plugin startup logic

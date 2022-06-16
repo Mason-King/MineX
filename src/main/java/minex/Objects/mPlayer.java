@@ -2,9 +2,12 @@ package minex.Objects;
 
 import minex.Enums.QuestType;
 import minex.Fastboard.FastBoard;
+import minex.Main;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.util.*;
 
 public class mPlayer {
@@ -13,10 +16,12 @@ public class mPlayer {
 
     private UUID id;
     private Party party;
-    private int farmLimit = 3;
+    private int farmLimit;
+    private int farmLevel = 1;
     private int currGPU;
     private Game currGame;
-    private int stashSize = 9;
+    private int stashSize;
+    private int stashLevel = 1;
     private Team team;
     private int balance;
     private int karma;
@@ -86,7 +91,9 @@ public class mPlayer {
     }
 
     public int getStashSize() {
-        return stashSize;
+        File file = new File(Main.getInstance().getDataFolder().getAbsolutePath() + "/Guis/UpgradeGui.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return (stashSize == 0) ? config.getInt("upgrades.stash.1.amount") : stashSize;
     }
 
     public void setStashSize(int stashSize) {
@@ -140,7 +147,9 @@ public class mPlayer {
     }
 
     public int getFarmLimit() {
-        return farmLimit;
+        File file = new File(Main.getInstance().getDataFolder().getAbsolutePath() + "/Guis/UpgradeGui.yml");
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+        return (farmLimit == 0) ? config.getInt("upgrades.farm.1.amount") : farmLimit;
     }
 
     public void setFarmLimit(int farmLimit) {
@@ -153,6 +162,22 @@ public class mPlayer {
 
     public void setCurrGPU(int currGPU) {
         this.currGPU = currGPU;
+    }
+
+    public int getFarmLevel() {
+        return farmLevel;
+    }
+
+    public void setFarmLevel(int farmLevel) {
+        this.farmLevel = farmLevel;
+    }
+
+    public int getStashLevel() {
+        return stashLevel;
+    }
+
+    public void setStashLevel(int stashLevel) {
+        this.stashLevel = stashLevel;
     }
 }
 
