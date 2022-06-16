@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/UpgradeGui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Guis/UpgradeGui.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/FarmTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/FarmGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/FarmGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Commands/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Commands/GameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Enums/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Enums/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/UpgradeGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/UpgradeGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Objects/mPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Objects/mPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/SellGui.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/SellGui.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/FarmGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/FarmGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Commands/GameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Commands/GameCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Enums/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Enums/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Objects/mPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Objects/mPlayer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
@@ -123,7 +128,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CODE_SMELLS_PROFILE" value="Project Default" />

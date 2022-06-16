@@ -66,7 +66,9 @@ public enum Message {
     TIME_REMAINING("timeRemaining"),
     GAME_ENDING("gameEnding"),
     GAME_STARTING("gameStarting"),
-    FARM_MAX("farmMax");
+    FARM_MAX("farmMax"),
+    FARM_SOLD("farmSold"),
+    NO_MONEY("insufficientBalance");
 
 
 

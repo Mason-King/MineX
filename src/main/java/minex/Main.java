@@ -12,6 +12,7 @@ import minex.Events.Quests.*;
 import minex.Objects.Game;
 import minex.Commands.GameCommand;
 import minex.Commands.ShopCommand;
+import minex.Utils.FarmTask;
 import minex.Utils.Items;
 import minex.Managers.GameManager;
 import minex.Managers.PlayerManager;
@@ -86,7 +87,12 @@ public final class Main extends JavaPlugin {
         new BankCommand();
         new ShopCommand();
 
+
+        new FarmTask().runTaskTimer(this, 0, getConfig().getInt("farm.rate") * (60 * 20));
+
         Bukkit.getLogger().log(Level.INFO, "[MineX] MineX plugin enabled");
+
+
     }
 
     @Override

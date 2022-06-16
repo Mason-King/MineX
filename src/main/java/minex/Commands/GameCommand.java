@@ -5,14 +5,11 @@ import com.sk89q.worldguard.bukkit.RegionContainer;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
+import minex.Gui.*;
 import minex.Objects.Arena;
 import minex.Objects.Lobby;
 import minex.Events.RegionListener;
 import minex.Objects.Game;
-import minex.Gui.FarmGui;
-import minex.Gui.GameSelectorGui;
-import minex.Gui.MapGui;
-import minex.Gui.StashGui;
 import minex.Main;
 import minex.Managers.GameManager;
 import minex.Managers.PlayerManager;
@@ -262,23 +259,23 @@ public class GameCommand implements CommandExecutor {
                         }
                     }
                 } else if(args[0].equalsIgnoreCase("addextraction")) {
-                    if(!player.hasPermission("minex.extraction.add")) {
+                    if (!player.hasPermission("minex.extraction.add")) {
                         player.sendMessage(Message.NO_PERMISSION.getMessage());
                         return false;
                     }
-                    if(args.length < 3) {
+                    if (args.length < 3) {
                         player.sendMessage(Message.ADD_EXTRACTION_USAGE.getMessage());
                     } else {
-                        if(GameManager.getGame(args[1]) == null) {
+                        if (GameManager.getGame(args[1]) == null) {
                             player.sendMessage(Message.NO_GAME.getMessage());
                         } else {
                             Game game = GameManager.getGame(args[1]);
-                            if(!player.getWorld().getName().equals(args[1] + "Game")) return false;
-                            if(game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
+                            if (!player.getWorld().getName().equals(args[1] + "Game")) return false;
+                            if (game.getArena().getExtractions().contains(Utils.toString(player.getLocation()))) {
                                 player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
                                 return false;
                             }
-                            if(game.getArena().getExtractionNames().containsKey(args[2])) {
+                            if (game.getArena().getExtractionNames().containsKey(args[2])) {
                                 player.sendMessage(Message.EXTRACTION_EXISTS.getMessage());
                                 return false;
                             }
@@ -288,6 +285,8 @@ public class GameCommand implements CommandExecutor {
 
                         }
                     }
+                } else if(args[0].equalsIgnoreCase("upgrade")) {
+                    new UpgradeGui().makeGui(player);
                 } else if(args[0].equalsIgnoreCase("spawns")) {
                     if(!player.hasPermission("minex.spawns")) {
                         player.sendMessage(Message.NO_PERMISSION.getMessage());

@@ -1,6 +1,9 @@
 package minex.Gui;
 
+import minex.Enums.Message;
 import minex.Main;
+import minex.Managers.PlayerManager;
+import minex.Objects.mPlayer;
 import minex.Utils.Utils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -23,15 +26,25 @@ public class UpgradeGui {
 
         g.onClick(e -> {
             int slot = e.getSlot();
-            int deposit = config.getInt("deposit");
-            int withdraw = config.getInt("withdraw");
+            int farm = config.getInt("farm");
+            int stash = config.getInt("stash");
+            mPlayer mp = PlayerManager.getmPlayer(e.getWhoClicked().getUniqueId());
 
-            if(slot == deposit) {
-                p.closeInventory();
-                new BankSelectionGui().makeGui(p, "deposit");
-            } else if(slot == withdraw) {
-                p.closeInventory();
-                new BankSelectionGui().makeGui(p, "withdraw");
+            if(slot == farm) {
+                int nextLevel = mp.getFarmLevel() + 1;
+                int cost = Main.getInstance().getConfig().getInt("upgrades.farm." + nextLevel + ".cost");
+                if(cost == 0) return;
+                if(mp.getBalance() >= cost) {
+                    //enough
+                } else {
+                    p.sendMessage(Message.NO_MONEY.getMessage());
+                    return;
+                }
+                int up = Main.getInstance().getConfig().getInt("upgrades.farm." + nextLevel + ".amount");
+                mp.setFarmLevel(nextLevel);
+                mp.setFarmLimit(up);
+            } else if(slot == stash) {
+
             }
         });
     }

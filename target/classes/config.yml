@@ -58,6 +58,8 @@ messages:
   gameEnding: "&c&lMineX &7| The game is ending!"
   gameStarting: "&c&lMineX &7| The game is starting! try to stay alive!"
   farmMax: "&c&lMineX &7| You have reached your max farm size, use /upgrade to upgrade it!"
+  farmSold: "&c&lMineX &7| Your bitcoin farm has produced: {sell}"
+  insufficientBalance: "&c&lMineX &7| You do not have enough money for this!"
 
 helpCommand:
   - "&c&l/game create <id> &7- Create a new game"
@@ -92,7 +94,10 @@ economy:
 
 farm:
   title: "&lBitcoin Farm"
-  rate: 10
+  #How many minutes until each sell
+  rate: 2
+  #amount per gpu each sell
+  sell: 10
   gpu:
     material: IRON_BLOCK
     amount: 1

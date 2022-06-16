@@ -4,6 +4,7 @@ import minex.Objects.Game;
 import minex.Gui.Gui;
 import minex.Main;
 import minex.Managers.PlayerManager;
+import minex.Objects.mPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -152,6 +153,7 @@ public class Utils {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
         List<String> toFormat = config.getStringList("format");
         int size = toFormat.size() * 9;
+        mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
 
         if(toFormat.size() == size / 9) {
             for(int i = 0; i < (size / 9); i++) {
@@ -165,8 +167,17 @@ public class Utils {
                     im.setDisplayName(color(config.getString(keyForItems + "." + individual + ".name")));
                     List<String> lore = new ArrayList<>();
                     for(String str : config.getStringList(keyForItems + "." + individual + ".lore")) {
-                        lore.add(Utils.color(str)
-                                .replace("{level}", ""));
+                        if(((9 * i) + z) == config.getInt("farm")) {
+                            lore.add(Utils.color(str)
+                                    .replace("{level}", mp.getFarmLevel() + "")
+                                    .replace("{nextLevel}", (mp.getFarmLevel() + 1 )+ "")
+                                    .replace("{cost}", config.getInt("upgrades.farm." + (mp.getFarmLevel() + 1) + ".cost") + ""));
+                        } else if(((9 * i) + z) == config.getInt("stash")) {
+                            lore.add(Utils.color(str)
+                                    .replace("{level}", mp.getStashLevel() + "")
+                                    .replace("{nextLevel}", (mp.getStashLevel() + 1 )+ "")
+                                    .replace("{cost}", config.getInt("upgrades.stash." + (mp.getStashLevel() + 1) + ".cost") + ""));
+                        }
                     }
 
                     gui.setItem((9 * i) + z, stack);
