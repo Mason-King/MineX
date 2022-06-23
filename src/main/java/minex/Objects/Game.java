@@ -66,6 +66,9 @@
             mPlayer mp = PlayerManager.getmPlayer(u);
             mp.setCurrGame(null);
             mp.setTeam(null);
+            if(mp.getBoard() != null && !mp.getBoard().isDeleted()) {
+                mp.getBoard().delete();
+            }
         }
 
         public void joinGame(UUID u) {
@@ -90,9 +93,7 @@
             FastBoard board = new FastBoard(player);
 
             mp.setBoard(board);
-
-
-                Party p = mp.getParty();
+            Party p = mp.getParty();
 
             List<String> lines = new ArrayList<>();
             for(int i = 0; i < scoreboard.size(); i++) {
@@ -120,17 +121,16 @@
                         .replace("{nearest_extraction}", exName));
 
                 if(string.contains("{party}")) {
-//                                if(p == null) {
-//                                    System.out.println("should not add " + string);
-//                                    board.removeLine(i);
-//                                    continue;
-//                                } else {
-//
-//                                }
-                    for(int x = 0; x < 4; x++) {
-                        lines.add(("test line " + x));
-                        continue;
-                    }
+                                if(p == null) {
+                                    continue;
+                                } else {
+                                    for(int x = 0; x < p.getSize(); x++) {
+                                        lines.add(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
+                                                .replace("{health}",Bukkit.getPlayer(p.getMembers().get(x)).getHealth() + "")
+                                        .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + ""));
+                                        continue;
+                                    }
+                                }
                     continue;
                 }
 
@@ -336,6 +336,7 @@
             GameManager.save(this);
         }
 
+
         public void gameTimer(Game game) {
             gameTimer = 1800;
             timer = new BukkitRunnable() {
@@ -343,6 +344,59 @@
                 public void run() {
                     long minute = TimeUnit.SECONDS.toMinutes(gameTimer) - (TimeUnit.SECONDS.toHours(gameTimer) * 60);
                     long second = TimeUnit.SECONDS.toSeconds(gameTimer) - (TimeUnit.SECONDS.toMinutes(gameTimer) * 60);
+
+                    List<String> scoreboard = Main.getInstance().getConfig().getStringList("gameScoreboard");
+                    String partyFormat = Main.getInstance().getConfig().getString("partyFormat");
+
+                    for(UUID u : game.getPlayers()) {
+                        mPlayer mp = PlayerManager.getmPlayer(u);
+                        Party p = mp.getParty();
+
+                        FastBoard board = mp.getBoard();
+
+                        List<String> lines = new ArrayList<>();
+                        for(int i = 0; i < scoreboard.size(); i++) {
+                            if(mp.getCurrGame() == null) continue;
+                            Game game = mp.getCurrGame();
+                            List<String> locs = game.getArena().getExtractions();
+                            Location closest = null;
+                            for(String s : locs) {
+                                if(closest == null) {
+                                    closest = Utils.fromString(s);
+                                } else if(Utils.fromString(s).distanceSquared(Bukkit.getPlayer(u).getLocation()) < closest.distanceSquared(Bukkit.getPlayer(u).getLocation())) {
+                                    closest = Utils.fromString(s);
+                                }
+                            }
+
+                            String exName = "null";
+                            for(Map.Entry e : game.getArena().getExtractionNames().entrySet()) {
+                                if(((String) e.getValue()).equals(Utils.toString(closest))) {
+                                    exName = (String) e.getKey();
+                                }
+                            }
+
+                            String string = Utils.color(scoreboard.get(i)
+                                    .replace("{remaining}", minute + "m " + second + "s")
+                                    .replace("{nearest_extraction}", exName));
+
+                            if(string.contains("{party}")) {
+                                if(p == null) {
+                                    continue;
+                                } else {
+                                    for(int x = 0; x < p.getSize(); x++) {
+                                        lines.add(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
+                                                .replace("{health}",Bukkit.getPlayer(p.getMembers().get(x)).getHealth() + "")
+                                                .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + ""));
+                                        continue;
+                                    }
+                                }
+                                continue;
+                            }
+
+                            lines.add(string);
+                        }
+                        board.updateLines(lines);
+                    }
 
                     if(gameTimer == 0) {
                         game.broadcast(Message.GAME_ENDING.getMessage());
@@ -418,16 +472,15 @@
                                     .replace("{nearest_extraction}", exName));
 
                             if(string.contains("{party}")) {
-//                                if(p == null) {
-//                                    System.out.println("should not add " + string);
-//                                    board.removeLine(i);
-//                                    continue;
-//                                } else {
-//
-//                                }
-                                for(int x = 0; x < 4; x++) {
-                                    lines.add(("test line " + x));
+                                if(p == null) {
                                     continue;
+                                } else {
+                                    for(int x = 0; x < p.getSize(); x++) {
+                                        lines.add(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
+                                                .replace("{health}",Bukkit.getPlayer(p.getMembers().get(x)).getHealth() + "")
+                                                .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + ""));
+                                        continue;
+                                    }
                                 }
                                 continue;
                             }

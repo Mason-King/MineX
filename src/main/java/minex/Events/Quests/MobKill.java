@@ -21,6 +21,7 @@ public class MobKill implements Listener {
         Player p = e.getEntity().getKiller();
         Entity ent = e.getEntity();
         mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
+        if(mp.getCurrGame() == null) return;
         List<Quest> questList = mp.getQuestByType(QuestType.MOB_KILL);
 
         for(Quest q : questList) {

@@ -1,5 +1,6 @@
 package minex.Gui;
 
+import minex.Enums.Message;
 import minex.Main;
 import minex.Managers.PlayerManager;
 import minex.Utils.Utils;
@@ -117,9 +118,10 @@ public class BankSelectionGui {
 
 
                     if(count < amount) {
-                        p.sendMessage("NEED MSG");
+                        p.sendMessage(Message.NO_MONEY.getMessage());
                         return;
                     }
+                    PlayerManager.getmPlayer(clicked.getUniqueId()).setBalance(PlayerManager.getmPlayer(clicked.getUniqueId()).getBalance() + (amount * 10));
 
                     int num = 0;
                     for(ItemStack i : clicked.getInventory().getContents()) {

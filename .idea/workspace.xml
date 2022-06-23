@@ -5,20 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74c3200-9268-4ec3-8f58-270e8df930f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/FarmTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Commands/GameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Commands/GameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Enums/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Enums/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Commands/BankCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Commands/BankCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/Destroy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/Destroy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/Enter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/Enter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/MobKill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/MobKill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/Place.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/Place.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/PlayerKill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/PlayerKill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/PlayerKillDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Events/Quests/PlayerKillDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/BankSelectionGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/BankSelectionGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Gui/UpgradeGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Gui/UpgradeGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/minex/Objects/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Objects/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/minex/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Guis/UpgradeGui.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Guis/UpgradeGui.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/MineX-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Commands/GameCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Commands/GameCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Enums/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Enums/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/minex/Objects/mPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Objects/mPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Guis/UpgradeGui.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Guis/UpgradeGui.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Commands/BankCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Commands/BankCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/Quests/Destroy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/Quests/Destroy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/Quests/Enter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/Quests/Enter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/Quests/MobKill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/Quests/MobKill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/Quests/Place.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/Quests/Place.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/Quests/PlayerKill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/Quests/PlayerKill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Events/Quests/PlayerKillDistance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Events/Quests/PlayerKillDistance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/BankSelectionGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/BankSelectionGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Gui/UpgradeGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Gui/UpgradeGui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Objects/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Objects/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Objects/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Objects/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Objects/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Objects/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/minex/Utils/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
@@ -30,7 +45,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="107073" />
+    <option name="totalTimeSeconds" value="108634" />
     <option name="idleThresholdMs" value="10000" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -128,6 +143,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CODE_SMELLS_PROFILE" value="Project Default" />

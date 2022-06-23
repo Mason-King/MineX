@@ -1,9 +1,11 @@
-
 title: "&lUpgrades"
 format:
   - "# # # # # # # # #"
   - "# # @ # # # $ # #"
   - "# # # # # # # # #"
+
+farm: 11
+stash: 15
 
 items:
   '#':

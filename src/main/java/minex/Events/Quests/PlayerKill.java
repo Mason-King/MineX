@@ -19,6 +19,7 @@ public class PlayerKill implements Listener {
         if(!(p.getKiller() instanceof Player)) return;
         Player killer = p.getKiller();
         mPlayer mp = PlayerManager.getmPlayer(killer.getUniqueId());
+        if(mp.getCurrGame() == null) return;
         List<Quest> questList = mp.getQuestByType(QuestType.PLAYER_KILL);
 
         for(Quest q : questList) {

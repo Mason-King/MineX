@@ -22,6 +22,7 @@ public class Enter implements Listener {
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
         mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
+        if(mp.getCurrGame() == null) return;
         List<Quest> questList = mp.getQuestByType(QuestType.VISIT);
 
         Location to = e.getTo();

@@ -102,7 +102,7 @@ public final class Main extends JavaPlugin {
         }
 
         for(mPlayer mp : PlayerManager.players) {
-            if(mp.getBoard() == null) continue;
+            if(mp.getBoard() == null || mp.getBoard().isDeleted()) continue;
             mp.getBoard().delete();
         }
     }

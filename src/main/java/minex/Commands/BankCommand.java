@@ -37,6 +37,12 @@ public class BankCommand implements CommandExecutor {
                     p.sendMessage(Message.BANK_GIVE_USAGE.getMessage());
                     return false;
                 }
+                try {
+                    int i = Integer.parseInt(args[1]);
+                } catch(NumberFormatException e) {
+                    p.sendMessage(Message.BANK_GIVE_USAGE.getMessage());
+                    return false;
+                }
                 ItemStack ingot = new ItemStack(Material.matchMaterial(main.getConfig().getString("economy.item.material")));
                 ItemMeta im = ingot.getItemMeta();
                 im.setDisplayName(Utils.color(main.getConfig().getString("economy.item.name")));

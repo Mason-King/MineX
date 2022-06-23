@@ -19,6 +19,7 @@ public class Destroy implements Listener {
     public void onBlockBreak(BlockBreakEvent e) {
         Player p = e.getPlayer();
         mPlayer mp = PlayerManager.getmPlayer(p.getUniqueId());
+        if(mp.getCurrGame() == null) return;
         List<Quest> questList = mp.getQuestByType(QuestType.BREAK);
 
         Block b = e.getBlock();

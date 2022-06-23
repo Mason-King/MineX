@@ -32,7 +32,8 @@ public class UpgradeGui {
 
             if(slot == farm) {
                 int nextLevel = mp.getFarmLevel() + 1;
-                int cost = Main.getInstance().getConfig().getInt("upgrades.farm." + nextLevel + ".cost");
+                int cost = config.getInt("upgrades.farm." + nextLevel + ".cost");
+                System.out.println(cost);
                 if(cost == 0) return;
                 if(mp.getBalance() >= cost) {
                     //enough
@@ -40,11 +41,24 @@ public class UpgradeGui {
                     p.sendMessage(Message.NO_MONEY.getMessage());
                     return;
                 }
-                int up = Main.getInstance().getConfig().getInt("upgrades.farm." + nextLevel + ".amount");
+                int up = config.getInt("upgrades.farm." + nextLevel + ".amount");
                 mp.setFarmLevel(nextLevel);
                 mp.setFarmLimit(up);
+                p.closeInventory();
             } else if(slot == stash) {
-
+                int nextLevel = mp.getStashLevel() + 1;
+                int cost = config.getInt("upgrades.stash." + nextLevel + ".cost");
+                if(cost == 0) return;
+                if(mp.getBalance() >= cost) {
+                    //enough
+                } else {
+                    p.sendMessage(Message.NO_MONEY.getMessage());
+                    return;
+                }
+                int up = config.getInt("upgrades.stash." + nextLevel + ".amount");
+                mp.setStashLevel(nextLevel);
+                mp.setStashSize(up);
+                p.closeInventory();
             }
         });
     }

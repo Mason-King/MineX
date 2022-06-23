@@ -177,8 +177,12 @@ public class Utils {
                                     .replace("{level}", mp.getStashLevel() + "")
                                     .replace("{nextLevel}", (mp.getStashLevel() + 1 )+ "")
                                     .replace("{cost}", config.getInt("upgrades.stash." + (mp.getStashLevel() + 1) + ".cost") + ""));
+                        } else {
+                            lore.add(Utils.color(str));
                         }
                     }
+                    im.setLore(lore);
+                    stack.setItemMeta(im);
 
                     gui.setItem((9 * i) + z, stack);
                 }
