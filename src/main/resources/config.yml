@@ -84,6 +84,13 @@ bankHelp:
   - "&c&l/bank give <player> <amount> &7- Give a player physical currency"
   - "&c&l/bank &7- Open the bank gui"
 
+partyInfoFormat: "&7{username}"
+partyInfo:
+  - "&c&l{leader}'s Party Info"
+  - ""
+  - "&7Party Members"
+  - "{party}"
+
 economy:
   bank: true
   item:
@@ -105,6 +112,12 @@ farm:
     lore:
       - "&7Place this inside your bitcoin"
       - "&7farm to earn passive income!"
+  incomeItem:
+    material: DIAMOND_BLOCK
+    name: "&c&lBitcoin Farm"
+    lore:
+      - "&7Current mining output: {gpu}x GPU"
+      - "&7Daily Income: {income}"
 
 
 partyFormat: "&e{username} &7: &c{health}&7/{maxHealth}"

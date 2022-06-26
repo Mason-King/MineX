@@ -14,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class FarmGui {
@@ -25,6 +27,24 @@ public class FarmGui {
 
     public void makeGui(Player p) {
         Gui.NoobPage g = gui.create(Utils.color(main.getConfig().getString("farm.title")), 9).c().s();
+
+        mPlayer mPlayer = PlayerManager.getmPlayer(p.getUniqueId());
+
+        int amount = main.getConfig().getInt("farm.sell");
+
+
+        ItemStack income = new ItemStack(Material.matchMaterial(main.getConfig().getString("farm.incomeItem.material")));
+        ItemMeta incomeM = income.getItemMeta();
+        incomeM.setDisplayName(Utils.color(main.getConfig().getString("farm.incomeItem.name")));
+        List<String> lore = new ArrayList<>();
+        for(String s : main.getConfig().getStringList("farm.incomeItem.lore")) {
+            lore.add(s.replace("{gpu}", mPlayer.getCurrGPU() + "")
+                    .replace("{income}", (mPlayer.getCurrGPU() * amount) + ""));
+        }
+        incomeM.setLore(lore);
+        income.setItemMeta(incomeM);
+
+        g.setItem(8, income);
 
         for(int i = 0 ; i < PlayerManager.getmPlayer(p.getUniqueId()).getCurrGPU(); i++) {
             org.bukkit.inventory.ItemStack gpu = new org.bukkit.inventory.ItemStack(Material.matchMaterial(main.getConfig().getString("farm.gpu.material")));
@@ -49,8 +69,6 @@ public class FarmGui {
 //            if(!CraftItemStack.asNMSCopy(stack).hasTag()) return;
             if(e.getClickedInventory().getHolder() instanceof  Player) {
                 //Players inv
-                System.out.println(e.getCurrentItem());
-                System.out.println(e.getCursor());
                 if((e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) && !e.getCurrentItem().getType().equals(Material.AIR)) {
                     //shifting into the gui
                     if(mp.getFarmLimit() == mp.getCurrGPU()) {

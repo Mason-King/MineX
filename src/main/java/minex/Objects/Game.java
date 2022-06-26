@@ -122,12 +122,15 @@
 
                 if(string.contains("{party}")) {
                                 if(p == null) {
+                                    lines.add(Utils.color(partyFormat.replace("{username}", player.getName())
+                                            .replace("{health}", player.getHealth() + "")
+                                            .replace("{maxHealth}", player.getMaxHealth() + "")));
                                     continue;
                                 } else {
                                     for(int x = 0; x < p.getSize(); x++) {
-                                        lines.add(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
+                                        lines.add(Utils.color(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
                                                 .replace("{health}",Bukkit.getPlayer(p.getMembers().get(x)).getHealth() + "")
-                                        .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + ""));
+                                        .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + "")));
                                         continue;
                                     }
                                 }
@@ -352,7 +355,7 @@
                         mPlayer mp = PlayerManager.getmPlayer(u);
                         Party p = mp.getParty();
 
-                        FastBoard board = mp.getBoard();
+                        FastBoard board = (mp.getBoard() == null) ? new FastBoard(Bukkit.getPlayer(u)) : mp.getBoard();
 
                         List<String> lines = new ArrayList<>();
                         for(int i = 0; i < scoreboard.size(); i++) {
@@ -381,12 +384,15 @@
 
                             if(string.contains("{party}")) {
                                 if(p == null) {
+                                    lines.add(Utils.color(partyFormat.replace("{username}", Bukkit.getPlayer(u).getName())
+                                            .replace("{health}",Bukkit.getPlayer(u).getHealth() + "")
+                                            .replace("{maxHealth}", Bukkit.getPlayer(u).getMaxHealth() + "")));
                                     continue;
                                 } else {
                                     for(int x = 0; x < p.getSize(); x++) {
-                                        lines.add(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
+                                        lines.add(Utils.color(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
                                                 .replace("{health}",Bukkit.getPlayer(p.getMembers().get(x)).getHealth() + "")
-                                                .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + ""));
+                                                .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + "")));
                                         continue;
                                     }
                                 }
@@ -444,7 +450,7 @@
                         mPlayer mp = PlayerManager.getmPlayer(u);
                         Party p = mp.getParty();
 
-                        FastBoard board = mp.getBoard();
+                        FastBoard board = (mp.getBoard() == null) ? new FastBoard(Bukkit.getPlayer(u)) : mp.getBoard();
 
                         List<String> lines = new ArrayList<>();
                         for(int i = 0; i < scoreboard.size(); i++) {
@@ -473,12 +479,15 @@
 
                             if(string.contains("{party}")) {
                                 if(p == null) {
+                                    lines.add(Utils.color(partyFormat.replace("{username}", Bukkit.getPlayer(u).getName())
+                                            .replace("{health}",Bukkit.getPlayer(u).getHealth() + "")
+                                            .replace("{maxHealth}", Bukkit.getPlayer(u).getMaxHealth() + "")));
                                     continue;
                                 } else {
                                     for(int x = 0; x < p.getSize(); x++) {
-                                        lines.add(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
+                                        lines.add(Utils.color(partyFormat.replace("{username}", Bukkit.getPlayer(p.getMembers().get(x)).getName())
                                                 .replace("{health}",Bukkit.getPlayer(p.getMembers().get(x)).getHealth() + "")
-                                                .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + ""));
+                                                .replace("{maxHealth}", Bukkit.getPlayer(p.getMembers().get(x)).getMaxHealth() + "")));
                                         continue;
                                     }
                                 }

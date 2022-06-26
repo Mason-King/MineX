@@ -2,7 +2,9 @@ package minex.Commands;
 
 import minex.Main;
 import minex.Enums.Message;
+import minex.Managers.PlayerManager;
 import minex.Objects.Party;
+import minex.Objects.mPlayer;
 import minex.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -52,16 +54,16 @@ public class PartyCommand implements CommandExecutor {
                         Party.pendingInvites.put(target.getUniqueId(), party);
                     }
                 } else if(args[0].equalsIgnoreCase("join")) {
-                    if(args.length < 2) {
+                    if (args.length < 2) {
                         player.sendMessage(Message.INVALID_PLAYER.getMessage());
                     } else {
-                        if(Bukkit.getPlayer(args[1]) == null) {
+                        if (Bukkit.getPlayer(args[1]) == null) {
                             player.sendMessage(Message.INVALID_PLAYER.getMessage());
                         } else {
                             Player owner = Bukkit.getPlayer(args[1]);
-                            if(Party.parties.containsKey(owner.getUniqueId()) && Party.pendingInvites.containsKey(player.getUniqueId())) {
+                            if (Party.parties.containsKey(owner.getUniqueId()) && Party.pendingInvites.containsKey(player.getUniqueId())) {
                                 Party party = Party.parties.get(owner.getUniqueId());
-                                if(party.addMember(player.getUniqueId())) {
+                                if (party.addMember(player.getUniqueId())) {
                                     player.sendMessage(Message.PARTY_JOINED.getMessage().replace("{name}", owner.getName()));
                                     owner.sendMessage(Message.PARTY_JOINED_PLAYER.getMessage().replace("{name}", player.getName()));
                                 } else {
@@ -72,7 +74,23 @@ public class PartyCommand implements CommandExecutor {
                             }
                         }
                     }
-
+                } else if(args[0].equalsIgnoreCase("info")) {
+                    mPlayer mp = PlayerManager.getmPlayer(player.getUniqueId());
+                    if(mp.getParty() == null) {
+                        player.sendMessage(Message.NO_PARTY.getMessage());
+                        return false;
+                    }
+                    for(String s : main.getConfig().getStringList("partyInfo")) {
+                        if(s.contains("{party}")) {
+                            System.out.println(mp.getParty().getSize());
+                            for(int i = 0; i < mp.getParty().getSize(); i++) {
+                                player.sendMessage(Utils.color(main.getConfig().getString("partyInfoFormat").replace("{username}", Bukkit.getPlayer(mp.getParty().getMembers().get(i)).getName())));
+                            }
+                            continue;
+                        } else {
+                            player.sendMessage(Utils.color(s).replace("{leader}", Bukkit.getPlayer(mp.getParty().getOwner()).getName()));
+                        }
+                    }
                 } else if(args[0].equalsIgnoreCase("create")) {
                     Party party;
                     if(Party.parties.containsKey(player.getUniqueId())) {
